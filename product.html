@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Plated Chain | Alphabet Store</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA' } } } }
+    </script>
+    <style>
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="bg-offwhite min-h-screen font-sans text-dark flex flex-col relative">
+
+    <nav class="flex justify-between items-center p-6 border-b border-gray-300 bg-white/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="space-x-6 text-sm uppercase tracking-wide hidden md:block">
+            <a href="index.html" class="hover:text-gold transition duration-300">Home</a>
+            <a href="catalogue.html" class="text-gold transition duration-300">Shop</a>
+            <a href="about_us.html" class="hover:text-gold transition duration-300">About</a>
+        </div>
+        <a href="index.html" class="text-3xl font-extrabold tracking-widest text-center flex-1 cursor-pointer hover:text-gray-700 transition">
+            ALPHABET STORE
+        </a>
+        <div class="space-x-6 text-sm uppercase tracking-wide flex">
+            <a href="#" class="hover:text-gold transition duration-300">Search</a>
+            <a href="Cart.html" class="hover:text-gold transition duration-300">Cart (2)</a>
+        </div>
+    </nav>
+
+    <main class="w-full flex flex-col lg:flex-row">
+        <div class="w-full lg:w-[60%] xl:w-[65%] flex flex-col border-r border-gray-200">
+            <div class="w-full aspect-[3/4] bg-gray-200 relative overflow-hidden flex items-center justify-center border-b border-gray-200">
+                <span class="text-gray-400 tracking-widest uppercase text-sm">Product Image 1</span>
+            </div>
+            <div class="w-full aspect-[3/4] bg-gray-300 relative overflow-hidden flex items-center justify-center border-b border-gray-200">
+                <span class="text-gray-500 tracking-widest uppercase text-sm">Product Image 2</span>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-[40%] xl:w-[35%] bg-offwhite">
+            <div class="p-8 lg:p-12 lg:sticky lg:top-[85px] h-auto lg:max-h-[calc(100vh-85px)] lg:overflow-y-auto hide-scrollbar">
+                <div class="text-xs text-gray-400 uppercase tracking-widest mb-8">
+                    <a href="catalogue.html" class="hover:text-dark">Jewelry</a> / <span class="text-dark">Necklaces</span>
+                </div>
+
+                <h1 class="text-3xl font-light tracking-wide mb-3 uppercase">Gold Plated Chain</h1>
+                <p class="text-xl font-medium mb-8">₹1,499</p>
+
+                <div class="mb-8">
+                    <span class="text-xs font-medium uppercase tracking-wider text-gray-500 block mb-3">Color: <span class="text-dark ml-1">18k Gold</span></span>
+                    <div class="flex gap-3">
+                        <button class="w-8 h-8 rounded-full border-2 border-dark p-0.5 flex items-center justify-center">
+                            <span class="w-full h-full rounded-full bg-[#D4AF37]"></span>
+                        </button>
+                        <button class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-500 p-0.5 flex items-center justify-center transition">
+                            <span class="w-full h-full rounded-full bg-[#C0C0C0]"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <a href="Cart.html" class="w-full bg-dark text-white py-5 uppercase tracking-widest text-sm text-center hover:bg-gray-800 transition duration-300 block leading-6 mb-8 border border-dark">
+                    Add To Bag
+                </a>
+                
+                <p class="text-gray-600 leading-relaxed mb-10 text-sm">
+                    Elevate your everyday look with our signature multi-layer chain. Crafted with a premium 18k gold plating over a durable, anti-tarnish core.
+                </p>
+
+                <div class="border-t border-gray-200">
+                    <details class="group border-b border-gray-200">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none py-5 uppercase tracking-wider text-xs">
+                            <span>Details & Fit</span>
+                            <span class="transition group-open:rotate-180 text-gray-400">
+                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </summary>
+                        <div class="text-gray-500 text-sm pb-6 leading-relaxed">
+                            <ul class="list-disc pl-4 space-y-2">
+                                <li>Material: 18k Gold Plated Brass</li>
+                                <li>Length: Adjustable 16" - 18"</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-12 px-6 text-center border-t border-gray-800 w-full z-10 relative">
+        <div class="flex justify-center space-x-8 mb-8 text-xs uppercase tracking-widest text-gray-400">
+            <a href="about_us.html" class="hover:text-white transition">Contact Us</a>
+        </div>
+        <p class="text-gray-500 text-xs tracking-wider uppercase">© 2026 ALPHABET STORE.</p>
+    </footer>
+</body>
+</html>

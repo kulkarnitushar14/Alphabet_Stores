@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Alphabet Store</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA' } } } }
+    </script>
+</head>
+<body class="bg-offwhite min-h-screen font-sans text-dark">
+
+    <nav class="flex justify-between items-center p-6 border-b border-gray-300 bg-white">
+        <div class="space-x-6 text-sm uppercase tracking-wide hidden md:block">
+            <a href="index.html" class="hover:text-gold transition duration-300">Home</a>
+            <a href="catalogue.html" class="hover:text-gold transition duration-300">Shop</a>
+            <a href="about_us.html" class="text-gold transition duration-300">About</a>
+        </div>
+        
+        <a href="index.html" class="text-3xl font-extrabold tracking-widest text-center flex-1 cursor-pointer hover:text-gray-700 transition">
+            ALPHABET STORE
+        </a>
+        
+        <div class="space-x-6 text-sm uppercase tracking-wide flex">
+            <a href="#" class="hover:text-gold transition duration-300">Search</a>
+            <a href="Cart.html" class="hover:text-gold transition duration-300">Cart (0)</a>
+        </div>
+    </nav>
+
+    <header class="py-20 text-center">
+        <h1 class="text-4xl md:text-5xl font-light tracking-widest uppercase mb-4">Our Story</h1>
+        <div class="w-16 h-[1px] bg-gold mx-auto"></div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="flex flex-col md:flex-row gap-16 items-center mb-24">
+            <div class="w-full md:w-1/2">
+                <div class="bg-gray-200 aspect-[4/3] w-full relative overflow-hidden flex items-center justify-center border border-gray-300">
+                    <span class="text-gray-400 tracking-widest uppercase text-sm">Brand Image</span>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="text-2xl font-medium tracking-wide mb-6">Curating the Essentials.</h2>
+                <p class="text-gray-600 leading-relaxed mb-6">Alphabet Store was founded on a simple principle: everyday items do not have to be ordinary.</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-dark text-white py-12 px-6 text-center">
+        <p class="text-gray-500 text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
