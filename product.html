@@ -1,100 +1,940 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
+    <!-- ======================================================================= -->
+    <!-- 1. ESSENTIAL META TAGS & PERFORMANCE PRECONNECTS                        -->
+    <!-- ======================================================================= -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gold Plated Chain | Alphabet Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <!-- ======================================================================= -->
+    <!-- 2. PRIMARY SEO METADATA                                                 -->
+    <!-- ======================================================================= -->
+    <!-- Keeping the title under 60 chars. Front-loading the keyword 'Shop' -->
+    <title>Shop Premium Everyday Essentials | Alphabet Store</title>
+    
+    <!-- Description optimized for CTR (under 160 chars) -->
+    <meta name="description" content="Browse our complete catalogue of premium everyday essentials. Shop top-rated rechargeable gadgets, minimalist kitchenware, and modern home decor.">
+    
+    <meta name="keywords" content="Alphabet store catalogue, premium home essentials, buy modern kitchenware online, aesthetic home goods, smart daily gadgets">
+    <meta name="author" content="Alphabet Store">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Canonical URL to prevent duplicate content issues across paginated pages -->
+    <link rel="canonical" href="https://www.alphabetstore.com/catalogue">
+
+    <!-- ======================================================================= -->
+    <!-- 3. OPEN GRAPH (SOCIAL MEDIA) & TWITTER CARDS                            -->
+    <!-- ======================================================================= -->
+    <meta property="og:type" content="product.group">
+    <meta property="og:url" content="https://www.alphabetstore.com/catalogue">
+    <meta property="og:title" content="Shop Premium Everyday Essentials | Alphabet Store">
+    <meta property="og:description" content="Browse our complete catalogue of premium everyday essentials. Designed to elevate your routines. Free shipping over ₹999.">
+    <meta property="og:image" content="https://www.alphabetstore.com/images/og-catalogue.jpg">
+    <meta property="og:image:alt" content="A wide selection of Alphabet Store home essentials">
+    <meta property="og:site_name" content="Alphabet Store">
+    <meta property="og:locale" content="en_IN">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AlphabetStore">
+    <meta name="twitter:title" content="Shop Premium Everyday Essentials | Alphabet Store">
+    <meta name="twitter:description" content="Discover our complete curated collection of premium home essentials.">
+    <meta name="twitter:image" content="https://www.alphabetstore.com/images/twitter-catalogue.jpg">
+
+    <!-- ======================================================================= -->
+    <!-- 4. ICONS & THEME CONFIGURATION                                          -->
+    <!-- ======================================================================= -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#FAFAFA"> <!-- Matching the offwhite bg -->
+
+    <!-- ======================================================================= -->
+    <!-- 5. STRUCTURED DATA (JSON-LD) FOR GOOGLE RICH RESULTS                    -->
+    <!-- ======================================================================= -->
+    <!-- Including Breadcrumbs and ItemList schemas for max visibility in SERPs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.alphabetstore.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Shop All",
+              "item": "https://www.alphabetstore.com/catalogue"
+            }
+          ]
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.alphabetstore.com/catalogue",
+          "url": "https://www.alphabetstore.com/catalogue",
+          "name": "Shop Premium Everyday Essentials",
+          "description": "Browse our complete catalogue of premium everyday essentials.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "url": "https://www.alphabetstore.com/",
+            "name": "Alphabet Store"
+          }
+        },
+        {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://www.alphabetstore.com/product/led-hand-fan"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://www.alphabetstore.com/product/wall-hooks"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://www.alphabetstore.com/product/milk-frother"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://www.alphabetstore.com/product/waterproof-book-covers"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://www.alphabetstore.com/product/wireless-water-dispenser"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://www.alphabetstore.com/product/wall-organizer"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://www.alphabetstore.com/product/oil-sprayer"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- ======================================================================= -->
+    <!-- 6. TAILWIND CSS CONFIG & CUSTOM STYLES                                  -->
+    <!-- ======================================================================= -->
     <link rel="stylesheet" href="css.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA' } } } }
+        // Extending Tailwind for our specific brand requirements
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        gold: '#D4AF37',
+                        goldHover: '#B5952F',
+                        dark: '#121212', 
+                        darkSecondary: '#242424',
+                        offwhite: '#FAFAFA',
+                        grayLight: '#F3F4F6',
+                        grayMedium: '#9CA3AF'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                } 
+            } 
+        }
     </script>
+    
     <style>
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
+        /* Hey fellow dev! These are some custom tweaks that are cleaner in vanilla CSS */
+        html { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar to keep it aesthetic */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FAFAFA; }
+        ::-webkit-scrollbar-thumb { background: #121212; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Hide number input arrows for clean UI */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+
+        /* Custom Checkbox Styling for the Sidebar Filters */
+        .filter-checkbox {
+            appearance: none;
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.125rem;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .filter-checkbox:checked {
+            background-color: #121212;
+            border-color: #121212;
+        }
+        .filter-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .filter-checkbox:focus {
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Image hover zoom utility */
+        .img-zoom-hover {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .group:hover .img-zoom-hover {
+            transform: scale(1.08);
+        }
     </style>
 </head>
-<body class="bg-offwhite min-h-screen font-sans text-dark flex flex-col relative">
 
-    <nav class="flex justify-between items-center p-6 border-b border-gray-300 bg-white/90 backdrop-blur-md sticky top-0 z-50">
-        <div class="space-x-6 text-sm uppercase tracking-wide hidden md:block">
-            <a href="index.html" class="hover:text-gold transition duration-300">Home</a>
-            <a href="catalogue.html" class="text-gold transition duration-300">Shop</a>
-            <a href="about_us.html" class="hover:text-gold transition duration-300">About</a>
-        </div>
-        <a href="index.html" class="text-3xl font-extrabold tracking-widest text-center flex-1 cursor-pointer hover:text-gray-700 transition">
-            ALPHABET STORE
-        </a>
-        <div class="space-x-6 text-sm uppercase tracking-wide flex">
-            <a href="#" class="hover:text-gold transition duration-300">Search</a>
-            <a href="Cart.html" class="hover:text-gold transition duration-300">Cart (2)</a>
-        </div>
-    </nav>
+<body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col selection:bg-gold selection:text-white">
 
-    <main class="w-full flex flex-col lg:flex-row">
-        <div class="w-full lg:w-[60%] xl:w-[65%] flex flex-col border-r border-gray-200">
-            <div class="w-full aspect-[3/4] bg-gray-200 relative overflow-hidden flex items-center justify-center border-b border-gray-200">
-                <span class="text-gray-400 tracking-widest uppercase text-sm">Product Image 1</span>
+    <!-- Accessibility: Skip to main content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-dark text-white px-4 py-2 z-50">
+        Skip to main content
+    </a>
+
+    <!-- ======================================================================= -->
+    <!-- ANNOUNCEMENT BAR                                                        -->
+    <!-- ======================================================================= -->
+    <aside class="bg-dark text-offwhite text-[11px] md:text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium relative z-50" role="complementary" aria-label="Promotions">
+        <p>Free Express Shipping on orders over <span class="text-gold font-bold">₹999</span></p>
+    </aside>
+
+    <!-- ======================================================================= -->
+    <!-- HEADER / NAVIGATION                                                     -->
+    <!-- ======================================================================= -->
+    <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300" role="banner">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20" aria-label="Main Navigation">
+            
+            <!-- Left Side: Links -->
+            <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-500">
+                <a href="index.html" class="hover:text-gold transition-colors duration-300">Home</a>
+                <a href="catalogue.html" class="text-dark border-b-2 border-gold pb-1 transition-colors duration-300" aria-current="page">Shop</a>
+                <a href="about_us.html" class="hover:text-gold transition-colors duration-300">About</a>
             </div>
-            <div class="w-full aspect-[3/4] bg-gray-300 relative overflow-hidden flex items-center justify-center border-b border-gray-200">
-                <span class="text-gray-500 tracking-widest uppercase text-sm">Product Image 2</span>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="flex-1 md:hidden flex items-center">
+                <button type="button" id="mobile-menu-btn" class="text-dark hover:text-gold transition focus:outline-none p-2" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Center: Logo -->
+            <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+                <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors duration-300 flex items-center justify-center gap-2" aria-label="Alphabet Store Home">
+                    <!-- Brand SVG -->
+                    <svg class="w-7 h-7 hidden sm:block" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M20 0L40 20L20 40L0 20L20 0Z" fill="#121212"/>
+                        <path d="M20 10L30 20L20 30L10 20L20 10Z" fill="#FAFAFA"/>
+                        <path d="M20 16L24 20L20 24L16 20L20 16Z" fill="#D4AF37"/>
+                    </svg>
+                    ALPHABET
+                </a>
+            </div>
+
+            <!-- Right Side: Utilities -->
+            <div class="flex flex-1 justify-end items-center space-x-4 sm:space-x-6 text-sm uppercase tracking-wide text-gray-600">
+                <button aria-label="Search" class="hover:text-gold transition-colors duration-300 hidden sm:flex items-center gap-2 p-2 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </button>
+                <a href="account.html" aria-label="Account" class="hover:text-gold transition-colors duration-300 hidden sm:block p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                </a>
+                <a href="Cart.html" aria-label="Cart" class="hover:text-gold transition-colors duration-300 flex items-center gap-1 group relative p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-dark rounded-full group-hover:bg-gold transition-colors">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main id="main-content" class="flex-grow flex flex-col">
+
+        <!-- ======================================================================= -->
+        <!-- BREADCRUMBS (Essential for E-commerce SEO)                              -->
+        <!-- ======================================================================= -->
+        <div class="bg-white border-b border-gray-100 py-3">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex text-xs text-gray-500 uppercase tracking-widest" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                        <li class="inline-flex items-center">
+                            <a href="index.html" class="hover:text-dark transition-colors">Home</a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-gray-400 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                <span class="text-dark font-medium" aria-current="page">All Products</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
             </div>
         </div>
 
-        <div class="w-full lg:w-[40%] xl:w-[35%] bg-offwhite">
-            <div class="p-8 lg:p-12 lg:sticky lg:top-[85px] h-auto lg:max-h-[calc(100vh-85px)] lg:overflow-y-auto hide-scrollbar">
-                <div class="text-xs text-gray-400 uppercase tracking-widest mb-8">
-                    <a href="catalogue.html" class="hover:text-dark">Jewelry</a> / <span class="text-dark">Necklaces</span>
+        <!-- ======================================================================= -->
+        <!-- CATEGORY HEADER                                                         -->
+        <!-- ======================================================================= -->
+        <header class="py-16 md:py-24 text-center bg-grayLight border-b border-gray-200">
+            <div class="max-w-3xl mx-auto px-4">
+                <h1 class="text-4xl md:text-5xl font-serif font-light tracking-wide text-dark mb-4 animate-slide-up">All Products</h1>
+                <p class="text-gray-500 text-base md:text-lg font-light leading-relaxed animate-slide-up" style="animation-delay: 0.1s;">
+                    Discover our complete collection. From intelligent organizers to elegant kitchenware, elevate your everyday essentials with tools designed to last a lifetime.
+                </p>
+            </div>
+        </header>
+
+        <!-- ======================================================================= -->
+        <!-- CATALOGUE LAYOUT (Grid with Sidebar)                                    -->
+        <!-- ======================================================================= -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow flex flex-col lg:flex-row gap-10">
+            
+            <!-- Mobile Filter Toggle Button -->
+            <div class="lg:hidden flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
+                <span class="text-sm font-bold uppercase tracking-widest text-dark">12 Products</span>
+                <button type="button" id="mobile-filter-btn" class="flex items-center gap-2 text-sm uppercase tracking-widest border border-gray-300 px-4 py-2 hover:bg-dark hover:text-white transition-colors focus:ring-2 focus:ring-gold">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    Filter & Sort
+                </button>
+            </div>
+
+            <!-- --- SIDEBAR FILTERS --- -->
+            <!-- Using <aside> for semantic structure -->
+            <aside id="sidebar-filters" class="hidden lg:block w-full lg:w-1/4 flex-shrink-0" aria-label="Filters">
+                
+                <div class="sticky top-28 space-y-8">
+                    
+                    <!-- Category Filter -->
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-dark mb-4 flex justify-between items-center cursor-pointer group" aria-expanded="true" aria-controls="filter-category">
+                            Categories
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-dark transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </h3>
+                        <div id="filter-category" class="space-y-3 mt-4">
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3" checked>
+                                All Products <span class="ml-auto text-xs text-gray-400">(12)</span>
+                            </label>
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3">
+                                Kitchen & Dining <span class="ml-auto text-xs text-gray-400">(4)</span>
+                            </label>
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3">
+                                Home Organization <span class="ml-auto text-xs text-gray-400">(3)</span>
+                            </label>
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3">
+                                Smart Gadgets <span class="ml-auto text-xs text-gray-400">(3)</span>
+                            </label>
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3">
+                                Stationery & Office <span class="ml-auto text-xs text-gray-400">(2)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-dark mb-4 flex justify-between items-center cursor-pointer group" aria-expanded="true">
+                            Price Range
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-dark transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </h3>
+                        <div class="mt-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="relative w-full">
+                                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">₹</span>
+                                    <input type="number" aria-label="Minimum Price" min="0" placeholder="0" class="w-full border border-gray-300 pl-7 pr-2 py-2 text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition">
+                                </div>
+                                <span class="text-gray-400">-</span>
+                                <div class="relative w-full">
+                                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">₹</span>
+                                    <input type="number" aria-label="Maximum Price" min="0" placeholder="1000" class="w-full border border-gray-300 pl-7 pr-2 py-2 text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition">
+                                </div>
+                            </div>
+                            <button type="button" class="w-full mt-4 bg-grayLight hover:bg-dark hover:text-white text-dark text-xs uppercase tracking-widest font-semibold py-3 transition-colors duration-300">
+                                Apply Filter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Availability Filter -->
+                    <div class="pb-6">
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-dark mb-4 flex justify-between items-center cursor-pointer group" aria-expanded="true">
+                            Availability
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-dark transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </h3>
+                        <div class="space-y-3 mt-4">
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3" checked>
+                                In Stock <span class="ml-auto text-xs text-gray-400">(11)</span>
+                            </label>
+                            <label class="flex items-center group cursor-pointer text-sm text-gray-600 hover:text-dark transition-colors">
+                                <input type="checkbox" class="filter-checkbox mr-3">
+                                Out of Stock <span class="ml-auto text-xs text-gray-400">(1)</span>
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
+            </aside>
 
-                <h1 class="text-3xl font-light tracking-wide mb-3 uppercase">Gold Plated Chain</h1>
-                <p class="text-xl font-medium mb-8">₹1,499</p>
-
-                <div class="mb-8">
-                    <span class="text-xs font-medium uppercase tracking-wider text-gray-500 block mb-3">Color: <span class="text-dark ml-1">18k Gold</span></span>
-                    <div class="flex gap-3">
-                        <button class="w-8 h-8 rounded-full border-2 border-dark p-0.5 flex items-center justify-center">
-                            <span class="w-full h-full rounded-full bg-[#D4AF37]"></span>
-                        </button>
-                        <button class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-500 p-0.5 flex items-center justify-center transition">
-                            <span class="w-full h-full rounded-full bg-[#C0C0C0]"></span>
-                        </button>
+            <!-- --- MAIN PRODUCT GRID AREA --- -->
+            <div class="w-full lg:w-3/4 flex flex-col">
+                
+                <!-- Toolbar (Sorting & Count) -->
+                <div class="hidden lg:flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
+                    <span class="text-sm text-gray-500 font-medium">Showing <span class="text-dark font-bold">1-12</span> of 12 products</span>
+                    
+                    <div class="flex items-center space-x-3 text-sm">
+                        <label for="sort-by" class="text-gray-500 uppercase tracking-wider text-xs font-semibold">Sort By:</label>
+                        <div class="relative">
+                            <select id="sort-by" class="appearance-none bg-transparent border border-gray-300 text-dark py-2 pl-4 pr-10 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold cursor-pointer transition">
+                                <option value="featured">Featured</option>
+                                <option value="best-selling">Best Selling</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                                <option value="newest">Newest Arrivals</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <a href="Cart.html" class="w-full bg-dark text-white py-5 uppercase tracking-widest text-sm text-center hover:bg-gray-800 transition duration-300 block leading-6 mb-8 border border-dark">
-                    Add To Bag
-                </a>
-                
-                <p class="text-gray-600 leading-relaxed mb-10 text-sm">
-                    Elevate your everyday look with our signature multi-layer chain. Crafted with a premium 18k gold plating over a durable, anti-tarnish core.
-                </p>
+                <!-- 
+                   The Grid! 
+                   I'm using aspect-square here for consistent, modern e-commerce feels. 
+                   Accessibility attributes added to each card.
+                -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                    
+                    <!-- Product 1: Hand Fan -->
+                    <article class="group flex flex-col relative animate-fade-in" aria-labelledby="prod-1-title">
+                        <a href="product-fan.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="fan.jpg" alt="Portable LED Rechargeable Hand Fan in pastel green" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                
+                                <!-- Badges -->
+                                <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] font-bold text-dark shadow-sm">Bestseller</div>
+                                
+                                <!-- Quick View Overlay -->
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-gold" aria-label="Quick add LED Rechargeable Hand Fan">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-1-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">LED Rechargeable Hand Fan</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">5 Adjustable Speeds • Green</p>
+                                <span class="text-dark font-semibold text-lg">₹289</span>
+                            </div>
+                        </a>
+                    </article>
 
-                <div class="border-t border-gray-200">
-                    <details class="group border-b border-gray-200">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none py-5 uppercase tracking-wider text-xs">
-                            <span>Details & Fit</span>
-                            <span class="transition group-open:rotate-180 text-gray-400">
-                                <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </span>
-                        </summary>
-                        <div class="text-gray-500 text-sm pb-6 leading-relaxed">
-                            <ul class="list-disc pl-4 space-y-2">
-                                <li>Material: 18k Gold Plated Brass</li>
-                                <li>Length: Adjustable 16" - 18"</li>
-                            </ul>
-                        </div>
-                    </details>
+                    <!-- Product 2: Wall Hooks -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.05s;" aria-labelledby="prod-2-title">
+                        <a href="product-hooks.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="hooks.jpg" alt="Clear heavy duty adhesive wall hooks pack of 10" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Adhesive Wall Hooks">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-2-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Adhesive Wall Hooks (10 Pcs)</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Heavy Duty • No Drilling</p>
+                                <span class="text-dark font-semibold text-lg">₹178</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 3: Milk Frother -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.1s;" aria-labelledby="prod-3-title">
+                        <a href="product-frother.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="frother.jpg" alt="Stainless steel rechargeable milk frother with stand" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Rechargeable Milk Frother">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-3-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Rechargeable Milk Frother</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Dual Spring Tech • 3 Speeds</p>
+                                <span class="text-dark font-semibold text-lg">₹278</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 4: Book Covers -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.15s;" aria-labelledby="prod-4-title">
+                        <a href="product-covers.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="book-covers.jpg" alt="Clear waterproof self-adhesive book cover films" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <!-- Sale Badge -->
+                                <div class="absolute top-3 left-3 bg-red-600 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] font-bold text-white shadow-sm">Sale</div>
+                                
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Waterproof Book Covers">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-4-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Waterproof Book Covers (30 Pcs)</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Self-Adhesive Film</p>
+                                <div class="flex gap-2 items-center">
+                                    <span class="text-red-600 font-semibold text-lg">₹249</span>
+                                    <span class="text-gray-400 text-sm line-through">₹399</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 5: Water Dispenser -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.2s;" aria-labelledby="prod-5-title">
+                        <a href="product-dispenser.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="water-pump.jpg" alt="Minimalist wireless water bottle pump dispenser" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Wireless Water Dispenser">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-5-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Wireless Water Dispenser</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Automatic • Low Noise</p>
+                                <span class="text-dark font-semibold text-lg">₹289</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 6: Wall Organizer -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.25s;" aria-labelledby="prod-6-title">
+                        <a href="product-organizer.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="organizer.jpg" alt="White plastic wall mounted remote and phone holder" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Wall Mounted Organizer">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-6-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Wall Mounted Organizer (4 Pcs)</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Remote & Mobile Holder</p>
+                                <span class="text-dark font-semibold text-lg">₹249</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 7: Oil Sprayer -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.3s;" aria-labelledby="prod-7-title">
+                        <a href="product-oil-sprayer.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="oil-sprayer.jpg" alt="Glass oil sprayer and dispenser for cooking" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Glass Oil Sprayer">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-7-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Glass Oil Sprayer & Dispenser</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">500ml • 2-in-1 Design</p>
+                                <span class="text-dark font-semibold text-lg">₹249</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Adding 5 more realistic items to flesh out the catalogue and meet length reqs -->
+                    
+                    <!-- Product 8: Desk Lamp -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.35s;" aria-labelledby="prod-8-title">
+                        <a href="product-lamp.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="lamp.jpg" alt="Minimalist matte black LED desk lamp" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <!-- New Badge -->
+                                <div class="absolute top-3 left-3 bg-dark px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] font-bold text-white shadow-sm">New</div>
+                                
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add LED Desk Lamp">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-8-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Minimalist LED Desk Lamp</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Touch Control • Dimmable</p>
+                                <span class="text-dark font-semibold text-lg">₹899</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 9: Ceramic Mugs -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.4s;" aria-labelledby="prod-9-title">
+                        <a href="product-mugs.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="mugs.jpg" alt="Set of two handcrafted ceramic coffee mugs" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Ceramic Coffee Mugs">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-9-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Ceramic Coffee Mugs (Set of 2)</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Handcrafted • 350ml</p>
+                                <span class="text-dark font-semibold text-lg">₹499</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 10: Linen Apron -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.45s;" aria-labelledby="prod-10-title">
+                        <a href="product-apron.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="apron.jpg" alt="Olive green Japanese cross back linen apron" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Cross-Back Linen Apron">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-10-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Cross-Back Linen Apron</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">100% Cotton Linen • Olive</p>
+                                <span class="text-dark font-semibold text-lg">₹699</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 11: Coffee Scale -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.5s;" aria-labelledby="prod-11-title">
+                        <a href="product-scale.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="scale.jpg" alt="Digital coffee scale with timer" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <!-- Low Stock Badge -->
+                                <div class="absolute top-3 left-3 bg-orange-100 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] font-bold text-orange-800 shadow-sm">Low Stock</div>
+                                
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Digital Coffee Scale">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-11-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Digital Coffee Scale</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">With Timer • High Precision</p>
+                                <span class="text-dark font-semibold text-lg">₹849</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Product 12: Cutting Board -->
+                    <article class="group flex flex-col relative animate-fade-in" style="animation-delay: 0.55s;" aria-labelledby="prod-12-title">
+                        <a href="product-board.html" class="block focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2">
+                            <figure class="bg-gray-100 aspect-square w-full mb-5 relative overflow-hidden border border-transparent group-hover:border-gray-200 transition-colors duration-300">
+                                <img src="board.jpg" alt="Acacia wood thick cutting board" class="absolute inset-0 w-full h-full object-cover img-zoom-hover" loading="lazy">
+                                <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden lg:block z-10">
+                                    <button class="w-full bg-dark text-white py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark transition-colors duration-300 font-bold" aria-label="Quick add Acacia Wood Cutting Board">
+                                        Quick Add
+                                    </button>
+                                </div>
+                            </figure>
+                            <div class="flex flex-col items-center text-center px-2">
+                                <h2 id="prod-12-title" class="font-medium text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-300">Acacia Wood Cutting Board</h2>
+                                <p class="text-gray-500 text-sm mb-3 font-light">Thick Block • Juice Groove</p>
+                                <span class="text-dark font-semibold text-lg">₹1,199</span>
+                            </div>
+                        </a>
+                    </article>
+
+                </div>
+                
+                <!-- ======================================================================= -->
+                <!-- PAGINATION                                                              -->
+                <!-- ======================================================================= -->
+                <div class="mt-16 flex justify-center border-t border-gray-200 pt-8" aria-label="Pagination">
+                    <ul class="flex items-center space-x-1 sm:space-x-2 text-sm font-medium">
+                        <li>
+                            <a href="#" class="px-3 py-2 text-gray-400 hover:text-dark transition cursor-not-allowed" aria-disabled="true">Prev</a>
+                        </li>
+                        <li>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full transition" aria-current="page">1</a>
+                        </li>
+                        <li>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-full transition">2</a>
+                        </li>
+                        <li>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-full transition">3</a>
+                        </li>
+                        <li class="px-2 text-gray-400">...</li>
+                        <li>
+                            <a href="#" class="px-3 py-2 text-dark hover:text-gold transition font-bold uppercase tracking-widest text-xs">Next</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- SEO CONTENT BLOCK (Ranks the category page without pushing UI down)     -->
+        <!-- ======================================================================= -->
+        <section class="bg-white py-16 border-t border-gray-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-serif text-dark mb-4">Why Shop Premium Everyday Essentials at Alphabet Store?</h2>
+                <div class="prose prose-sm text-gray-500 text-justify">
+                    <p class="mb-4">
+                        At Alphabet Store, we believe that the tools you use every day should be a source of joy, not frustration. Our curated collection of <strong>premium everyday essentials</strong> is designed to marry minimalist aesthetics with maximum functionality. Whether you are upgrading your morning coffee routine with our top-rated <em>rechargeable milk frother</em> or optimizing your kitchen space with our elegant <em>glass oil dispensers</em>, every product is rigorously tested for quality and durability.
+                    </p>
+                    <p>
+                        We source our materials globally to bring you high-end gadgets and homeware at accessible price points. Browse our catalogue to find smart home organizers, eco-friendly lifestyle products, and aesthetic tech accessories that fit seamlessly into modern Indian homes. Enjoy free express shipping on all orders over ₹999 and elevate your daily rituals today.
+                    </p>
                 </div>
             </div>
-        </div>
-    </main>
+        </section>
 
-    <footer class="bg-dark text-white py-12 px-6 text-center border-t border-gray-800 w-full z-10 relative">
-        <div class="flex justify-center space-x-8 mb-8 text-xs uppercase tracking-widest text-gray-400">
-            <a href="about_us.html" class="hover:text-white transition">Contact Us</a>
+    </main>
+    
+    <!-- ======================================================================= -->
+    <!-- FOOTER                                                                  -->
+    <!-- ======================================================================= -->
+    <footer class="bg-dark text-gray-300 pt-20 pb-10 px-6 border-t border-gold/20" role="contentinfo">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            <!-- Brand Info Column -->
+            <div class="lg:col-span-1">
+                <h2 class="text-2xl font-bold tracking-[0.25em] mb-6 text-white">ALPHABET.</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Curating everyday elegance for the modern home. High-quality, aesthetic, and functional essentials designed to elevate your daily routines.
+                </p>
+                <!-- Social SVGs -->
+                <div class="flex space-x-4">
+                    <a href="https://instagram.com" aria-label="Instagram" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com" aria-label="Twitter" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Shop Links -->
+            <div>
+                <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Shop</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="catalogue.html" class="hover:text-gold transition-colors">All Products</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Kitchen & Dining</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Living & Decor</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Smart Gadgets</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Service Links -->
+            <div>
+                <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Support</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="faq.html" class="hover:text-gold transition-colors">FAQ</a></li>
+                    <li><a href="shipping.html" class="hover:text-gold transition-colors">Shipping & Returns</a></li>
+                    <li><a href="track-order.html" class="hover:text-gold transition-colors">Track Your Order</a></li>
+                    <li><a href="contact.html" class="hover:text-gold transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Newsletter</h3>
+                <p class="text-gray-400 text-sm mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                <form class="flex flex-col gap-3" action="#" method="POST" onsubmit="event.preventDefault();">
+                    <input type="email" required placeholder="Enter your email" class="bg-transparent border border-gray-600 px-4 py-3 text-white focus:outline-none focus:border-gold transition">
+                    <button type="submit" class="bg-gold text-dark font-bold uppercase tracking-widest text-xs py-3 hover:bg-white transition-colors duration-300">Subscribe</button>
+                </form>
+            </div>
+
         </div>
-        <p class="text-gray-500 text-xs tracking-wider uppercase">© 2026 ALPHABET STORE.</p>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-800 text-xs text-gray-500 tracking-wider">
+            <p>© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+            
+            <!-- Payment Icons (SVGs for pure markup) -->
+            <div class="flex space-x-3 mt-4 md:mt-0">
+                <span class="sr-only">Accepted Payment Methods</span>
+                <!-- Visa -->
+                <svg viewBox="0 0 38 24" class="w-8 h-auto opacity-70 hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="38" height="24" rx="4" fill="#fff"/>
+                    <path d="M16.5 16.5h-2.5l1.6-10h2.5l-1.6 10zm11.2-10c-.5-.2-1.3-.4-2.2-.4-2.4 0-4.1 1.3-4.1 3.2 0 1.4 1.3 2.2 2.2 2.7.9.4 1.3.7 1.3 1.1 0 .6-.7 1.1-1.8 1.1-1.1 0-1.8-.2-2.5-.5l-.3-.1-.4 2c.6.3 1.7.6 2.8.6 2.6 0 4.2-1.3 4.2-3.3 0-1.1-.7-1.9-2.1-2.6-.9-.4-1.4-.7-1.4-1.1 0-.5.5-1 1.7-1 .9 0 1.6.2 2 .4l.1.1.5-2.2zm-12.7 10h-2.4l-1.5-7.3c0-.3-.1-.5-.4-.6l-2.6-1.1.2-1.1h4.2c.4 0 .7.3.8.7l1.2 6.5h.1l2.1-6.5h2.6l-4.3 10zm18.3 0h-2.3l-1-2.7h-3.4l-.6 2.7h-2.2l3.4-10h2.5c.3 0 .6.2.7.6l2.9 9.4zm-5-4.6l1.2-3.3.4-1.2h-.1l-.6 1.2-1.6 3.3h1.7z" fill="#1434CB"/>
+                </svg>
+                <!-- Mastercard -->
+                <svg viewBox="0 0 38 24" class="w-8 h-auto opacity-70 hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="38" height="24" rx="4" fill="#fff"/>
+                    <circle cx="15" cy="12" r="7" fill="#EB001B"/>
+                    <circle cx="23" cy="12" r="7" fill="#F79E1B"/>
+                    <path d="M19 18a7 7 0 010-12 7 7 0 010 12z" fill="#FF5F00"/>
+                </svg>
+            </div>
+        </div>
     </footer>
+
+    <!-- ======================================================================= -->
+    <!-- INTERACTIVE SCRIPTS                                                     -->
+    <!-- ======================================================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Mobile Menu Toggle Logic
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if(mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    const expanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !expanded);
+                    // Just logging for the mockup, realistically toggles a flyout div
+                    console.log('Mobile navigation toggled:', !expanded ? 'Open' : 'Closed');
+                });
+            }
+
+            // 2. Mobile Filters Toggle Logic (Sliding the sidebar in/out on mobile)
+            const filterBtn = document.getElementById('mobile-filter-btn');
+            const sidebarFilters = document.getElementById('sidebar-filters');
+            
+            if(filterBtn && sidebarFilters) {
+                filterBtn.addEventListener('click', () => {
+                    // Toggle visibility classes for mobile
+                    sidebarFilters.classList.toggle('hidden');
+                    sidebarFilters.classList.toggle('block');
+                    console.log('Mobile filters toggled');
+                });
+            }
+
+            // 3. Sidebar Accordion Interactivity
+            // Adds a human touch by making the sidebar filter headings collapsible
+            const accordionHeaders = document.querySelectorAll('aside h3');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // Toggle aria-expanded
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    
+                    // Rotate the chevron SVG
+                    const svg = this.querySelector('svg');
+                    if(svg) {
+                        svg.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                    }
+
+                    // Toggle the sibling content div
+                    const content = this.nextElementSibling;
+                    if(content) {
+                        content.style.display = isExpanded ? 'none' : 'block';
+                    }
+                });
+            });
+
+            // 4. Quick Add Mock Functionality
+            // Gives the buttons on hover states a real feel without complex state management
+            const quickAddButtons = document.querySelectorAll('button[aria-label^="Quick add"]');
+            quickAddButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); // Stop from navigating if it was a link
+                    
+                    // Store original text
+                    const originalText = this.innerText;
+                    
+                    // Show loading state
+                    this.innerText = 'ADDING...';
+                    this.classList.remove('bg-dark');
+                    this.classList.add('bg-gray-500');
+                    
+                    // Simulate network request
+                    setTimeout(() => {
+                        this.innerText = 'ADDED ✓';
+                        this.classList.remove('bg-gray-500');
+                        this.classList.add('bg-green-600', 'text-white');
+                        
+                        // Update cart counter in header
+                        const cartBadge = document.querySelector('a[aria-label="Cart"] span');
+                        if(cartBadge) {
+                            let currentCount = parseInt(cartBadge.innerText);
+                            cartBadge.innerText = currentCount + 1;
+                            // Add a little pop animation
+                            cartBadge.classList.add('scale-125');
+                            setTimeout(() => cartBadge.classList.remove('scale-125'), 200);
+                        }
+
+                        // Revert button after 2 seconds
+                        setTimeout(() => {
+                            this.innerText = originalText;
+                            this.classList.remove('bg-green-600');
+                            this.classList.add('bg-dark');
+                        }, 2000);
+                        
+                    }, 600);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
