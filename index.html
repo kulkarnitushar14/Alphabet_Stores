@@ -1,93 +1,879 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphabet Store | Everyday Elegance</title>
-    <link rel="stylesheet" href="css.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA' } } } }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#1a1a1a">
+
+    <!-- ==========================================
+         PRIMARY SEO META TAGS
+         ========================================== -->
+    <title>Alphabet Store | Premium Lifestyle & Everyday Essentials</title>
+    <meta name="title" content="Alphabet Store | Premium Lifestyle & Everyday Essentials">
+    <meta name="description" content="Discover Alphabet Store's curated collection of premium apparel, activewear, and everyday essentials. Minimalist designs, uncompromising quality, and quiet luxury.">
+    <meta name="keywords" content="Alphabet Store, premium essentials, oversized t-shirts, activewear, minimalist lifestyle, online shopping India, luxury basics">
+    <meta name="author" content="Alphabet Store">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://www.alphabetstore.in/">
+
+    <!-- ==========================================
+         OPEN GRAPH / FACEBOOK
+         ========================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.alphabetstore.in/">
+    <meta property="og:title" content="Alphabet Store | Premium Lifestyle & Everyday Essentials">
+    <meta property="og:description" content="Curated collections designed to elevate your everyday lifestyle. Shop premium quality apparel and accessories.">
+    <meta property="og:image" content="https://www.alphabetstore.in/assets/images/og-banner.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Alphabet Store">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- ==========================================
+         TWITTER CARDS
+         ========================================== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.alphabetstore.in/">
+    <meta name="twitter:title" content="Alphabet Store | Premium Lifestyle">
+    <meta name="twitter:description" content="Shop the finest minimalist apparel and everyday essentials at Alphabet Store.">
+    <meta name="twitter:image" content="https://www.alphabetstore.in/assets/images/twitter-banner.jpg">
+
+    <!-- ==========================================
+         FAVICON & APP ICONS
+         ========================================== -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- ==========================================
+         PRELOADS FOR PERFORMANCE
+         ========================================== -->
+    <link rel="preload" href="/assets/css/main.css" as="style">
+    <link rel="preload" href="/assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- ==========================================
+         STYLESHEETS
+         ========================================== -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- ==========================================
+         JSON-LD SCHEMA MARKUP (SEO)
+         ========================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alphabet Store",
+        "url": "https://www.alphabetstore.in",
+        "logo": "https://www.alphabetstore.in/assets/images/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-0000000000",
+            "contactType": "customer service",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Marathi"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dombivli",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN"
+        },
+        "sameAs": [
+            "https://www.instagram.com/alphabetstore",
+            "https://www.facebook.com/alphabetstore"
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://www.alphabetstore.in/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.alphabetstore.in/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        }
+    }
     </script>
 </head>
-<body class="bg-offwhite min-h-screen font-sans text-dark">
-    <div class="bg-dark text-offwhite text-xs text-center py-2 tracking-widest uppercase">
-        Free Shipping on all orders over ₹999
+<body class="page-home">
+
+    <!-- ==========================================
+         ACCESSIBILITY: SKIP LINK
+         ========================================== -->
+    <a href="#main-content" class="skip-link visually-hidden-focusable">Skip to main content</a>
+
+    <!-- ==========================================
+         GLOBAL SVG SPRITE (INLINE FOR PERF)
+         Avoids multiple HTTP requests for icons
+         ========================================== -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </symbol>
+        <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+        </symbol>
+        <symbol id="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </symbol>
+        <symbol id="icon-star-half" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            <polygon points="12 2 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor"></polygon>
+        </symbol>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </symbol>
+        <symbol id="icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </symbol>
+        <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <polyline points="23 20 23 14 17 14"></polyline>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+        </symbol>
+        <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </symbol>
+        <symbol id="icon-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+        </symbol>
+    </svg>
+
+    <!-- ==========================================
+         TOP ANNOUNCEMENT BAR
+         ========================================== -->
+    <div class="announcement-bar" role="region" aria-label="Announcements">
+        <div class="container announcement-bar__inner">
+            <p class="announcement-bar__text">
+                Free expedited shipping across Maharashtra on orders over ₹1499.
+            </p>
+            <div class="announcement-bar__links">
+                <a href="/tracking.html" class="announcement-bar__link">Track Order</a>
+                <span class="announcement-bar__divider" aria-hidden="true">|</span>
+                <a href="/help.html" class="announcement-bar__link">Help Center</a>
+            </div>
+        </div>
     </div>
 
-    <nav class="flex justify-between items-center p-6 border-b border-gray-300">
-        <div class="space-x-6 text-sm uppercase tracking-wide hidden md:block">
-            <a href="catalogue.html" class="hover:text-gold transition duration-300">Shop</a>
-            <a href="about_us.html" class="hover:text-gold transition duration-300">About Us</a>
-        </div>
-        <a href="index.html" class="text-3xl font-extrabold tracking-widest text-center flex-1 hover:text-gray-700 transition">
-            ALPHABET STORE
-        </a>
-        <div class="space-x-6 text-sm uppercase tracking-wide flex">
-            <a href="#" class="hover:text-gold transition duration-300">Search</a>
-            <a href="Cart.html" class="hover:text-gold transition duration-300">Cart (0)</a>
-        </div>
-    </nav>
+    <!-- ==========================================
+         MAIN HEADER & NAVIGATION
+         ========================================== -->
+    <header class="site-header" role="banner">
+        <div class="container site-header__inner">
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="site-header__menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
+                <svg class="icon icon-menu" aria-hidden="true"><use href="#icon-menu"></use></svg>
+            </button>
 
-    <header class="relative py-32 flex flex-col items-center justify-center text-center px-4 bg-white">
-        <h2 class="text-5xl md:text-6xl font-light mb-6 tracking-tight">Everyday Elegance.</h2>
-        <p class="text-lg text-gray-500 mb-10 max-w-lg">Discover our curated collection of premium essentials. Designed to last.</p>
-        <a href="catalogue.html" class="border border-dark bg-dark text-white px-10 py-4 uppercase tracking-widest text-sm hover:bg-white hover:text-dark transition duration-300 cursor-pointer">
-            Shop The Collection
-        </a>
+            <!-- Brand Logo -->
+            <div class="site-header__brand">
+                <a href="/index.html" rel="home" class="logo-link">
+                    <!-- Text logo for fallback/SEO, replace with img if needed -->
+                    <span class="logo-text">ALPHABET STORE</span>
+                </a>
+            </div>
+
+            <!-- Primary Navigation (Desktop) -->
+            <nav class="site-header__nav" aria-label="Primary Navigation" id="desktop-menu">
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                        <a href="/new-arrivals.html" class="nav-list__link">New Arrivals</a>
+                    </li>
+                    <li class="nav-list__item has-dropdown">
+                        <a href="/mens.html" class="nav-list__link" aria-haspopup="true" aria-expanded="false">Men</a>
+                        <!-- Mega Menu Dropdown -->
+                        <div class="nav-dropdown">
+                            <div class="container nav-dropdown__inner">
+                                <div class="nav-dropdown__column">
+                                    <h3 class="nav-dropdown__title">Apparel</h3>
+                                    <ul class="nav-dropdown__list">
+                                        <li><a href="/mens/oversized-tees.html">Oversized T-Shirts</a></li>
+                                        <li><a href="/mens/polos.html">Premium Polos</a></li>
+                                        <li><a href="/mens/shirts.html">Casual Shirts</a></li>
+                                        <li><a href="/mens/bottoms.html">Trousers & Chinos</a></li>
+                                    </ul>
+                                </div>
+                                <div class="nav-dropdown__column">
+                                    <h3 class="nav-dropdown__title">Activewear</h3>
+                                    <ul class="nav-dropdown__list">
+                                        <li><a href="/mens/gym-tees.html">Performance Tees</a></li>
+                                        <li><a href="/mens/compression.html">Compression Wear</a></li>
+                                        <li><a href="/mens/shorts.html">Lifting Shorts</a></li>
+                                        <li><a href="/mens/hoodies.html">Hoodies & Pullovers</a></li>
+                                    </ul>
+                                </div>
+                                <div class="nav-dropdown__column nav-dropdown__feature">
+                                    <a href="/collections/the-heavyweight.html">
+                                        <img src="/assets/images/nav-feature-men.jpg" alt="Men's Heavyweight Collection" class="nav-dropdown__image" loading="lazy">
+                                        <span class="nav-dropdown__feature-title">The Heavyweight Collection</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list__item has-dropdown">
+                        <a href="/womens.html" class="nav-list__link" aria-haspopup="true" aria-expanded="false">Women</a>
+                        <!-- Similar Dropdown structure for Women -->
+                        <div class="nav-dropdown">
+                            <div class="container nav-dropdown__inner">
+                                <div class="nav-dropdown__column">
+                                    <h3 class="nav-dropdown__title">Apparel</h3>
+                                    <ul class="nav-dropdown__list">
+                                        <li><a href="/womens/tops.html">Everyday Tops</a></li>
+                                        <li><a href="/womens/dresses.html">Dresses</a></li>
+                                        <li><a href="/womens/loungewear.html">Premium Loungewear</a></li>
+                                    </ul>
+                                </div>
+                                <div class="nav-dropdown__column">
+                                    <h3 class="nav-dropdown__title">Activewear</h3>
+                                    <ul class="nav-dropdown__list">
+                                        <li><a href="/womens/leggings.html">Seamless Leggings</a></li>
+                                        <li><a href="/womens/sports-bras.html">Sports Bras</a></li>
+                                        <li><a href="/womens/jackets.html">Track Jackets</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/accessories.html" class="nav-list__link">Accessories</a>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/sale.html" class="nav-list__link text-danger">Sale</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Actions (Search, Account, Cart) -->
+            <div class="site-header__actions">
+                <button class="action-btn" aria-label="Search products">
+                    <svg class="icon icon-search" aria-hidden="true"><use href="#icon-search"></use></svg>
+                </button>
+                <a href="/account/login.html" class="action-btn" aria-label="User Account">
+                    <svg class="icon icon-user" aria-hidden="true"><use href="#icon-user"></use></svg>
+                </a>
+                <a href="/cart.html" class="action-btn cart-btn" aria-label="Shopping Cart">
+                    <svg class="icon icon-cart" aria-hidden="true"><use href="#icon-cart"></use></svg>
+                    <span class="cart-count" aria-hidden="true">0</span>
+                    <span class="visually-hidden">0 items in cart</span>
+                </a>
+            </div>
+
+        </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
-        <div class="flex justify-between items-end mb-12">
-            <h3 class="text-2xl font-medium tracking-wide">Trending Now</h3>
-            <a href="catalogue.html" class="text-sm border-b border-gold text-gold pb-1 uppercase tracking-wider hover:text-black hover:border-black transition duration-300">View All</a>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <a href="product.html" class="group cursor-pointer block">
-                <div class="bg-gray-100 aspect-[4/5] w-full mb-6 relative overflow-hidden border border-transparent hover:border-gray-300 transition duration-300">
-                    <div class="absolute inset-0 bg-gray-200 group-hover:scale-105 transition duration-700"></div>
-                    <span class="absolute top-4 left-4 bg-white px-3 py-1 text-xs uppercase tracking-wider font-semibold">Bestseller</span>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <h4 class="font-medium text-lg mb-1">Gold Plated Chain</h4>
-                    <p class="text-gray-500 text-sm mb-3">Anti-Tarnish • 18k Gold</p>
-                    <span class="text-dark font-semibold">₹1,499</span>
-                </div>
-            </a>
+    <!-- ==========================================
+         MAIN CONTENT AREA
+         ========================================== -->
+    <main id="main-content" role="main">
 
-            <a href="product.html" class="group cursor-pointer block">
-                <div class="bg-gray-100 aspect-[4/5] w-full mb-6 relative overflow-hidden border border-transparent hover:border-gray-300 transition duration-300">
-                    <div class="absolute inset-0 bg-gray-200 group-hover:scale-105 transition duration-700"></div>
+        <!-- ==========================================
+             HERO BANNER SECTION
+             ========================================== -->
+        <section class="hero-section" aria-labelledby="hero-title">
+            <div class="hero-slider">
+                <!-- Slide 1 -->
+                <div class="hero-slide active">
+                    <picture class="hero-slide__background">
+                        <!-- Responsive image sources -->
+                        <source media="(max-width: 767px)" srcset="/assets/images/hero-mobile-1.jpg">
+                        <source media="(min-width: 768px)" srcset="/assets/images/hero-desktop-1.jpg">
+                        <img src="/assets/images/hero-desktop-1.jpg" alt="Model wearing premium minimalist clothing" fetchpriority="high">
+                    </picture>
+                    <div class="hero-slide__overlay"></div>
+                    <div class="container hero-slide__content">
+                        <span class="hero-slide__subtitle">Quiet Luxury Redefined</span>
+                        <h1 id="hero-title" class="hero-slide__title">The Signature Collection</h1>
+                        <p class="hero-slide__desc">Minimalist aesthetics. Uncompromising quality. Designed for those who let their work speak.</p>
+                        <div class="hero-slide__actions">
+                            <a href="/collections/signature.html" class="btn btn--primary btn--large">Shop Men</a>
+                            <a href="/collections/signature-women.html" class="btn btn--outline-light btn--large">Shop Women</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col items-center text-center">
-                    <h4 class="font-medium text-lg mb-1">Minimalist Bracelet</h4>
-                    <p class="text-gray-500 text-sm mb-3">Adjustable Size</p>
-                    <span class="text-dark font-semibold">₹899</span>
-                </div>
-            </a>
+            </div>
+        </section>
 
-            <a href="product.html" class="group cursor-pointer block">
-                <div class="bg-gray-100 aspect-[4/5] w-full mb-6 relative overflow-hidden border border-transparent hover:border-gray-300 transition duration-300">
-                    <div class="absolute inset-0 bg-gray-200 group-hover:scale-105 transition duration-700"></div>
+        <!-- ==========================================
+             TRUST & BENEFITS BAR
+             ========================================== -->
+        <section class="benefits-bar" aria-label="Store Benefits">
+            <div class="container benefits-bar__inner">
+                <div class="benefit-item">
+                    <div class="benefit-item__icon">
+                        <svg class="icon icon-truck" aria-hidden="true"><use href="#icon-truck"></use></svg>
+                    </div>
+                    <div class="benefit-item__text">
+                        <h3 class="benefit-item__title">Fast Domestic Delivery</h3>
+                        <p class="benefit-item__desc">24-48 hours within Maharashtra</p>
+                    </div>
                 </div>
-                <div class="flex flex-col items-center text-center">
-                    <h4 class="font-medium text-lg mb-1">Solitaire Drop Studs</h4>
-                    <p class="text-gray-500 text-sm mb-3">Premium Zirconia</p>
-                    <span class="text-dark font-semibold">₹1,199</span>
+                <div class="benefit-item">
+                    <div class="benefit-item__icon">
+                        <svg class="icon icon-shield" aria-hidden="true"><use href="#icon-shield"></use></svg>
+                    </div>
+                    <div class="benefit-item__text">
+                        <h3 class="benefit-item__title">Premium Materials</h3>
+                        <p class="benefit-item__desc">Sourced for durability & comfort</p>
+                    </div>
                 </div>
-            </a>
-        </div>
+                <div class="benefit-item">
+                    <div class="benefit-item__icon">
+                        <svg class="icon icon-refresh" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+                    </div>
+                    <div class="benefit-item__text">
+                        <h3 class="benefit-item__title">Hassle-Free Returns</h3>
+                        <p class="benefit-item__desc">14-day seamless return policy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SHOP BY CATEGORY
+             ========================================== -->
+        <section class="section category-section" aria-labelledby="category-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="category-heading" class="section-title">Shop by Category</h2>
+                </div>
+                
+                <div class="category-grid">
+                    <!-- Category Card 1 -->
+                    <article class="category-card">
+                        <a href="/category/oversized-tees.html" class="category-card__link">
+                            <div class="category-card__image-wrapper">
+                                <img src="/assets/images/cat-oversized.jpg" alt="Oversized T-Shirts Collection" class="category-card__image" loading="lazy">
+                            </div>
+                            <div class="category-card__content">
+                                <h3 class="category-card__title">Oversized Fits</h3>
+                                <span class="category-card__cta">Explore <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Category Card 2 -->
+                    <article class="category-card">
+                        <a href="/category/activewear.html" class="category-card__link">
+                            <div class="category-card__image-wrapper">
+                                <img src="/assets/images/cat-activewear.jpg" alt="Activewear and Gym Clothing" class="category-card__image" loading="lazy">
+                            </div>
+                            <div class="category-card__content">
+                                <h3 class="category-card__title">Activewear</h3>
+                                <span class="category-card__cta">Explore <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Category Card 3 -->
+                    <article class="category-card">
+                        <a href="/category/accessories.html" class="category-card__link">
+                            <div class="category-card__image-wrapper">
+                                <img src="/assets/images/cat-accessories.jpg" alt="Everyday Accessories" class="category-card__image" loading="lazy">
+                            </div>
+                            <div class="category-card__content">
+                                <h3 class="category-card__title">Accessories</h3>
+                                <span class="category-card__cta">Explore <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Category Card 4 -->
+                    <article class="category-card">
+                        <a href="/category/loungewear.html" class="category-card__link">
+                            <div class="category-card__image-wrapper">
+                                <img src="/assets/images/cat-lounge.jpg" alt="Premium Loungewear Collection" class="category-card__image" loading="lazy">
+                            </div>
+                            <div class="category-card__content">
+                                <h3 class="category-card__title">Loungewear</h3>
+                                <span class="category-card__cta">Explore <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             BEST SELLERS GRID (HEAVY PRODUCT LISTING)
+             ========================================== -->
+        <section class="section best-sellers" aria-labelledby="best-sellers-heading">
+            <div class="container">
+                <div class="section-header section-header--with-link">
+                    <h2 id="best-sellers-heading" class="section-title">Trending Essentials</h2>
+                    <a href="/best-sellers.html" class="section-link">View All <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></a>
+                </div>
+
+                <div class="product-grid product-grid--4-col">
+                    
+                    <!-- Product 1 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <div class="product-card__badges">
+                            <span class="badge badge--bestseller">Best Seller</span>
+                        </div>
+                        <a href="/product/heavyweight-oversized-tee-black.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/oversized-tee-black-front.jpg" alt="Men's Heavyweight Oversized Tee in Black" class="product-card__image product-card__image--primary" loading="lazy">
+                            <img src="/assets/images/products/oversized-tee-black-back.jpg" alt="Men's Heavyweight Oversized Tee back view" class="product-card__image product-card__image--secondary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.9 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <span class="rating-count">(128)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/heavyweight-oversized-tee-black.html">Heavyweight Oversized Drop-Shoulder Tee</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="999.00">₹999</span>
+                            </div>
+                            <!-- Color Swatches -->
+                            <div class="product-card__swatches" aria-label="Available colors">
+                                <button class="swatch swatch--black active" aria-label="Black" aria-pressed="true"></button>
+                                <button class="swatch swatch--olive" aria-label="Olive Green" aria-pressed="false"></button>
+                                <button class="swatch swatch--sand" aria-label="Sand" aria-pressed="false"></button>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-101">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 2 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <a href="/product/seamless-gym-pullover.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/gym-pullover-grey-front.jpg" alt="Seamless Gym Pullover in Heather Grey" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.8 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star-half"><use href="#icon-star-half"></use></svg>
+                                <span class="rating-count">(84)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/seamless-gym-pullover.html">Seamless Training Pullover</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="1499.00">₹1,499</span>
+                            </div>
+                            <div class="product-card__swatches" aria-label="Available colors">
+                                <button class="swatch swatch--grey active" aria-label="Heather Grey" aria-pressed="true"></button>
+                                <button class="swatch swatch--navy" aria-label="Navy Blue" aria-pressed="false"></button>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-102">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 3 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <div class="product-card__badges">
+                            <span class="badge badge--new">New</span>
+                        </div>
+                        <a href="/product/compression-lifting-shorts.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/lifting-shorts-black.jpg" alt="Men's Compression Lifting Shorts" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="5.0 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <span class="rating-count">(42)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/compression-lifting-shorts.html">Pro-Lift Compression Shorts (2-in-1)</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="899.00">₹899</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-103">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 4 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <a href="/product/minimalist-canvas-tote.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/canvas-tote-beige.jpg" alt="Everyday Minimalist Canvas Tote Bag" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.7 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star-half"><use href="#icon-star-half"></use></svg>
+                                <span class="rating-count">(115)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/minimalist-canvas-tote.html">Heavyweight Canvas Everyday Tote</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="599.00">₹599</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-104">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 5 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <a href="/product/quiet-luxury-linen-shirt.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/linen-shirt-white.jpg" alt="Men's White Linen Shirt" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.9 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <span class="rating-count">(93)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/quiet-luxury-linen-shirt.html">Premium Blended Linen Shirt</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="1299.00">₹1,299</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-105">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 6 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <div class="product-card__badges">
+                            <span class="badge badge--sale">-20%</span>
+                        </div>
+                        <a href="/product/steel-protein-shaker.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/steel-shaker.jpg" alt="Stainless Steel Protein Shaker Bottle" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.6 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star-half"><use href="#icon-star-half"></use></svg>
+                                <span class="rating-count">(210)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/steel-protein-shaker.html">Insulated Steel Protein Shaker (750ml)</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price product-card__price--sale" itemprop="price" content="799.00">₹799</span>
+                                <s class="product-card__price-original">₹999</s>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-106">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 7 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <a href="/product/structured-chino-pants.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/chino-pants-khaki.jpg" alt="Structured Everyday Chino Pants" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.8 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star-half"><use href="#icon-star-half"></use></svg>
+                                <span class="rating-count">(67)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/structured-chino-pants.html">Structured Tailored Chinos</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="1599.00">₹1,599</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-107">Add to Cart</button>
+                        </div>
+                    </article>
+
+                    <!-- Product 8 -->
+                    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <a href="/product/women-seamless-leggings.html" class="product-card__image-link">
+                            <img itemprop="image" src="/assets/images/products/leggings-charcoal.jpg" alt="Women's High-Waist Seamless Leggings" class="product-card__image product-card__image--primary" loading="lazy">
+                        </a>
+                        <div class="product-card__info">
+                            <div class="product-card__rating" aria-label="4.9 out of 5 stars">
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <svg class="icon icon-star"><use href="#icon-star"></use></svg>
+                                <span class="rating-count">(305)</span>
+                            </div>
+                            <h3 class="product-card__title" itemprop="name">
+                                <a href="/product/women-seamless-leggings.html">High-Waist Seamless Contour Leggings</a>
+                            </h3>
+                            <div class="product-card__price-wrapper" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="product-card__price" itemprop="price" content="1199.00">₹1,199</span>
+                            </div>
+                            <button class="btn btn--primary btn--full add-to-cart-btn" data-id="p-108">Add to Cart</button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PROMOTIONAL BANNER (FULL WIDTH)
+             ========================================== -->
+        <section class="promo-banner" aria-label="Promotional Campaign">
+            <div class="promo-banner__background" style="background-image: url('/assets/images/promo-bg-active.jpg');">
+                <div class="promo-banner__overlay"></div>
+            </div>
+            <div class="container promo-banner__content">
+                <span class="promo-banner__tagline">The 90-Day Sprint</span>
+                <h2 class="promo-banner__title">Gear Built For The Grind</h2>
+                <p class="promo-banner__desc">Engineered for heavy compound lifts, high-intensity days, and relentless consistency. Step into the gym with apparel that works as hard as you do.</p>
+                <a href="/collections/activewear.html" class="btn btn--primary btn--large">Shop The Training Collection</a>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             BRAND STORY / ABOUT SNIPPET
+             ========================================== -->
+        <section class="section brand-story">
+            <div class="container">
+                <div class="brand-story__grid">
+                    <div class="brand-story__image-col">
+                        <img src="/assets/images/brand-story.jpg" alt="Alphabet Store design process" class="brand-story__image" loading="lazy">
+                    </div>
+                    <div class="brand-story__text-col">
+                        <h2 class="section-title">Design Without Compromise</h2>
+                        <p class="brand-story__paragraph">
+                            At Alphabet Store, we believe that everyday essentials shouldn't be an afterthought. From the precision of our cuts to the weight of our fabrics, every element is deliberately engineered.
+                        </p>
+                        <p class="brand-story__paragraph">
+                            Whether you are optimizing your daily workflow, focusing on your physical fitness, or curating a minimalist wardrobe, our products are designed to support a high-performance lifestyle without shouting for attention. Pure utility, refined aesthetics.
+                        </p>
+                        <a href="/about-us.html" class="btn-link">Read Our Story <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             JOURNAL / BLOG SECTION
+             ========================================== -->
+        <section class="section journal-section bg-light" aria-labelledby="journal-heading">
+            <div class="container">
+                <div class="section-header section-header--with-link">
+                    <h2 id="journal-heading" class="section-title">The Journal</h2>
+                    <a href="/journal.html" class="section-link">Read All Articles <svg class="icon icon-arrow-right"><use href="#icon-arrow-right"></use></svg></a>
+                </div>
+
+                <div class="journal-grid">
+                    <!-- Article 1 -->
+                    <article class="journal-card">
+                        <a href="/journal/mastering-the-oversized-fit.html" class="journal-card__image-link">
+                            <img src="/assets/images/blog-1.jpg" alt="Man wearing an oversized t-shirt" class="journal-card__image" loading="lazy">
+                        </a>
+                        <div class="journal-card__content">
+                            <time datetime="2026-05-10" class="journal-card__date">May 10, 2026</time>
+                            <h3 class="journal-card__title">
+                                <a href="/journal/mastering-the-oversized-fit.html">Mastering the Oversized Fit: A Styling Guide</a>
+                            </h3>
+                            <p class="journal-card__excerpt">How to balance proportions and maintain a clean, intentional look when wearing relaxed and drop-shoulder silhouettes.</p>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="journal-card">
+                        <a href="/journal/training-apparel-guide.html" class="journal-card__image-link">
+                            <img src="/assets/images/blog-2.jpg" alt="Gym weights and training gear" class="journal-card__image" loading="lazy">
+                        </a>
+                        <div class="journal-card__content">
+                            <time datetime="2026-04-28" class="journal-card__date">April 28, 2026</time>
+                            <h3 class="journal-card__title">
+                                <a href="/journal/training-apparel-guide.html">Fabrics That Perform Under Heavy Loads</a>
+                            </h3>
+                            <p class="journal-card__excerpt">Why the material of your activewear matters when you're focusing on compound lifts and intense training blocks.</p>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="journal-card">
+                        <a href="/journal/minimalist-wardrobe-essentials.html" class="journal-card__image-link">
+                            <img src="/assets/images/blog-3.jpg" alt="Neatly folded minimalist clothing" class="journal-card__image" loading="lazy">
+                        </a>
+                        <div class="journal-card__content">
+                            <time datetime="2026-04-15" class="journal-card__date">April 15, 2026</time>
+                            <h3 class="journal-card__title">
+                                <a href="/journal/minimalist-wardrobe-essentials.html">Building a Functional Minimalist Wardrobe</a>
+                            </h3>
+                            <p class="journal-card__excerpt">Reduce decision fatigue by curating a high-quality, versatile rotation of daily essentials.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             NEWSLETTER SIGNUP SECTION
+             ========================================== -->
+        <section class="newsletter-section">
+            <div class="container newsletter-section__inner">
+                <div class="newsletter-section__content">
+                    <h2 class="newsletter-section__title">Join The Club</h2>
+                    <p class="newsletter-section__desc">Sign up for exclusive access to new product drops, private sales, and early releases. No spam, just the good stuff.</p>
+                </div>
+                <div class="newsletter-section__form-wrapper">
+                    <form action="/api/newsletter-subscribe" method="POST" class="newsletter-form" id="footer-newsletter">
+                        <div class="form-group form-group--inline">
+                            <label for="newsletter-email" class="visually-hidden">Email Address</label>
+                            <input type="email" id="newsletter-email" name="email" class="form-control" placeholder="Enter your email address" required aria-required="true">
+                            <button type="submit" class="btn btn--primary">Subscribe</button>
+                        </div>
+                        <p class="newsletter-form__disclaimer">By subscribing, you agree to our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </main>
-    
-    <footer class="bg-dark text-white py-16 px-6 text-center border-t border-gold/20">
-        <h2 class="text-2xl font-bold tracking-widest mb-8 text-offwhite">ALPHABET STORE</h2>
-        <div class="flex justify-center space-x-6 mb-8 text-sm text-gray-400">
-            <a href="#" class="hover:text-white transition">Terms of Service</a>
-            <a href="#" class="hover:text-white transition">Privacy Policy</a>
-            <a href="about_us.html" class="hover:text-white transition">Contact Us</a>
+
+    <!-- ==========================================
+         SITE FOOTER
+         ========================================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container site-footer__top">
+            <div class="footer-grid">
+                
+                <!-- Brand & Address Column -->
+                <div class="footer-col footer-col--brand">
+                    <a href="/index.html" class="footer-logo">ALPHABET STORE</a>
+                    <p class="footer-about">
+                        Premium quality lifestyle products, everyday essentials, and performance wear designed with a quiet luxury aesthetic.
+                    </p>
+                    <address class="footer-address">
+                        <p>Dombivli, Maharashtra</p>
+                        <p>India - 421201</p>
+                        <p><a href="mailto:support@alphabetstore.in">support@alphabetstore.in</a></p>
+                    </address>
+                </div>
+
+                <!-- Shop Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="/mens.html">Men's Collection</a></li>
+                        <li><a href="/womens.html">Women's Collection</a></li>
+                        <li><a href="/collections/activewear.html">Activewear</a></li>
+                        <li><a href="/accessories.html">Accessories</a></li>
+                        <li><a href="/new-arrivals.html">New Arrivals</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="/contact-us.html">Contact Us</a></li>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/shipping-policy.html">Shipping & Delivery</a></li>
+                        <li><a href="/returns.html">Returns & Exchanges</a></li>
+                        <li><a href="/size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about-us.html">About Us</a></li>
+                        <li><a href="/journal.html">Journal</a></li>
+                        <li><a href="/careers.html">Careers</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <p class="text-gray-500 text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+
+        <div class="container site-footer__bottom">
+            <div class="footer-bottom-inner">
+                <p class="copyright">&copy; 2026 Alphabet Store. All Rights Reserved.</p>
+                
+                <div class="social-links" aria-label="Social Media Links">
+                    <a href="https://instagram.com/alphabetstore" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                        <svg class="icon icon-instagram" aria-hidden="true"><use href="#icon-instagram"></use></svg>
+                    </a>
+                    <a href="https://facebook.com/alphabetstore" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">
+                        <svg class="icon icon-facebook" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+                    </a>
+                </div>
+                
+                <div class="payment-methods" aria-label="Accepted Payment Methods">
+                    <!-- Text fallback for payment icons -->
+                    <span class="visually-hidden">We accept Visa, Mastercard, UPI, and Rupay</span>
+                    <img src="/assets/images/payments/visa.svg" alt="Visa" class="payment-icon" loading="lazy">
+                    <img src="/assets/images/payments/mastercard.svg" alt="Mastercard" class="payment-icon" loading="lazy">
+                    <img src="/assets/images/payments/upi.svg" alt="UPI" class="payment-icon" loading="lazy">
+                    <img src="/assets/images/payments/rupay.svg" alt="RuPay" class="payment-icon" loading="lazy">
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- ==========================================
+         SCRIPTS (DEFER FOR PERFORMANCE)
+         ========================================== -->
+    <!-- Add your custom JavaScript files here -->
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/cart.js" defer></script>
+
 </body>
 </html>
