@@ -1,67 +1,417 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
     <title>Secure Checkout | Alphabet Store</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Alphabet Store">
+
     <link rel="stylesheet" href="css.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA' } } } }
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        gold: '#D4AF37', goldHover: '#B5952F',
+                        dark: '#121212', darkSecondary: '#242424',
+                        offwhite: '#FAFAFA', grayLight: '#F3F4F6'
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] }
+                } 
+            } 
+        }
     </script>
+    <style>
+        /* Floating label styles for a modern, app-like checkout experience */
+        .floating-input { padding-top: 1.5rem; padding-bottom: 0.5rem; }
+        .floating-label {
+            position: absolute; pointer-events: none; left: 1rem; top: 1rem;
+            transition: 0.2s ease all; color: #9CA3AF; font-size: 0.875rem;
+        }
+        .floating-input:focus ~ .floating-label,
+        .floating-input:not(:placeholder-shown) ~ .floating-label {
+            top: 0.35rem; font-size: 0.7rem; color: #121212; font-weight: 600;
+        }
+        
+        /* Custom radio buttons for payment selection */
+        .payment-radio:checked + div { border-color: #121212; background-color: #FAFAFA; }
+        .payment-radio:checked + div .radio-inner { background-color: #121212; box-shadow: inset 0 0 0 3px white, 0 0 0 1px #121212; }
+    </style>
 </head>
-<body class="bg-offwhite min-h-screen font-sans text-dark flex flex-col">
 
-    <header class="py-8 border-b border-gray-200 bg-white text-center relative">
-        <a href="Cart.html" class="absolute left-6 top-1/2 transform -translate-y-1/2 text-sm text-gray-500 hover:text-dark flex items-center gap-2 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            Return to Cart
-        </a>
-        <a href="index.html" class="text-3xl font-extrabold tracking-widest cursor-pointer hover:text-gray-700 transition">
-            ALPHABET STORE
-        </a>
+<body class="bg-offwhite min-h-screen font-sans text-dark flex flex-col antialiased">
+
+    <header class="py-6 sm:py-8 border-b border-gray-200 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative flex items-center justify-center">
+            <a href="Cart.html" class="absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 text-xs uppercase tracking-widest text-gray-500 hover:text-dark flex items-center gap-2 transition-colors font-semibold group">
+                <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                <span class="hidden sm:inline">Return to Cart</span>
+            </a>
+            <a href="index.html" class="text-2xl sm:text-3xl font-extrabold tracking-[0.25em] cursor-pointer hover:text-gray-700 transition" aria-label="Alphabet Store Home">
+                ALPHABET
+            </a>
+            <div class="absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 flex items-center gap-2 text-green-700">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <span class="hidden sm:inline text-xs uppercase tracking-widest font-bold">Secure</span>
+            </div>
+        </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 w-full flex-grow">
-        <div class="flex flex-col-reverse lg:flex-row gap-16">
-            <div class="w-full lg:w-3/5">
-                <section class="mb-10">
-                    <h2 class="text-xl font-medium mb-4">Contact Information</h2>
-                    <input type="email" placeholder="Email address" class="w-full p-4 border border-gray-300 bg-white focus:outline-none focus:border-dark transition mb-4">
-                </section>
+    <div class="bg-grayLight border-b border-gray-200 py-3">
+        <div class="max-w-6xl mx-auto px-6 text-xs uppercase tracking-widest text-gray-400 font-semibold flex justify-center sm:justify-start space-x-2">
+            <a href="Cart.html" class="hover:text-dark transition">Cart</a>
+            <span>></span>
+            <span class="text-dark">Information</span>
+            <span>></span>
+            <span>Shipping</span>
+            <span>></span>
+            <span>Payment</span>
+        </div>
+    </div>
 
-                <section class="mb-10">
-                    <h2 class="text-xl font-medium mb-4">Shipping Address</h2>
-                    <input type="text" placeholder="Address" class="w-full p-4 border border-gray-300 bg-white focus:outline-none focus:border-dark transition mb-4">
-                </section>
-
-                <section class="mb-10">
-                    <h2 class="text-xl font-medium mb-4">Payment</h2>
-                    <div class="border border-gray-300 bg-white p-6">
-                        <input type="text" placeholder="Card number" class="w-full p-4 border border-gray-300 bg-white focus:outline-none focus:border-dark transition mb-4">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 w-full flex-grow">
+        <form action="thank_you.html" method="GET" id="checkout-form" class="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16">
+            
+            <div class="w-full lg:w-3/5 space-y-10">
+                
+                <section aria-label="Express Checkout">
+                    <h2 class="text-center text-xs uppercase tracking-widest text-gray-500 mb-4 font-semibold">Express Checkout</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" class="bg-[#5A31F4] hover:bg-[#4a27cc] transition flex justify-center items-center py-3 rounded-sm" aria-label="Pay with Shop Pay">
+                            <svg class="h-6 w-auto text-white" viewBox="0 0 100 24" fill="currentColor"><path d="M18.8 9.6c-.6-1-1.6-1.5-2.8-1.5-1.9 0-3.3 1.2-3.3 3.1 0 1.9 1.4 3.1 3.3 3.1 1.2 0 2.2-.5 2.8-1.5l1.8 1.1c-1 1.4-2.5 2.1-4.6 2.1-3.2 0-5.5-2.1-5.5-5s2.3-5 5.5-5c2.1 0 3.6.7 4.6 2.1l-1.8 1.5zm11.3-3.3v9.6h-2.1V12h-4.3v3.9h-2.1V6.3h2.1v3.9h4.3V6.3h2.1zm10.7 4.8c0 2.9-2.2 5-5.3 5-3.1 0-5.3-2.1-5.3-5s2.2-5 5.3-5c3.1 0 5.3 2.1 5.3 5zm-2.2 0c0-1.8-1.3-3.2-3.1-3.2-1.8 0-3.1 1.4-3.1 3.2s1.3 3.2 3.1 3.2c1.8 0 3.1-1.4 3.1-3.2zm11.4-4.8v3.4c-.6-.9-1.6-1.6-2.9-1.6-2.6 0-4.6 2.1-4.6 4.9s2 4.9 4.6 4.9c1.3 0 2.3-.7 2.9-1.6v1.4h2.1V6.3h-2.1zm-.8 4.9c0 1.7-1.2 3.1-2.9 3.1-1.7 0-2.9-1.4-2.9-3.1s1.2-3.1 2.9-3.1c1.7 0 2.9 1.4 2.9 3.1z"></path></svg>
+                        </button>
+                        <button type="button" class="bg-black hover:bg-gray-800 transition flex justify-center items-center py-3 rounded-sm" aria-label="Pay with Google Pay">
+                            <svg class="h-5 w-auto text-white" viewBox="0 0 60 24" fill="currentColor"><path d="M22.1 11.2h-7.6v2.4h4.4c-.2 1.1-1 2-2 2.6v2.1h3.2c1.9-1.7 3-4.3 3-7.2 0-.5-.1-1-.2-1.5z" fill="#4285F4"/><path d="M14.5 19c2.1 0 3.9-.7 5.2-1.9l-3.2-2.1c-.7.5-1.6.8-2.6.8-2 0-3.7-1.3-4.3-3.1h-3.3v2.2C7.9 17.6 11 19 14.5 19z" fill="#34A853"/><path d="M10.2 12.7c-.2-.5-.3-1-.3-1.6s.1-1.1.3-1.6V7.3H6.9C6.2 8.5 5.8 9.8 5.8 11.1s.4 2.6 1 3.8l3.4-2.2z" fill="#FBBC04"/><path d="M14.5 5.2c1.2 0 2.2.4 3 1.2l2.3-2.3C18.4 2.9 16.6 2 14.5 2 11 2 7.9 3.4 6.3 6.3l3.3 2.2c.6-1.8 2.3-3.3 4.9-3.3z" fill="#EA4335"/></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="relative flex py-8 items-center">
+                        <div class="flex-grow border-t border-gray-200"></div>
+                        <span class="flex-shrink-0 mx-4 text-xs uppercase tracking-widest text-gray-400 font-semibold">Or pay with card</span>
+                        <div class="flex-grow border-t border-gray-200"></div>
                     </div>
                 </section>
 
-                <a href="Thank_you.html" class="w-full bg-dark text-white py-5 uppercase tracking-widest font-medium hover:bg-gray-800 transition duration-300 text-lg flex justify-center items-center gap-3 block text-center">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    Pay ₹2,398
-                </a>
+                <section aria-labelledby="contact-heading">
+                    <div class="flex justify-between items-end mb-4">
+                        <h2 id="contact-heading" class="text-xl font-serif text-dark">Contact Information</h2>
+                        <p class="text-sm text-gray-500">Already have an account? <a href="#" class="text-dark underline hover:text-gold transition">Log in</a></p>
+                    </div>
+                    
+                    <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                        <input type="email" id="email" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                        <label for="email" class="floating-label">Email address</label>
+                    </div>
+                    
+                    <div class="mt-3 flex items-center">
+                        <input type="checkbox" id="newsletter" class="w-4 h-4 border-gray-300 rounded-sm text-dark focus:ring-gold" checked>
+                        <label for="newsletter" class="ml-2 text-sm text-gray-500">Email me with news and offers</label>
+                    </div>
+                </section>
+
+                <section aria-labelledby="shipping-heading">
+                    <h2 id="shipping-heading" class="text-xl font-serif text-dark mb-4">Shipping Address</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                            <select id="country" class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark appearance-none cursor-pointer">
+                                <option value="IN">India</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                            </select>
+                            <label for="country" class="floating-label !top-[0.35rem] !text-[0.7rem] !text-dark !font-semibold">Country/Region</label>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                <input type="text" id="first-name" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                                <label for="first-name" class="floating-label">First name</label>
+                            </div>
+                            <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                <input type="text" id="last-name" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                                <label for="last-name" class="floating-label">Last name</label>
+                            </div>
+                        </div>
+
+                        <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                            <input type="text" id="address" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                            <label for="address" class="floating-label">Address</label>
+                        </div>
+
+                        <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                            <input type="text" id="apartment" placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                            <label for="apartment" class="floating-label">Apartment, suite, etc. (optional)</label>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                <input type="text" id="city" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                                <label for="city" class="floating-label">City</label>
+                            </div>
+                            <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                <select id="state" required class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark appearance-none cursor-pointer">
+                                    <option value="" disabled selected></option>
+                                    <option value="MH">Maharashtra</option>
+                                    <option value="DL">Delhi</option>
+                                    <option value="KA">Karnataka</option>
+                                </select>
+                                <label for="state" class="floating-label !top-[0.35rem] !text-[0.7rem] !text-dark !font-semibold">State</label>
+                            </div>
+                            <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                <input type="text" id="pincode" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                                <label for="pincode" class="floating-label">PIN code</label>
+                            </div>
+                        </div>
+
+                        <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                            <input type="tel" id="phone" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark">
+                            <label for="phone" class="floating-label">Phone</label>
+                        </div>
+                    </div>
+                </section>
+
+                <section aria-labelledby="payment-heading">
+                    <h2 id="payment-heading" class="text-xl font-serif text-dark mb-1">Payment</h2>
+                    <p class="text-sm text-gray-500 mb-4">All transactions are secure and encrypted.</p>
+                    
+                    <div class="border border-gray-300 rounded-sm bg-white overflow-hidden">
+                        
+                        <label class="flex flex-col cursor-pointer border-b border-gray-200">
+                            <input type="radio" name="payment_method" value="credit_card" class="payment-radio sr-only" checked>
+                            <div class="flex items-center justify-between p-4 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 rounded-full border border-gray-400 radio-inner flex-shrink-0 transition-all duration-200"></div>
+                                    <span class="font-medium text-dark">Credit card</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <svg viewBox="0 0 38 24" class="w-8 h-auto border border-gray-200 rounded-sm" fill="none"><rect width="38" height="24" rx="3" fill="#fff"/><path d="M16.5 16.5h-2.5l1.6-10h2.5l-1.6 10zm11.2-10c-.5-.2-1.3-.4-2.2-.4-2.4 0-4.1 1.3-4.1 3.2 0 1.4 1.3 2.2 2.2 2.7.9.4 1.3.7 1.3 1.1 0 .6-.7 1.1-1.8 1.1-1.1 0-1.8-.2-2.5-.5l-.3-.1-.4 2c.6.3 1.7.6 2.8.6 2.6 0 4.2-1.3 4.2-3.3 0-1.1-.7-1.9-2.1-2.6-.9-.4-1.4-.7-1.4-1.1 0-.5.5-1 1.7-1 .9 0 1.6.2 2 .4l.1.1.5-2.2zm-12.7 10h-2.4l-1.5-7.3c0-.3-.1-.5-.4-.6l-2.6-1.1.2-1.1h4.2c.4 0 .7.3.8.7l1.2 6.5h.1l2.1-6.5h2.6l-4.3 10zm18.3 0h-2.3l-1-2.7h-3.4l-.6 2.7h-2.2l3.4-10h2.5c.3 0 .6.2.7.6l2.9 9.4z" fill="#1434CB"/></svg>
+                                    <svg viewBox="0 0 38 24" class="w-8 h-auto border border-gray-200 rounded-sm" fill="none"><rect width="38" height="24" rx="3" fill="#fff"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 18a7 7 0 010-12 7 7 0 010 12z" fill="#FF5F00"/></svg>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-grayLight p-4 space-y-4" id="cc-details">
+                                <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                    <input type="text" id="card-number" required placeholder=" " maxlength="19" class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark" autocomplete="cc-number">
+                                    <label for="card-number" class="floating-label">Card number</label>
+                                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                        <input type="text" id="card-expiry" required placeholder=" " maxlength="5" class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark" autocomplete="cc-exp">
+                                        <label for="card-expiry" class="floating-label">Expiration date (MM / YY)</label>
+                                    </div>
+                                    <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                        <input type="text" id="card-cvc" required placeholder=" " maxlength="4" class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark" autocomplete="cc-csc">
+                                        <label for="card-cvc" class="floating-label">Security code</label>
+                                        <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-help" title="3 digits on back of card">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative bg-white border border-gray-300 rounded-sm focus-within:border-gold focus-within:ring-1 focus-within:ring-gold transition">
+                                    <input type="text" id="card-name" required placeholder=" " class="floating-input w-full px-4 bg-transparent focus:outline-none text-dark" autocomplete="cc-name">
+                                    <label for="card-name" class="floating-label">Name on card</label>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="flex flex-col cursor-pointer border-b border-gray-200">
+                            <input type="radio" name="payment_method" value="upi" class="payment-radio sr-only">
+                            <div class="flex items-center justify-between p-4 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 rounded-full border border-gray-400 radio-inner flex-shrink-0 transition-all duration-200"></div>
+                                    <span class="font-medium text-dark">UPI (Google Pay, PhonePe, Paytm)</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="flex flex-col cursor-pointer">
+                            <input type="radio" name="payment_method" value="cod" class="payment-radio sr-only">
+                            <div class="flex items-center justify-between p-4 transition-colors">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 rounded-full border border-gray-400 radio-inner flex-shrink-0 transition-all duration-200"></div>
+                                    <span class="font-medium text-dark">Cash on Delivery (COD)</span>
+                                </div>
+                            </div>
+                        </label>
+                        
+                    </div>
+                </section>
+
+                <section aria-labelledby="billing-heading">
+                    <h2 id="billing-heading" class="text-xl font-serif text-dark mb-4">Billing Address</h2>
+                    <div class="border border-gray-300 rounded-sm bg-white overflow-hidden">
+                        
+                        <label class="flex items-center p-4 border-b border-gray-200 cursor-pointer">
+                            <input type="radio" name="billing_address" value="same" class="payment-radio sr-only" checked>
+                            <div class="w-full flex items-center gap-3">
+                                <div class="w-4 h-4 rounded-full border border-gray-400 radio-inner flex-shrink-0 transition-all duration-200"></div>
+                                <span class="font-medium text-dark text-sm">Same as shipping address</span>
+                            </div>
+                        </label>
+
+                        <label class="flex items-center p-4 cursor-pointer">
+                            <input type="radio" name="billing_address" value="different" class="payment-radio sr-only">
+                            <div class="w-full flex items-center gap-3">
+                                <div class="w-4 h-4 rounded-full border border-gray-400 radio-inner flex-shrink-0 transition-all duration-200"></div>
+                                <span class="font-medium text-dark text-sm">Use a different billing address</span>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <div class="pt-4 pb-8">
+                    <button type="submit" class="w-full bg-dark text-white py-5 uppercase tracking-[0.2em] font-bold hover:bg-gold hover:text-dark transition-colors duration-400 text-base sm:text-lg flex justify-center items-center gap-3 shadow-lg hover:shadow-none focus:outline-none focus:ring-4 focus:ring-gold/50 rounded-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        Pay ₹2,398.00
+                    </button>
+                    <p class="text-center text-xs text-gray-400 mt-4 font-light">By placing your order, you agree to our Terms of Service and Privacy Policy.</p>
+                </div>
+
             </div>
 
             <div class="w-full lg:w-2/5">
-                <div class="bg-white p-8 border border-gray-200 sticky top-10">
-                    <h2 class="text-lg font-medium tracking-widest uppercase mb-6 border-b border-gray-200 pb-4">Order Summary</h2>
-                    <div class="flex justify-between items-end text-xl font-semibold border-t border-gray-200 pt-6 mt-6">
+                <div class="bg-grayLight p-6 sm:p-8 sticky top-24 border border-gray-200 rounded-sm">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-dark mb-6 border-b border-gray-200 pb-4 flex justify-between">
+                        Order Summary
+                        <span class="text-gold font-normal">2 Items</span>
+                    </h2>
+                    
+                    <div class="space-y-4 mb-6 pb-6 border-b border-gray-200">
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-16 h-16 bg-white border border-gray-200 rounded-sm flex-shrink-0">
+                                <img src="chain.jpg" alt="Gold Plated Chain" class="w-full h-full object-cover p-1">
+                                <span class="absolute -top-2 -right-2 bg-gray-500 text-white w-5 h-5 flex items-center justify-center rounded-full text-[10px] font-bold">1</span>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="text-sm font-medium text-dark">Gold Plated Chain</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">18k Gold</p>
+                            </div>
+                            <span class="text-sm font-semibold text-dark">₹1,499</span>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-16 h-16 bg-white border border-gray-200 rounded-sm flex-shrink-0">
+                                <img src="frother.jpg" alt="Milk Frother" class="w-full h-full object-cover p-1">
+                                <span class="absolute -top-2 -right-2 bg-gray-500 text-white w-5 h-5 flex items-center justify-center rounded-full text-[10px] font-bold">1</span>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="text-sm font-medium text-dark">Rechargeable Milk Frother</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Matte Black</p>
+                            </div>
+                            <span class="text-sm font-semibold text-dark">₹899</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 mb-6 pb-6 border-b border-gray-200">
+                        <input type="text" placeholder="Discount code or gift card" class="flex-grow px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:border-dark text-sm bg-white">
+                        <button type="button" class="bg-gray-300 text-gray-500 px-6 py-3 text-sm font-semibold uppercase tracking-wider rounded-sm hover:bg-dark hover:text-white transition-colors">Apply</button>
+                    </div>
+
+                    <div class="space-y-3 text-sm mb-6 text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span class="font-medium text-dark">₹2,398.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Shipping</span>
+                            <span class="text-xs font-semibold text-gray-500">Calculated at next step</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Taxes (Included)</span>
+                            <span class="font-medium text-dark">₹365.80</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-end text-lg sm:text-xl font-bold text-dark border-t border-gray-200 pt-6">
                         <span>Total</span>
-                        <span>₹2,398</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xs font-normal text-gray-500 uppercase tracking-widest">INR</span>
+                            <span>₹2,398.00</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-200 flex items-center justify-center gap-4 opacity-60 grayscale">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" class="h-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="Mastercard" class="h-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" class="h-6">
+                        <span class="text-[10px] font-bold tracking-widest border border-gray-600 px-2 py-1 rounded-sm">UPI</span>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </main>
     
-    <footer class="bg-white py-8 border-t border-gray-200 text-center mt-auto">
-        <p class="text-xs text-gray-500">Secure Encrypted Checkout</p>
+    <footer class="bg-white py-8 border-t border-gray-200 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>© 2026 ALPHABET STORE.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-dark transition">Refund policy</a>
+                <a href="#" class="hover:text-dark transition">Shipping policy</a>
+                <a href="#" class="hover:text-dark transition">Privacy policy</a>
+                <a href="#" class="hover:text-dark transition">Terms of service</a>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Format Credit Card Number with spaces
+            const ccInput = document.getElementById('card-number');
+            if (ccInput) {
+                ccInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+                    let formattedValue = '';
+                    for (let i = 0; i < value.length; i++) {
+                        if (i > 0 && i % 4 === 0) formattedValue += ' ';
+                        formattedValue += value[i];
+                    }
+                    e.target.value = formattedValue;
+                });
+            }
+
+            // 2. Format Expiry Date (MM/YY)
+            const expInput = document.getElementById('card-expiry');
+            if(expInput) {
+                expInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 2) {
+                        value = value.substring(0, 2) + ' / ' + value.substring(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+
+            // 3. Toggle Payment Details Panel based on Radio Selection
+            const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
+            const ccDetails = document.getElementById('cc-details');
+            
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'credit_card') {
+                        ccDetails.style.display = 'block';
+                        // Add required attributes back
+                        ccDetails.querySelectorAll('input').forEach(i => i.setAttribute('required', ''));
+                    } else {
+                        ccDetails.style.display = 'none';
+                        // Remove required attributes so form can submit
+                        ccDetails.querySelectorAll('input').forEach(i => i.removeAttribute('required'));
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
