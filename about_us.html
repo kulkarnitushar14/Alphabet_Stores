@@ -1,55 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Alphabet Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <title>Our Story & Mission | Alphabet Store - Premium Essentials</title>
+    <meta name="description" content="Discover the story behind Alphabet Store. We curate premium, minimalist everyday essentials designed to bring elegance and functionality to your modern home.">
+    <meta name="keywords" content="About Alphabet Store, minimalist home goods, premium essentials brand story, our mission, sustainable home decor">
+    <meta name="author" content="Alphabet Store">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.alphabetstore.com/about_us">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.alphabetstore.com/about_us">
+    <meta property="og:title" content="Our Story & Mission | Alphabet Store">
+    <meta property="og:description" content="Everyday items don't have to be ordinary. Read the story of how Alphabet Store is changing modern home essentials.">
+    <meta property="og:image" content="https://www.alphabetstore.com/images/og-about.jpg">
+    <meta property="og:site_name" content="Alphabet Store">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Alphabet Store",
+        "foundingDate": "2020",
+        "description": "Curating everyday elegance for the modern home.",
+        "url": "https://www.alphabetstore.com",
+        "logo": "https://www.alphabetstore.com/images/logo.png"
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="css.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA' } } } }
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA',
+                        grayLight: '#F3F4F6', grayMedium: '#9CA3AF'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                } 
+            } 
+        }
     </script>
+    <style>
+        /* Smooth scrolling for anchor links down the page */
+        html { scroll-behavior: smooth; }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
-<body class="bg-offwhite min-h-screen font-sans text-dark">
 
-    <nav class="flex justify-between items-center p-6 border-b border-gray-300 bg-white">
-        <div class="space-x-6 text-sm uppercase tracking-wide hidden md:block">
-            <a href="index.html" class="hover:text-gold transition duration-300">Home</a>
-            <a href="catalogue.html" class="hover:text-gold transition duration-300">Shop</a>
-            <a href="about_us.html" class="text-gold transition duration-300">About</a>
-        </div>
-        
-        <a href="index.html" class="text-3xl font-extrabold tracking-widest text-center flex-1 cursor-pointer hover:text-gray-700 transition">
-            ALPHABET STORE
-        </a>
-        
-        <div class="space-x-6 text-sm uppercase tracking-wide flex">
-            <a href="#" class="hover:text-gold transition duration-300">Search</a>
-            <a href="Cart.html" class="hover:text-gold transition duration-300">Cart (0)</a>
-        </div>
-    </nav>
+<body class="bg-offwhite min-h-screen font-sans text-dark antialiased selection:bg-gold selection:text-white flex flex-col">
 
-    <header class="py-20 text-center">
-        <h1 class="text-4xl md:text-5xl font-light tracking-widest uppercase mb-4">Our Story</h1>
-        <div class="w-16 h-[1px] bg-gold mx-auto"></div>
+    <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20">
+            <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-500">
+                <a href="index.html" class="hover:text-gold transition-colors duration-300">Home</a>
+                <a href="catalogue.html" class="hover:text-gold transition-colors duration-300">Shop</a>
+                <a href="about_us.html" class="text-dark border-b-2 border-gold pb-1 transition-colors duration-300" aria-current="page">About</a>
+            </div>
+
+            <div class="flex-1 md:hidden flex items-center">
+                <button type="button" class="text-dark hover:text-gold transition focus:outline-none p-2" aria-label="Menu">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+            </div>
+
+            <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+                <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors">
+                    ALPHABET
+                </a>
+            </div>
+
+            <div class="flex flex-1 justify-end items-center space-x-4 sm:space-x-6 text-sm uppercase tracking-wide text-gray-600">
+                <a href="Cart.html" aria-label="Cart" class="hover:text-gold transition-colors flex items-center gap-1 group relative p-2">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-dark rounded-full group-hover:bg-gold transition-colors">0</span>
+                </a>
+            </div>
+        </nav>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 pb-24">
-        <div class="flex flex-col md:flex-row gap-16 items-center mb-24">
-            <div class="w-full md:w-1/2">
-                <div class="bg-gray-200 aspect-[4/3] w-full relative overflow-hidden flex items-center justify-center border border-gray-300">
-                    <span class="text-gray-400 tracking-widest uppercase text-sm">Brand Image</span>
+    <main class="flex-grow">
+        
+        <section class="relative py-32 md:py-48 text-center bg-grayLight overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+            <div class="relative z-10 px-4 animate-fade-in-up">
+                <span class="text-gold tracking-[0.3em] uppercase text-xs sm:text-sm font-semibold mb-4 block">Est. 2020</span>
+                <h1 class="text-5xl md:text-7xl font-serif font-light tracking-wide text-dark mb-6">Our Story</h1>
+                <div class="w-24 h-[2px] bg-gold mx-auto mb-8"></div>
+                <p class="max-w-2xl mx-auto text-gray-500 text-lg md:text-xl font-light leading-relaxed">
+                    Elevating the everyday. We believe that the objects you interact with daily should bring a sense of peace, order, and beauty to your life.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="w-full md:w-1/2">
+                    <div class="bg-gray-200 aspect-[4/3] w-full relative overflow-hidden group border border-gray-100 shadow-xl">
+                        <div class="absolute inset-0 bg-gray-300 group-hover:scale-105 transition-transform duration-1000 ease-in-out"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 tracking-widest uppercase text-xs z-10">
+                            Studio Photo (Mumbai)
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-serif font-light tracking-wide mb-6">Curating the Essentials.</h2>
+                    <p class="text-gray-500 leading-relaxed mb-6 font-light text-lg">
+                        Alphabet Store was founded on a simple principle: everyday items do not have to be ordinary. Frustrated by the sea of disposable, poorly designed home goods, we set out to build a sanctuary for minimalist aesthetics and high functionality.
+                    </p>
+                    <p class="text-gray-500 leading-relaxed mb-8 font-light text-lg">
+                        What started as a small curated collection of kitchen organizers has blossomed into a full lifestyle brand. Every piece in our catalogue is rigorously tested by our team to ensure it earns its place in your home.
+                    </p>
+                    <img src="signature.png" alt="Founders Signature" class="h-12 opacity-80 filter grayscale">
+                    <p class="mt-2 text-xs uppercase tracking-widest text-dark font-bold">The Founders</p>
                 </div>
             </div>
-            <div class="w-full md:w-1/2">
-                <h2 class="text-2xl font-medium tracking-wide mb-6">Curating the Essentials.</h2>
-                <p class="text-gray-600 leading-relaxed mb-6">Alphabet Store was founded on a simple principle: everyday items do not have to be ordinary.</p>
+        </section>
+
+        <section class="bg-dark text-white py-24">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-serif font-light tracking-wide mb-16">Our Design Philosophy</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 border border-gold rounded-full flex items-center justify-center mb-6 text-gold">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        </div>
+                        <h3 class="text-lg uppercase tracking-widest font-bold mb-3">Form Meets Function</h3>
+                        <p class="text-gray-400 font-light leading-relaxed text-sm">We believe true beauty lies in utility. If a product doesn't solve a problem flawlessly, its aesthetic doesn't matter.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 border border-gold rounded-full flex items-center justify-center mb-6 text-gold">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-lg uppercase tracking-widest font-bold mb-3">Sustainable Sourcing</h3>
+                        <p class="text-gray-400 font-light leading-relaxed text-sm">Working exclusively with ethical manufacturers. We prioritize materials like bamboo, glass, and recyclable metals over single-use plastics.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 border border-gold rounded-full flex items-center justify-center mb-6 text-gold">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-lg uppercase tracking-widest font-bold mb-3">Built to Last</h3>
+                        <p class="text-gray-400 font-light leading-relaxed text-sm">We reject fast consumerism. Our goods are crafted for longevity, saving you money and reducing environmental waste over time.</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
     </main>
     
-    <footer class="bg-dark text-white py-12 px-6 text-center">
-        <p class="text-gray-500 text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+    <footer class="bg-dark text-gray-300 pt-16 pb-8 px-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs tracking-wider">
+            <p class="mb-4 md:mb-0">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+            <div class="space-x-6">
+                <a href="terms.html" class="hover:text-white transition">Terms</a>
+                <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+            </div>
+        </div>
     </footer>
 
 </body>
