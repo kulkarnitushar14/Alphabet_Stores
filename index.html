@@ -363,7 +363,7 @@
 
         <div id="view-thankyou" class="router-view hidden animate-fade-in">
             <div class="max-w-md mx-auto text-center py-24 px-6 space-y-6">
-                <div class="w-16 h-16 rounded-full border-2 border-gold flex items-center justify-center mx-auto text-gold animate-scale-up bg-amber-500/5">
+                <div class="w-16 h-16 rounded-full border-2 border-gold flex items-center justify-center mx-auto text-gold bg-amber-500/5">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h1 class="text-3xl font-serif-luxury text-dark dark:text-white tracking-wide">Purchase Document Certified</h1>
@@ -400,7 +400,7 @@
                 <div class="flex flex-col space-y-2 text-neutral-500 font-medium">
                     <button onclick="switchPage('home')" class="text-left hover:text-white transition-colors">Home Dashboard</button>
                     <button onclick="switchPage('shop')" class="text-left hover:text-white transition-colors">Product Catalogue Grid</button>
-                    <button onclick="switchPage('about')" class="text-left hover:text-white transition-colors">Our Vision Assets</button>
+                    <button onclick="switchPage('about')" class="text-left hover:text-white transition-colors">Our Story</button>
                 </div>
             </div>
             <div class="space-y-3">
@@ -425,11 +425,11 @@
             { id: "glass-oil-sprayer", title: "2-in-1 Glass Oil Sprayer Dispenser", desc: "500ml Capacity High Atomization Micron Pressure Calibration Nozzle", price: 249, badge: "Kitchen Line", image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=60" }
         ];
 
-        let 404TimerRef = null;
+        let rescueTimerRef = null;
 
         // 2. CLIENT ROUTER PIPELINE STATE MANAGEMENT SWITCHERS
         function switchPage(targetViewId) {
-            if (404TimerRef) { clearInterval(404TimerRef); 404TimerRef = null; }
+            if (rescueTimerRef) { clearInterval(rescueTimerRef); rescueTimerRef = null; }
             
             // Hide running layout viewports
             document.querySelectorAll('.router-view').forEach(view => view.classList.add('hidden'));
@@ -470,11 +470,11 @@
             const counterDisplay = document.getElementById('fallback-clock');
             if (counterDisplay) counterDisplay.innerText = fallbackTicks;
 
-            404TimerRef = setInterval(() => {
+            rescueTimerRef = setInterval(() => {
                 fallbackTicks--;
                 if (counterDisplay) counterDisplay.innerText = fallbackTicks;
                 if (fallbackTicks <= 0) {
-                    clearInterval(404TimerRef);
+                    clearInterval(rescueTimerRef);
                     switchPage('home');
                 }
             }, 1000);
@@ -619,66 +619,6 @@
             document.getElementById('cart-calc-grandtotal').innerText = '₹' + totalInvoiceSum.toLocaleString('en-IN');
         }
 
-        function adjustRowItemQuantity(arrayTargetIndex, deltaModifier) {
-            let activeBag = readSessionBagMap();
-            activeBag[arrayTargetIndex].qty += deltaModifier;
-            if (activeBag[arrayTargetIndex].qty <= 0) {
-                activeBag.splice(arrayTargetIndex, 1);
-            }
-            writeSessionBagMap(activeBag);
-            hydrateCartDisplayLedger();
-        }
-
-        function purgeRowItem(arrayTargetIndex) {
-            let activeBag = readSessionBagMap();
-            activeBag.splice(arrayTargetIndex, 1);
-            writeSessionBagMap(activeBag);
-            hydrateCartDisplayLedger();
-        }
-
-        function hydrateCheckoutVerificationViews() {
-            const operationalBag = readSessionBagMap();
-            const summaryManifestContainer = document.getElementById('checkout-receipt-manifest-box');
-            if(!summaryManifestContainer) return;
-
-            summaryManifestContainer.innerHTML = '';
-            let grossCalculatedTotal = 0;
-
-            operationalBag.forEach(item => {
-                const structuralCost = item.price * item.qty;
-                grossCalculatedTotal += structuralCost;
-
-                const rowLine = document.createElement('div');
-                rowLine.className = "flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 font-light py-2 animate-slide-up";
-                rowLine.innerHTML = `
-                    <div class="flex flex-col">
-                        <span class="font-medium text-dark dark:text-white">${item.title}</span>
-                        <span class="text-[10px] text-neutral-400 font-mono">Volume Quantity maps x${item.qty}</span>
-                    </div>
-                    <span class="font-bold text-dark dark:text-white font-mono">₹${structuralCost.toLocaleString('en-IN')}</span>`;
-                summaryManifestContainer.appendChild(rowLine);
-            });
-
-            document.getElementById('checkout-receipt-total-sum').innerText = '₹' + grossCalculatedTotal.toLocaleString('en-IN');
-        }
-
-        function executeOrderSubmissionPipeline(submitEventObject) {
-            submitEventObject.preventDefault();
-            
-            const nameCheck = document.getElementById('cust-first-name').value.trim();
-            const destinationCheck = document.getElementById('cust-address').value.trim();
-
-            if(!nameCheck || !destinationCheck) {
-                triggerPremiumToastNotification("VERIFY SHIPPING DIRECTION INPUTS");
-                return;
-            }
-
-            // Flush isolated operational storage caches 
-            sessionStorage.removeItem('alphabet_store_bag_cache');
-            syncGlobalBagStateIndicators();
-            switchPage('thankyou');
-        }
-
         // 6. AUTOMATED NIGHT MODE THEME RUNTIME MANAGEMENT SWITCHERS
         function toggleThemeLayoutState() {
             const rootHtml = document.documentElement;
@@ -717,6 +657,66 @@
                     moonIcon.classList.remove('hidden');
                 }
             }
+        }
+
+        function adjustRowItemQuantity(arrayTargetIndex, deltaModifier) {
+            let activeBag = readSessionBagMap();
+            activeBag[arrayTargetIndex].qty += deltaModifier;
+            if (activeBag[arrayTargetIndex].qty <= 0) {
+                activeBag.splice(arrayTargetIndex, 1);
+            }
+            writeSessionBagMap(activeBag);
+            hydrateCartDisplayLedger();
+        }
+
+        function purgeRowItem(arrayTargetIndex) {
+            let activeBag = readSessionBagMap();
+            activeBag.splice(arrayTargetIndex, 1);
+            writeSessionBagMap(activeBag);
+            hydrateCartDisplayLedger();
+        }
+
+        function hydrateCheckoutVerificationViews() {
+            const operationalBag = readSessionBagMap();
+            const summaryManifestContainer = document.getElementById('checkout-receipt-manifest-box');
+            if(!summaryManifestContainer) return;
+
+            summaryManifestContainer.innerHTML = '';
+            let grossCalculatedTotal = 0;
+
+            operationalBag.forEach(item => {
+                const structuralCost = item.price * item.qty;
+                grossCalculatedTotal += structuralCost;
+
+                const rowLine = document.createElement('div');
+                rowLine.className = "flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 font-light py-2 animate-slide-up";
+                rowLine.innerHTML = `
+                    <div class="flex flex-col">
+                        <span class="font-medium text-dark dark:text-white">${item.title}</span>
+                        <span class="text-[10px] text-neutral-400 font-mono">Quantity: x${item.qty}</span>
+                    </div>
+                    <span class="font-bold text-dark dark:text-white font-mono">₹${structuralCost.toLocaleString('en-IN')}</span>`;
+                summaryManifestContainer.appendChild(rowLine);
+            });
+
+            document.getElementById('checkout-receipt-total-sum').innerText = '₹' + grossCalculatedTotal.toLocaleString('en-IN');
+        }
+
+        function executeOrderSubmissionPipeline(submitEventObject) {
+            submitEventObject.preventDefault();
+            
+            const nameCheck = document.getElementById('cust-first-name').value.trim();
+            const destinationCheck = document.getElementById('cust-address').value.trim();
+
+            if(!nameCheck || !destinationCheck) {
+                triggerPremiumToastNotification("VERIFY SHIPPING DIRECTION INPUTS");
+                return;
+            }
+
+            // Flush isolated operational storage caches 
+            sessionStorage.removeItem('alphabet_store_bag_cache');
+            syncGlobalBagStateIndicators();
+            switchPage('thankyou');
         }
 
         // 7. COMPREHENSIVE REGISTRY LISTENER LIFECYCLES
