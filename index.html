@@ -11,11 +11,6 @@
     <meta name="author" content="Alphabet Store">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Alphabet Store | Premium Home Utilities">
-    <meta property="og:description" content="Discover everyday elegance with high-performance minimalist home gear. Built beautifully to last a lifetime.">
-    <meta property="og:site_name" content="Alphabet Store">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { 
@@ -37,13 +32,11 @@
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'slide-in-right': 'slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                        'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards'
                     },
                     keyframes: {
                         fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        slideUp: { '0%': { opacity: '0', transform: 'translateY(12px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        slideInRight: { '0%': { opacity: '0', transform: 'translateX(20px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } }
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(12px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
                     }
                 } 
             } 
@@ -58,14 +51,6 @@
         body { font-family: 'Inter', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
         .font-serif-luxury { font-family: 'Playfair Display', serif; }
         
-        /* Modern Custom Scrollbar UI */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        .dark ::-webkit-scrollbar-track { background: #0F0F11; }
-        ::-webkit-scrollbar-thumb { background: #121212; border-radius: 20px; }
-        .dark ::-webkit-scrollbar-thumb { background: #D4AF37; }
-
-        /* Smooth inputs with floating label logic layouts */
         .floating-input { padding-top: 1.5rem; padding-bottom: 0.5rem; }
         .floating-label {
             position: absolute; pointer-events: none; left: 1rem; top: 1rem;
@@ -85,6 +70,39 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
             <p id="toast-message" class="text-xs font-medium tracking-wide uppercase"></p>
+        </div>
+    </div>
+
+    <div id="product-detail-modal" class="fixed inset-0 z-50 invisible transition-all duration-300 ease-in-out">
+        <div onclick="closeProductModal()" class="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"></div>
+        
+        <div class="absolute inset-y-0 right-0 max-w-lg w-full bg-white dark:bg-darkSecondary shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col h-full border-l dark:border-darkBorder">
+            <header class="p-6 border-b dark:border-darkBorder flex justify-between items-center bg-zinc-50 dark:bg-black/20">
+                <span class="text-[10px] tracking-widest uppercase font-bold text-neutral-400">Essential Insight</span>
+                <button onclick="closeProductModal()" class="text-neutral-400 hover:text-dark dark:hover:text-white p-2 text-sm uppercase tracking-widest font-bold">✕ Close</button>
+            </header>
+            
+            <div class="flex-grow overflow-y-auto p-6 space-y-6">
+                <div class="aspect-square w-full bg-neutral-100 dark:bg-neutral-900 rounded border dark:border-darkBorder overflow-hidden">
+                    <img id="modal-product-image" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span id="modal-product-badge" class="text-gold text-[10px] tracking-widest uppercase font-bold block mb-1"></span>
+                    <h2 id="modal-product-title" class="text-2xl font-serif-luxury text-dark dark:text-white font-normal tracking-tight"></h2>
+                    <p id="modal-product-price" class="text-lg font-bold text-dark dark:text-white font-mono mt-2"></p>
+                </div>
+                <div class="w-full h-[1px] bg-neutral-100 dark:bg-darkBorder"></div>
+                <div class="space-y-2">
+                    <h4 class="text-[11px] font-bold tracking-wider uppercase text-neutral-400">Functional Specification</h4>
+                    <p id="modal-product-desc" class="text-neutral-500 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed font-light"></p>
+                </div>
+            </div>
+            
+            <footer class="p-6 border-t dark:border-darkBorder bg-zinc-50 dark:bg-black/20">
+                <button id="modal-add-btn" onclick="" class="w-full bg-dark text-white dark:bg-gold dark:text-dark py-4 uppercase font-bold tracking-widest text-xs hover:bg-gold hover:text-dark dark:hover:bg-white dark:hover:text-dark transition duration-300 shadow-md rounded-sm">
+                    Commit Item To Shopping Bag
+                </button>
+            </footer>
         </div>
     </div>
 
@@ -121,7 +139,6 @@
             </div>
 
             <div class="flex flex-1 justify-end items-center space-x-2 sm:space-x-4">
-                
                 <button onclick="toggleThemeLayoutState()" class="p-2 text-neutral-500 dark:text-neutral-400 hover:text-gold transition-colors duration-300" aria-label="Toggle Night Theme">
                     <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.344l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"></path></svg>
                     <svg id="theme-icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
@@ -199,29 +216,19 @@
             </header>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row gap-12">
-                
                 <aside class="w-full lg:w-1/4 flex-shrink-0 lg:sticky lg:top-32 h-fit space-y-8 hidden lg:block">
                     <div class="border border-gray-200/60 dark:border-darkBorder bg-white dark:bg-darkSecondary/50 p-6 rounded shadow-sm space-y-6">
                         <div>
                             <h3 class="text-xs font-bold uppercase tracking-[0.15em] text-dark dark:text-white mb-4 border-b pb-2 border-neutral-100 dark:border-darkBorder">Filter Segment</h3>
                             <div class="space-y-3 text-xs font-medium text-neutral-500 dark:text-neutral-400">
                                 <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" checked class="w-4 h-4 accent-gold rounded border-gray-300"> All Categories</label>
-                                <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-4 h-4 accent-gold rounded border-gray-300"> Hardware Engine Tools</label>
-                                <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" class="w-4 h-4 accent-gold rounded border-gray-300"> Kitchen Accents Line</label>
-                            </div>
-                        </div>
-                        <div class="pt-2">
-                            <h3 class="text-xs font-bold uppercase tracking-[0.15em] text-dark dark:text-white mb-3 border-b pb-2 border-neutral-100 dark:border-darkBorder">Fulfillment Specifications</h3>
-                            <div class="text-[11px] text-green-700 dark:text-emerald-500 leading-relaxed font-medium bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200/40 dark:border-emerald-900/40 p-3 rounded-sm">
-                                ✓ All catalog items map directly to quick domestic dispatch networks.
                             </div>
                         </div>
                     </div>
                 </aside>
 
                 <div class="w-full lg:w-3/4">
-                    <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        </div>
+                    <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
                 </div>
             </div>
         </div>
@@ -243,12 +250,7 @@
                 </div>
                 <div class="space-y-6 font-light text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">
                     <h2 class="text-2xl font-serif-luxury text-dark dark:text-white tracking-tight font-normal">Functional integrity combined with ultra-minimalism.</h2>
-                    <p>
-                        Frustrated by brittle household gadgets designed for fast consumption cycles, Alphabet Store sets up deliberate supply pipelines specializing in high-volume utility tools built to withstand rigorous use.
-                    </p>
-                    <p>
-                        We engineer custom product configurations directly alongside certified elite manufacturers, validating raw material compositions and architectural thresholds before any item joins our public inventory maps.
-                    </p>
+                    <p>Frustrated by brittle household gadgets designed for fast consumption cycles, Alphabet Store sets up deliberate supply pipelines specializing in high-volume utility tools built to withstand rigorous use.</p>
                 </div>
             </section>
         </div>
@@ -292,7 +294,6 @@
         <div id="view-checkout" class="router-view hidden animate-fade-in">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="flex flex-col lg:flex-row gap-12 items-start">
-                    
                     <form id="checkout-core-form" onsubmit="executeOrderSubmissionPipeline(event)" class="w-full lg:w-3/5 space-y-8">
                         <div class="bg-white dark:bg-darkSecondary/30 border border-gray-200/60 dark:border-darkBorder p-6 rounded shadow-sm">
                             <h2 class="text-base sm:text-lg font-serif-luxury text-dark dark:text-white mb-6 border-b pb-2 dark:border-darkBorder">1. Delivery Destination Metadata</h2>
@@ -314,28 +315,11 @@
 
                         <div class="bg-white dark:bg-darkSecondary/30 border border-gray-200/60 dark:border-darkBorder p-6 rounded shadow-sm">
                             <h2 class="text-base sm:text-lg font-serif-luxury text-dark dark:text-white mb-3 border-b pb-2 dark:border-darkBorder">2. Settlement Instrumentation</h2>
-                            <p class="text-[11px] text-neutral-400 mb-4 tracking-wide uppercase font-medium">Select Secure Processing Instrument Node</p>
-                            
                             <div class="border border-gray-200 dark:border-darkBorder rounded bg-white dark:bg-darkSecondary divide-y divide-gray-200 dark:divide-darkBorder">
                                 <label class="flex items-center p-4 gap-4 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
                                     <input type="radio" name="pay_gateway" value="cc" checked class="w-4 h-4 accent-gold">
                                     <div class="text-xs sm:text-sm">
                                         <span class="font-semibold block text-dark dark:text-white">Credit / Debit Gateways</span>
-                                        <span class="text-neutral-400 text-[11px] font-light">Direct 256-Bit SSL Enforced Ledger Pipeline Connection</span>
-                                    </div>
-                                </label>
-                                <label class="flex items-center p-4 gap-4 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                                    <input type="radio" name="pay_gateway" value="upi" class="w-4 h-4 accent-gold">
-                                    <div class="text-xs sm:text-sm">
-                                        <span class="font-semibold block text-dark dark:text-white">UPI Instant Transfer Network</span>
-                                        <span class="text-neutral-400 text-[11px] font-light">Instant API Settlement Loops via PhonePe / GPay / BHIM Keys</span>
-                                    </div>
-                                </label>
-                                <label class="flex items-center p-4 gap-4 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                                    <input type="radio" name="pay_gateway" value="cod" class="w-4 h-4 accent-gold">
-                                    <div class="text-xs sm:text-sm">
-                                        <span class="font-semibold block text-dark dark:text-white">Cash On Delivery (COD Logistics)</span>
-                                        <span class="text-neutral-400 text-[11px] font-light">Validates verification tokens upon cargo drop-off coordinates</span>
                                     </div>
                                 </label>
                             </div>
@@ -349,8 +333,7 @@
                     <div class="w-full lg:w-2/5 lg:sticky lg:top-32">
                         <div class="bg-white dark:bg-darkSecondary/40 border border-gray-200/60 dark:border-darkBorder p-6 rounded shadow-sm space-y-4">
                             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-dark dark:text-white border-b pb-2 dark:border-darkBorder">Invoice Manifest Summary</h3>
-                            <div id="checkout-receipt-manifest-box" class="space-y-3 max-h-64 overflow-y-auto divide-y divide-neutral-100 dark:divide-darkBorder pr-1">
-                                </div>
+                            <div id="checkout-receipt-manifest-box" class="space-y-3 max-h-64 overflow-y-auto divide-y divide-neutral-100 dark:divide-darkBorder pr-1"></div>
                             <div class="border-t pt-4 border-gray-200/60 dark:border-darkBorder flex justify-between font-bold text-dark dark:text-white text-base">
                                 <span class="uppercase text-xs tracking-wider">Final Remittance Balance</span>
                                 <span id="checkout-receipt-total-sum" class="text-gold">₹0</span>
@@ -367,9 +350,6 @@
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h1 class="text-3xl font-serif-luxury text-dark dark:text-white tracking-wide">Purchase Document Certified</h1>
-                <p class="text-neutral-400 font-light text-xs sm:text-sm leading-relaxed">
-                    Your shipment token payload has been committed to fulfillment engine pipelines. Secure domestic logistics parameters are tracking automated routing dispatches.
-                </p>
                 <button onclick="switchPage('shop')" class="inline-block bg-dark text-white dark:bg-gold dark:text-dark px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 transition shadow-lg rounded-sm">
                     Continue Token Queries
                 </button>
@@ -379,10 +359,7 @@
         <div id="view-404" class="router-view hidden animate-fade-in">
             <div class="max-w-md mx-auto text-center py-28 px-6 space-y-4">
                 <h1 class="text-8xl font-extralight text-neutral-300 dark:text-neutral-800 tracking-tighter">404</h1>
-                <h2 class="text-xs font-bold uppercase tracking-[0.25em] text-dark dark:text-white">Directory Coordinate Exception</h2>
-                <p class="text-neutral-400 font-light text-xs leading-relaxed">
-                    The requested directory segment mapping is missing. Returning to primary index dashboard array automatically in <span id="fallback-clock" class="text-gold font-bold">5</span> seconds.
-                </p>
+                <p class="text-neutral-400 font-light text-xs leading-relaxed">Returning automatically in <span id="fallback-clock" class="text-gold font-bold">5</span> seconds.</p>
                 <button onclick="switchPage('home')" class="text-xs uppercase tracking-widest font-bold text-dark dark:text-white hover:text-gold transition underline underline-offset-4 pt-4">Force Intercept Immediately</button>
             </div>
         </div>
@@ -390,32 +367,12 @@
     </main>
 
     <footer class="bg-dark dark:bg-black text-gray-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-200/40 dark:border-darkBorder text-xs font-light transition-colors">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 border-b border-neutral-800/80 pb-10">
-            <div class="space-y-4">
-                <h4 class="text-sm font-bold tracking-[0.25em] text-white">ALPHABET STORE</h4>
-                <p class="text-neutral-500 leading-relaxed max-w-xs font-light">Curating premium daily functional assets using precision industrial geometry designed to harmonize modern parameters perfectly.</p>
-            </div>
-            <div class="space-y-3">
-                <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-white">Navigation System</h4>
-                <div class="flex flex-col space-y-2 text-neutral-500 font-medium">
-                    <button onclick="switchPage('home')" class="text-left hover:text-white transition-colors">Home Dashboard</button>
-                    <button onclick="switchPage('shop')" class="text-left hover:text-white transition-colors">Product Catalogue Grid</button>
-                    <button onclick="switchPage('about')" class="text-left hover:text-white transition-colors">Our Story</button>
-                </div>
-            </div>
-            <div class="space-y-3">
-                <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-white">Security Architecture</h4>
-                <p class="text-neutral-500 leading-relaxed font-light">Integrated client application sandbox pipelines. Session allocation keys managed locally to ensure isolated checkout privacy.</p>
-            </div>
-        </div>
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-neutral-600 dark:text-neutral-500 tracking-[0.15em] text-[10px] font-medium gap-4">
-            <p>&copy; 2026 ALPHABET STORE. LOCK CODES ENFORCED.</p>
-            <p class="uppercase font-bold tracking-[0.25em] text-neutral-500 dark:text-darkBorder">256-Bit Frontend Application Instance</p>
+            <p>&copy; 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
     <script type="text/javascript">
-        // 1. MEMORY MANAGEMENT ARRAY (LOCAL DATA INVENTORY MAPS)
         const ALPHABET_PRODUCTS_DB = [
             { id: "ultra-mini-desk-fan", title: "Ultra-Mini Turbo Desk Fan", desc: "Matte Black / Heavy Duty High Mechanical Volumetric Velocity Cooling Engine", price: 799, badge: "Best Seller", image: "https://images.unsplash.com/photo-1618945596645-a960233b664d?w=500&auto=format&fit=crop&q=60" },
             { id: "minimalist-rain-canopy", title: "Premium Minimalist Rain Canopy", desc: "Wind-Proof / Carbon Matrix Core Shell Optimized for Monsoon Parameters", price: 949, badge: "Monsoon Essential", image: "https://images.unsplash.com/photo-1541813134-8c440a322dae?w=500&auto=format&fit=crop&q=60" },
@@ -427,14 +384,10 @@
 
         let rescueTimerRef = null;
 
-        // 2. CLIENT ROUTER PIPELINE STATE MANAGEMENT SWITCHERS
         function switchPage(targetViewId) {
             if (rescueTimerRef) { clearInterval(rescueTimerRef); rescueTimerRef = null; }
-            
-            // Hide running layout viewports
             document.querySelectorAll('.router-view').forEach(view => view.classList.add('hidden'));
             
-            // Manage dynamic application tracking target assertions
             const targetElement = document.getElementById('view-' + targetViewId);
             if (!targetElement) {
                 triggerAutomatedRescue404Loop();
@@ -443,11 +396,8 @@
 
             targetElement.classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Close responsive drawer targets
             document.getElementById('mobile-menu-dropdown').classList.add('hidden');
             
-            // Update semantic underline visual cues on high-end desktop nav bars
             document.querySelectorAll('.nav-tracker').forEach(link => {
                 link.classList.remove('text-dark', 'dark:text-white', 'font-bold', 'border-gold');
                 link.classList.add('text-neutral-500', 'dark:text-neutral-400', 'border-transparent');
@@ -458,7 +408,6 @@
                 specificTrackerLink.classList.add('text-dark', 'dark:text-white', 'font-bold', 'border-gold');
             }
 
-            // Hydrate runtime display matrix frames
             if (targetViewId === 'shop') hydrateCatalogGridSystem();
             if (targetViewId === 'cart') hydrateCartDisplayLedger();
             if (targetViewId === 'checkout') hydrateCheckoutVerificationViews();
@@ -480,13 +429,40 @@
             }, 1000);
         }
 
-        // 3. PERSISTENT APPLICATION STORAGE CONTROLLERS
+        // NEW INTERACTIVE PRODUCT MODAL LOGIC FUNCTIONS
+        function openProductDetailModal(productIdCode) {
+            const product = ALPHABET_PRODUCTS_DB.find(p => p.id === productIdCode);
+            if (!product) return;
+
+            document.getElementById('modal-product-image').src = product.image;
+            document.getElementById('modal-product-image').alt = product.title;
+            document.getElementById('modal-product-title').innerText = product.title;
+            document.getElementById('modal-product-badge').innerText = product.badge;
+            document.getElementById('modal-product-price').innerText = '₹' + product.price.toLocaleString('en-IN');
+            document.getElementById('modal-product-desc').innerText = product.desc;
+            
+            // Re-bind the click handler to inject this specific product index
+            document.getElementById('modal-add-btn').setAttribute('onclick', `commitItemToPipeline('${product.id}'); closeProductModal();`);
+
+            const container = document.getElementById('product-detail-modal');
+            container.classList.remove('invisible');
+            setTimeout(() => {
+                container.firstElementChild.nextElementSibling.classList.remove('translate-x-full');
+            }, 50);
+        }
+
+        function closeProductModal() {
+            const container = document.getElementById('product-detail-modal');
+            container.firstElementChild.nextElementSibling.classList.add('translate-x-full');
+            setTimeout(() => {
+                container.classList.add('invisible');
+            }, 300);
+        }
+
         function readSessionBagMap() {
             try {
                 return JSON.parse(sessionStorage.getItem('alphabet_store_bag_cache')) || [];
-            } catch(e) {
-                return [];
-            }
+            } catch(e) { return []; }
         }
 
         function writeSessionBagMap(updatedBagArray) {
@@ -497,16 +473,9 @@
         function syncGlobalBagStateIndicators() {
             const currentCache = readSessionBagMap();
             const grandVolumeSum = currentCache.reduce((accum, obj) => accum + obj.qty, 0);
-            
-            const countBadge = document.getElementById('global-cart-badge');
-            countBadge.innerText = grandVolumeSum;
-            
-            // Add a subtle scale pop animation to badge
-            countBadge.classList.add('scale-125', 'bg-gold');
-            setTimeout(() => countBadge.classList.remove('scale-125'), 300);
+            document.getElementById('global-cart-badge').innerText = grandVolumeSum;
         }
 
-        // 4. ANIMATED TOAST SYSTEM (PREMIUM NOTIFICATION REPLACEMENT)
         function triggerPremiumToastNotification(messageString) {
             const toastFrame = document.getElementById('toast-notification');
             const messageSlot = document.getElementById('toast-message');
@@ -521,7 +490,6 @@
             }, 2500);
         }
 
-        // 5. DATA INJECTION COMPILER HYDRATIONS
         function hydrateCatalogGridSystem() {
             const targetContainerGrid = document.getElementById('shop-products-grid');
             if(!targetContainerGrid) return;
@@ -529,7 +497,11 @@
 
             ALPHABET_PRODUCTS_DB.forEach(item => {
                 const nodeArticle = document.createElement('article');
-                nodeArticle.className = "group flex flex-col relative bg-white dark:bg-darkSecondary/40 border border-gray-200/50 dark:border-darkBorder p-4 rounded transition-all duration-300 shadow-sm hover:shadow-xl hover:border-gold/30";
+                nodeArticle.className = "group flex flex-col bg-white dark:bg-darkSecondary/40 border border-gray-200/50 dark:border-darkBorder p-4 rounded transition-all duration-300 shadow-sm hover:shadow-xl hover:border-gold/30 cursor-pointer";
+                
+                // Clicking anywhere on the card card wrapper frame opens the premium descriptive panel
+                nodeArticle.setAttribute('onclick', `openProductDetailModal('${item.id}')`);
+                
                 nodeArticle.innerHTML = `
                     <div class="aspect-square w-full mb-4 bg-neutral-100 dark:bg-neutral-900 relative overflow-hidden rounded-sm border border-neutral-200/20 dark:border-darkBorder">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
@@ -538,7 +510,7 @@
                     <div class="flex flex-col flex-grow text-center items-center">
                         <h3 class="font-semibold text-sm text-dark dark:text-white tracking-tight mb-1 group-hover:text-gold transition-colors">${item.title}</h3>
                         <p class="text-[11px] text-neutral-400 dark:text-neutral-500 mb-4 line-clamp-2 max-w-xs font-light leading-relaxed">${item.desc}</p>
-                        <div class="w-full flex items-center justify-between mt-auto border-t border-neutral-100 dark:border-darkBorder/60 pt-3">
+                        <div class="w-full flex items-center justify-between mt-auto border-t border-neutral-100 dark:border-darkBorder/60 pt-3" onclick="event.stopPropagation();">
                             <span class="text-sm font-bold text-dark dark:text-white font-mono">₹${item.price.toLocaleString('en-IN')}</span>
                             <button onclick="commitItemToPipeline('${item.id}')" class="bg-dark text-white dark:bg-gold dark:text-dark text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-sm hover:bg-gold hover:text-dark dark:hover:bg-white dark:hover:text-dark border border-transparent transition-all duration-300">
                                 Quick Add
@@ -619,7 +591,6 @@
             document.getElementById('cart-calc-grandtotal').innerText = '₹' + totalInvoiceSum.toLocaleString('en-IN');
         }
 
-        // 6. AUTOMATED NIGHT MODE THEME RUNTIME MANAGEMENT SWITCHERS
         function toggleThemeLayoutState() {
             const rootHtml = document.documentElement;
             const sunIcon = document.getElementById('theme-icon-sun');
@@ -646,25 +617,17 @@
 
             if (savedPreference === 'dark' || (!savedPreference && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 rootHtml.classList.add('dark');
-                if(moonIcon && sunIcon) {
-                    moonIcon.classList.add('hidden');
-                    sunIcon.classList.remove('hidden');
-                }
+                if(moonIcon && sunIcon) { moonIcon.classList.add('hidden'); sunIcon.classList.remove('hidden'); }
             } else {
                 rootHtml.classList.remove('dark');
-                if(sunIcon && moonIcon) {
-                    sunIcon.classList.add('hidden');
-                    moonIcon.classList.remove('hidden');
-                }
+                if(sunIcon && moonIcon) { sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden'); }
             }
         }
 
         function adjustRowItemQuantity(arrayTargetIndex, deltaModifier) {
             let activeBag = readSessionBagMap();
             activeBag[arrayTargetIndex].qty += deltaModifier;
-            if (activeBag[arrayTargetIndex].qty <= 0) {
-                activeBag.splice(arrayTargetIndex, 1);
-            }
+            if (activeBag[arrayTargetIndex].qty <= 0) { activeBag.splice(arrayTargetIndex, 1); }
             writeSessionBagMap(activeBag);
             hydrateCartDisplayLedger();
         }
@@ -704,27 +667,15 @@
 
         function executeOrderSubmissionPipeline(submitEventObject) {
             submitEventObject.preventDefault();
-            
-            const nameCheck = document.getElementById('cust-first-name').value.trim();
-            const destinationCheck = document.getElementById('cust-address').value.trim();
-
-            if(!nameCheck || !destinationCheck) {
-                triggerPremiumToastNotification("VERIFY SHIPPING DIRECTION INPUTS");
-                return;
-            }
-
-            // Flush isolated operational storage caches 
             sessionStorage.removeItem('alphabet_store_bag_cache');
             syncGlobalBagStateIndicators();
             switchPage('thankyou');
         }
 
-        // 7. COMPREHENSIVE REGISTRY LISTENER LIFECYCLES
         document.addEventListener('DOMContentLoaded', () => {
             enforceSavedThemeOnInstanceLoad();
             syncGlobalBagStateIndicators();
 
-            // Setup Mobile Hamburger Tray Click Actions
             const trayTrigger = document.getElementById('mobile-menu-btn');
             const trayOverlayContainer = document.getElementById('mobile-menu-dropdown');
             
@@ -734,13 +685,6 @@
                     trayOverlayContainer.classList.toggle('hidden');
                 });
             }
-
-            // Automatically hide mobile layout overlay tray if viewport crosses scale bounds
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768 && trayOverlayContainer) {
-                    trayOverlayContainer.classList.add('hidden');
-                }
-            });
         });
     </script>
 </body>
