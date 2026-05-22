@@ -87,9 +87,16 @@
                     <img id="modal-product-image" src="" alt="" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <span id="modal-product-badge" class="text-gold text-[10px] tracking-widest uppercase font-bold block mb-1"></span>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span id="modal-product-badge" class="bg-gold/10 text-gold text-[9px] tracking-widest uppercase font-bold px-2 py-0.5 rounded-sm border border-gold/25"></span>
+                        <span id="modal-product-discount" class="bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm"></span>
+                    </div>
                     <h2 id="modal-product-title" class="text-2xl font-serif-luxury text-dark dark:text-white font-normal tracking-tight"></h2>
-                    <p id="modal-product-price" class="text-lg font-bold text-dark dark:text-white font-mono mt-2"></p>
+                    <div class="flex items-baseline gap-2 mt-2">
+                        <span id="modal-product-price" class="text-lg font-bold text-dark dark:text-white font-mono"></span>
+                        <span id="modal-product-mrp" class="text-xs text-neutral-400 line-through font-mono"></span>
+                    </div>
+                    <p id="modal-product-delivery" class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-1"></p>
                 </div>
                 <div class="w-full h-[1px] bg-neutral-100 dark:bg-darkBorder"></div>
                 <div class="space-y-2">
@@ -112,7 +119,6 @@
 
     <header class="sticky top-0 z-40 w-full bg-white/80 dark:bg-dark/80 backdrop-blur-md border-b border-gray-200/60 dark:border-darkBorder shadow-sm transition-colors duration-300">
         <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20" aria-label="Main Navigation">
-            
             <div class="hidden md:flex flex-1 space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold text-neutral-500 dark:text-neutral-400">
                 <button onclick="switchPage('home')" id="nav-link-home" class="nav-tracker hover:text-gold transition-colors duration-300 py-2 border-b-2 border-transparent text-dark dark:text-white font-bold">Home</button>
                 <button onclick="switchPage('shop')" id="nav-link-shop" class="nav-tracker hover:text-gold transition-colors duration-300 py-2 border-b-2 border-transparent">Catalog</button>
@@ -140,7 +146,7 @@
 
             <div class="flex flex-1 justify-end items-center space-x-2 sm:space-x-4">
                 <button onclick="toggleThemeLayoutState()" class="p-2 text-neutral-500 dark:text-neutral-400 hover:text-gold transition-colors duration-300" aria-label="Toggle Night Theme">
-                    <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.344l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"></path></svg>
+                    <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707m12.728 0l-.707-.707M6.343 6.344l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"></path></svg>
                     <svg id="theme-icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
 
@@ -319,7 +325,13 @@
                                 <label class="flex items-center p-4 gap-4 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
                                     <input type="radio" name="pay_gateway" value="cc" checked class="w-4 h-4 accent-gold">
                                     <div class="text-xs sm:text-sm">
-                                        <span class="font-semibold block text-dark dark:text-white">Credit / Debit Gateways</span>
+                                        <span class="font-semibold block text-dark dark:text-white">Credit / Debit Card Security Processing Link</span>
+                                    </div>
+                                </label>
+                                <label class="flex items-center p-4 gap-4 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
+                                    <input type="radio" name="pay_gateway" value="cod" class="w-4 h-4 accent-gold">
+                                    <div class="text-xs sm:text-sm">
+                                        <span class="font-semibold block text-dark dark:text-white">Cash on Delivery (COD Domestic Routines)</span>
                                     </div>
                                 </label>
                             </div>
@@ -350,6 +362,7 @@
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h1 class="text-3xl font-serif-luxury text-dark dark:text-white tracking-wide">Purchase Document Certified</h1>
+                <p class="text-neutral-400 font-light text-xs sm:text-sm">Your order tracking tokens have been safely synchronized.</p>
                 <button onclick="switchPage('shop')" class="inline-block bg-dark text-white dark:bg-gold dark:text-dark px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 transition shadow-lg rounded-sm">
                     Continue Token Queries
                 </button>
@@ -373,13 +386,23 @@
     </footer>
 
     <script type="text/javascript">
+        // PROGRAMMATIC HIGH-CONVERSION INVENTORY MATRIX WITH YOUR EXACT PRODUCTS
         const ALPHABET_PRODUCTS_DB = [
-            { id: "ultra-mini-desk-fan", title: "Ultra-Mini Turbo Desk Fan", desc: "Matte Black / Heavy Duty High Mechanical Volumetric Velocity Cooling Engine", price: 799, badge: "Best Seller", image: "https://images.unsplash.com/photo-1618945596645-a960233b664d?w=500&auto=format&fit=crop&q=60" },
-            { id: "minimalist-rain-canopy", title: "Premium Minimalist Rain Canopy", desc: "Wind-Proof / Carbon Matrix Core Shell Optimized for Monsoon Parameters", price: 949, badge: "Monsoon Essential", image: "https://images.unsplash.com/photo-1541813134-8c440a322dae?w=500&auto=format&fit=crop&q=60" },
-            { id: "compact-tech-pouch", title: "Minimalist Compact Tech Pouch", desc: "Waterproof Matte Thermoplastic Polyurethane Alignment Structural Case", price: 599, badge: "New Launch", image: "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=500&auto=format&fit=crop&q=60" },
-            { id: "ergonomic-multitool", title: "Ergonomic Pocket Multitool", desc: "Satin Finish Stainless High Tensile Grade Hardened Alloy Tooling Matrix", price: 450, badge: "Utility Tool", image: "https://images.unsplash.com/photo-1590157121287-ba842917714f?w=500&auto=format&fit=crop&q=60" },
-            { id: "rechargeable-frother", title: "Rechargeable Power Milk Frother", desc: "High RPM Precision Texture Kinetic Motor Engine with Type-C Port Setup", price: 278, badge: "Top Product", image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=500&auto=format&fit=crop&q=60" },
-            { id: "glass-oil-sprayer", title: "2-in-1 Glass Oil Sprayer Dispenser", desc: "500ml Capacity High Atomization Micron Pressure Calibration Nozzle", price: 249, badge: "Kitchen Line", image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=60" }
+            { id: "led-highspeed-fan-purple", title: "Alphabet LED Digital High-Speed Fan (Purple)", desc: "Rechargeable Hand Fan with 5 Adjustable Speeds, strong wind fan, Foldable neck fan, Lightweight Design. Battery Powered.", price: 289, mrp: 1499, discount: "81% Off", badge: "Best Seller", image: "https://images.unsplash.com/photo-1618945596645-a960233b664d?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "led-highspeed-fan-black", title: "Alphabet LED Digital High-Speed Fan (Black)", desc: "Rechargeable Hand Fan with 5 Adjustable Speeds, strong wind fan, Foldable neck fan, Lightweight Design. Battery Powered.", price: 299, mrp: 1499, discount: "80% Off", badge: "Top Volume", image: "https://images.unsplash.com/photo-1541813134-8c440a322dae?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "portable-fan-blue", title: "Alphabet Portable Fan (Blue)", desc: "Rechargeable Hand Fan with compact high velocity blade infrastructure parameters.", price: 269, mrp: 1499, discount: "82% Off", badge: "Monsoon Launch", image: "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "led-highspeed-fan-green", title: "Alphabet LED Digital High-Speed Fan (Green)", desc: "Rechargeable Hand Fan with 5 Adjustable Speeds, strong wind fan, Foldable neck fan, Lightweight Design. Battery Powered.", price: 289, mrp: 1499, discount: "81% Off", badge: "Featured Utility", image: "https://images.unsplash.com/photo-1590157121287-ba842917714f?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "rechargeable-milk-frother-premium", title: "Alphabet Rechargeable Milk Frother & Coffee Whisk", desc: "Premium electric hand mixer with high speed metrics config.", price: 278, mrp: 1699, discount: "84% Off", badge: "Top Pick", image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Tue, 26 May" },
+            { id: "photo-frame-hooks-10pc", title: "Alphabet Photo Frame Hooks for Wall Without Drilling (10 Pcs)", desc: "Self Adhesive Hooks for Wall Heavy Duty Strong Nail Free for Hanging Photos and structural accessories.", price: 178, mrp: 999, discount: "82% Off", badge: "Hardware Edit", image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "transparent-sticker-film-60pc", title: "Alphabet Transparent Sticker Book Cover Film [60 Pcs]", desc: "3 Different Sizes - 20 Each. Waterproof Self-Adhesive Protective Binding Cover Maps.", price: 488, mrp: 1250, discount: "61% Off", badge: "Stationery Line", image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "self-adhesive-poly-pouches", title: "Alphabet Self Adhesive Resealable Clear Plastic Pouch Bag (4X12 inches)", desc: "100 Pcs Pack (35 Micron Calibration thickness indices).", price: 180, mrp: 749, discount: "76% Off", badge: "Bulk Utility", image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "wall-mounted-indoor-storage", title: "Alphabet 4 Piece Wall Mounted Indoor Storage Organizer", desc: "Multi-functional smartphone, remote controller, and accessory hardware container arrays.", price: 249, mrp: 999, discount: "75% Off", badge: "Space Saver", image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Tue, 26 May" },
+            { id: "automatic-water-can-dispenser", title: "Alphabet Automatic Wireless Water Can Dispenser Pump", desc: "Designed for 20 Litre Bottle Can systems with Low Noise & High Volumetric Flow Efficiency.", price: 289, mrp: 999, discount: "71% Off", badge: "Smart Kitchen", image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sat, 30 May" },
+            { id: "battery-operated-milk-frother-basic", title: "Alphabet Battery Operated Milk Frother", desc: "One Button execution architecture for streamlined coffee texturing operations.", price: 169, mrp: 899, discount: "81% Off", badge: "Value Line", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Tue, 26 May" },
+            { id: "microfiber-striped-door-mat", title: "Alphabet Easy Living Microfiber Striped Rectangular Door Mat", desc: "High water absorption structural matrices for indoor bathroom zones.", price: 249, mrp: 899, discount: "72% Off", badge: "Living Accents", image: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Tue, 26 May" },
+            { id: "stainless-steel-straws-4pack", title: "Alphabet Stainless Steel Straws (Pack of 4, Silver)", desc: "Eco-friendly re-usable straight and bent metal straw sets containing fluid cleaning rod cleaners.", price: 129, mrp: 499, discount: "74% Off", badge: "Eco Choice", image: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Sun, 24 May" },
+            { id: "jewellery-earrings-6combo", title: "Alphabet Jewellery Combo of 6 American Earrings", desc: "Curated formal dynamic geometric studs optimized for girls and women lifestyle wear.", price: 250, mrp: 1299, discount: "81% Off", badge: "Lifestyle Luxe", image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Tue, 26 May" },
+            { id: "enterprise-glass-oil-sprayer", title: "Alphabet Enterprise Glass Oil Sprayer and Dispenser Bottle", desc: "500ml Capacity, 2-in-1 Design. Micron high atomization precision mist output spray handles.", price: 249, mrp: 899, discount: "72% Off", badge: "Barista Edit", image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=60", delivery: "FREE delivery Tue, 26 May" }
         ];
 
         let rescueTimerRef = null;
@@ -429,7 +452,6 @@
             }, 1000);
         }
 
-        // NEW INTERACTIVE PRODUCT MODAL LOGIC FUNCTIONS
         function openProductDetailModal(productIdCode) {
             const product = ALPHABET_PRODUCTS_DB.find(p => p.id === productIdCode);
             if (!product) return;
@@ -438,10 +460,12 @@
             document.getElementById('modal-product-image').alt = product.title;
             document.getElementById('modal-product-title').innerText = product.title;
             document.getElementById('modal-product-badge').innerText = product.badge;
+            document.getElementById('modal-product-discount').innerText = product.discount;
+            document.getElementById('modal-product-delivery').innerText = product.delivery;
             document.getElementById('modal-product-price').innerText = '₹' + product.price.toLocaleString('en-IN');
+            document.getElementById('modal-product-mrp').innerText = 'M.R.P: ₹' + product.mrp.toLocaleString('en-IN');
             document.getElementById('modal-product-desc').innerText = product.desc;
             
-            // Re-bind the click handler to inject this specific product index
             document.getElementById('modal-add-btn').setAttribute('onclick', `commitItemToPipeline('${product.id}'); closeProductModal();`);
 
             const container = document.getElementById('product-detail-modal');
@@ -498,20 +522,22 @@
             ALPHABET_PRODUCTS_DB.forEach(item => {
                 const nodeArticle = document.createElement('article');
                 nodeArticle.className = "group flex flex-col bg-white dark:bg-darkSecondary/40 border border-gray-200/50 dark:border-darkBorder p-4 rounded transition-all duration-300 shadow-sm hover:shadow-xl hover:border-gold/30 cursor-pointer";
-                
-                // Clicking anywhere on the card card wrapper frame opens the premium descriptive panel
                 nodeArticle.setAttribute('onclick', `openProductDetailModal('${item.id}')`);
                 
                 nodeArticle.innerHTML = `
                     <div class="aspect-square w-full mb-4 bg-neutral-100 dark:bg-neutral-900 relative overflow-hidden rounded-sm border border-neutral-200/20 dark:border-darkBorder">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
                         <span class="absolute top-2 left-2 bg-white/90 dark:bg-darkSecondary/90 text-dark dark:text-white text-[9px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 border border-neutral-200/30 dark:border-darkBorder rounded-sm">${item.badge}</span>
+                        <span class="absolute bottom-2 right-2 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm">${item.discount}</span>
                     </div>
                     <div class="flex flex-col flex-grow text-center items-center">
-                        <h3 class="font-semibold text-sm text-dark dark:text-white tracking-tight mb-1 group-hover:text-gold transition-colors">${item.title}</h3>
+                        <h3 class="font-semibold text-sm text-dark dark:text-white tracking-tight mb-1 group-hover:text-gold transition-colors line-clamp-1">${item.title}</h3>
                         <p class="text-[11px] text-neutral-400 dark:text-neutral-500 mb-4 line-clamp-2 max-w-xs font-light leading-relaxed">${item.desc}</p>
                         <div class="w-full flex items-center justify-between mt-auto border-t border-neutral-100 dark:border-darkBorder/60 pt-3" onclick="event.stopPropagation();">
-                            <span class="text-sm font-bold text-dark dark:text-white font-mono">₹${item.price.toLocaleString('en-IN')}</span>
+                            <div class="flex flex-col items-start">
+                                <span class="text-sm font-bold text-dark dark:text-white font-mono">₹${item.price.toLocaleString('en-IN')}</span>
+                                <span class="text-[9px] text-neutral-400 line-through font-mono">M.R.P: ₹${item.mrp}</span>
+                            </div>
                             <button onclick="commitItemToPipeline('${item.id}')" class="bg-dark text-white dark:bg-gold dark:text-dark text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-sm hover:bg-gold hover:text-dark dark:hover:bg-white dark:hover:text-dark border border-transparent transition-all duration-300">
                                 Quick Add
                             </button>
@@ -570,8 +596,8 @@
                 elementRow.innerHTML = `
                     <div class="flex items-center gap-5 w-full sm:w-auto">
                         <img src="${item.image}" alt="${item.title}" class="w-14 h-14 object-cover rounded-sm flex-shrink-0 bg-neutral-100 border border-neutral-200/50 dark:border-darkBorder p-0.5">
-                        <div>
-                            <h4 class="text-xs sm:text-sm font-medium text-dark dark:text-white tracking-tight">${item.title}</h4>
+                        <div class="max-w-[280px]">
+                            <h4 class="text-xs sm:text-sm font-medium text-dark dark:text-white tracking-tight line-clamp-1">${item.title}</h4>
                             <p class="text-[11px] text-neutral-400 font-mono mt-0.5 font-light">Unit: ₹${item.price}</p>
                         </div>
                     </div>
@@ -654,8 +680,8 @@
                 const rowLine = document.createElement('div');
                 rowLine.className = "flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 font-light py-2 animate-slide-up";
                 rowLine.innerHTML = `
-                    <div class="flex flex-col">
-                        <span class="font-medium text-dark dark:text-white">${item.title}</span>
+                    <div class="flex flex-col max-w-[200px]">
+                        <span class="font-medium text-dark dark:text-white line-clamp-1">${item.title}</span>
                         <span class="text-[10px] text-neutral-400 font-mono">Quantity: x${item.qty}</span>
                     </div>
                     <span class="font-bold text-dark dark:text-white font-mono">₹${structuralCost.toLocaleString('en-IN')}</span>`;
