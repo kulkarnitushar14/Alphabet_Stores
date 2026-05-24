@@ -111,9 +111,18 @@
 
         <div id="form-error" class="hidden mt-4 text-red-600 text-sm border border-red-200 bg-red-50 px-4 py-3"></div>
 
-        <button id="place-order-btn" class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors duration-300 shadow-md hover:shadow-none">
-          Place Order →
-        </button>
+        <button id="place-order-btn" 
+        onclick="proceedToPayment()" 
+        class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors duration-300 shadow-md hover:shadow-none">
+    Place Order →
+</button>
+
+<script>
+function proceedToPayment() {
+    // This redirects the user to your Razorpay payment handle
+    window.location.href = "https://razorpay.me/@alphabetstores";
+}
+</script>
         <p class="text-xs text-gray-400 mt-4 text-center">By placing your order you agree to our Terms & Privacy Policy</p>
       </div>
 
