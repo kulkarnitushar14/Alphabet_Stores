@@ -17,7 +17,6 @@ const PRODUCTS = [
     features: ['5 adjustable speeds', 'LED battery display', 'Foldable neck design', 'Rechargeable USB-C', 'Lightweight build', '10-day replacement']
   },
   {
-    {
     id: 2,
     name: 'Rechargeable Milk Frother',
     subtitle: 'Dual Spring Tech • 3 Speeds • Matte Black',
@@ -31,7 +30,6 @@ const PRODUCTS = [
       'Coffe-frother-4.jpg',
       'Coffe-frother-5.jpg'
     ]
-  },
   },
   {
     id: 3,
