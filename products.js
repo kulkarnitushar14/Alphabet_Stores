@@ -22,6 +22,9 @@ const PRODUCTS = [
     subtitle: 'Dual Spring Tech • 3 Speeds • Matte Black',
     // ... (your other properties stay exactly the same)
     reviews: 1,
+    desc: 'Make café-quality coffee at home. This rechargeable milk frother features dual spring whisks for extra foam, 3 speed settings, and a matte black finish that looks sleek in any kitchen. USB rechargeable — no batteries needed.',
+    price: 278,
+    mrp: 1699,
     features: ['Dual spring whisk', '3 speed settings', 'USB rechargeable', 'Matte black finish', 'Dishwasher-safe whisk', '10-day replacement'],
     images: [
       'Coffe-frother-1.jpg',
