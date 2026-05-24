@@ -119,8 +119,24 @@
 
 <script>
 function proceedToPayment() {
-    // This redirects the user to your Razorpay payment handle
-    window.location.href = "https://razorpay.me/@alphabetstores";
+    // 1. Grab the subtotal from your Order Summary area
+    // Make sure the element with id="co-subtotal" exists in your HTML
+    let amountElement = document.getElementById('co-subtotal');
+    let amountText = amountElement ? amountElement.innerText : "0";
+    
+    // 2. Clean the string: Remove the '₹' symbol and any commas to get a clean number
+    // Example: "₹1,250" becomes "1250"
+    let amount = parseFloat(amountText.replace(/[^0-9.]/g, ''));
+
+    // 3. Validation: Make sure there's a valid amount before redirecting
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please ensure your cart has items before checking out.");
+        return;
+    }
+
+    // 4. Redirect with the amount included in the URL
+    // This tells the Razorpay page: "Set the payment amount to this specific number"
+    window.location.href = `https://razorpay.me/@alphabetstores?amount=${amount}`;
 }
 </script>
         <p class="text-xs text-gray-400 mt-4 text-center">By placing your order you agree to our Terms & Privacy Policy</p>
