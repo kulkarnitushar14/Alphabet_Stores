@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="css.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
+  
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
 
-  <!-- Minimal checkout header -->
   <header class="bg-white border-b border-gray-200 py-5 px-6 flex justify-between items-center">
     <a href="index.html" class="text-xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors">ALPHABET</a>
     <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400">
@@ -20,7 +21,6 @@
     <a href="cart.html" class="text-xs text-gray-400 hover:text-dark transition underline underline-offset-4 uppercase tracking-widest">← Back to Cart</a>
   </header>
 
-  <!-- Step indicators -->
   <div class="bg-grayLight border-b border-gray-200 py-3 px-6">
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-6 text-xs uppercase tracking-widest">
       <span class="text-dark font-bold border-b-2 border-gold pb-1">1. Information</span>
@@ -34,7 +34,6 @@
   <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 py-12 w-full">
     <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
 
-      <!-- FORM -->
       <div class="w-full lg:w-3/5">
         <h2 class="text-xl font-serif font-light tracking-wide mb-8 text-dark">Contact & Shipping</h2>
 
@@ -55,7 +54,7 @@
           </div>
           <div>
             <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Phone Number *</label>
-            <input id="f-phone" type="tel" placeholder="+91 98765 43210" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+            <input id="f-phone" type="tel" placeholder="9876543210" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
           </div>
           <div>
             <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Address Line 1 *</label>
@@ -84,65 +83,19 @@
           </div>
         </div>
 
-        <!-- Payment Method -->
-        <h2 class="text-xl font-serif font-light tracking-wide mt-12 mb-8 text-dark">Payment Method</h2>
-        <div class="space-y-3">
-          <label class="flex items-center gap-4 border border-gray-200 px-4 py-4 cursor-pointer hover:border-dark transition-colors bg-white has-[:checked]:border-dark">
-            <input type="radio" name="payment" value="upi" checked class="accent-[#121212] w-4 h-4">
-            <span class="text-sm font-medium">UPI / Google Pay / PhonePe</span>
-            <span class="ml-auto text-lg">📱</span>
-          </label>
-          <label class="flex items-center gap-4 border border-gray-200 px-4 py-4 cursor-pointer hover:border-dark transition-colors bg-white has-[:checked]:border-dark">
-            <input type="radio" name="payment" value="card" class="accent-[#121212] w-4 h-4">
-            <span class="text-sm font-medium">Credit / Debit Card</span>
-            <span class="ml-auto text-lg">💳</span>
-          </label>
-          <label class="flex items-center gap-4 border border-gray-200 px-4 py-4 cursor-pointer hover:border-dark transition-colors bg-white has-[:checked]:border-dark">
-            <input type="radio" name="payment" value="netbanking" class="accent-[#121212] w-4 h-4">
-            <span class="text-sm font-medium">Net Banking</span>
-            <span class="ml-auto text-lg">🏦</span>
-          </label>
-          <label class="flex items-center gap-4 border border-gray-200 px-4 py-4 cursor-pointer hover:border-dark transition-colors bg-white has-[:checked]:border-dark">
-            <input type="radio" name="payment" value="cod" class="accent-[#121212] w-4 h-4">
-            <span class="text-sm font-medium">Cash on Delivery</span>
-            <span class="ml-auto text-lg">💵</span>
-          </label>
+        <h2 class="text-xl font-serif font-light tracking-wide mt-12 mb-4 text-dark">Payment Routing</h2>
+        <div class="p-4 bg-white border border-gray-200 text-sm text-gray-600 font-light">
+          Clicking the button below loads our secure <strong>Razorpay payment checkout overlay</strong>, supporting Cards, NetBanking, and UPI apps like Google Pay or PhonePe.
         </div>
 
         <div id="form-error" class="hidden mt-4 text-red-600 text-sm border border-red-200 bg-red-50 px-4 py-3"></div>
 
-        <button id="place-order-btn" 
-        onclick="proceedToPayment()" 
-        class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors duration-300 shadow-md hover:shadow-none">
-    Place Order →
-</button>
-
-<script>
-function proceedToPayment() {
-    // 1. Grab the subtotal from your Order Summary area
-    // Make sure the element with id="co-subtotal" exists in your HTML
-    let amountElement = document.getElementById('co-subtotal');
-    let amountText = amountElement ? amountElement.innerText : "0";
-    
-    // 2. Clean the string: Remove the '₹' symbol and any commas to get a clean number
-    // Example: "₹1,250" becomes "1250"
-    let amount = parseFloat(amountText.replace(/[^0-9.]/g, ''));
-
-    // 3. Validation: Make sure there's a valid amount before redirecting
-    if (isNaN(amount) || amount <= 0) {
-        alert("Please ensure your cart has items before checking out.");
-        return;
-    }
-
-    // 4. Redirect with the amount included in the URL
-    // This tells the Razorpay page: "Set the payment amount to this specific number"
-    window.location.href = `https://razorpay.me/@alphabetstores?amount=${amount}`;
-}
-</script>
+        <button id="place-order-btn" class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors duration-300 shadow-md hover:shadow-none">
+          Proceed to Pay →
+        </button>
         <p class="text-xs text-gray-400 mt-4 text-center">By placing your order you agree to our Terms & Privacy Policy</p>
       </div>
 
-      <!-- ORDER SUMMARY -->
       <div class="w-full lg:w-2/5">
         <div class="bg-grayLight p-6 sticky top-8">
           <h2 class="text-lg font-serif tracking-wide text-dark mb-5 border-b border-gray-200 pb-4">Order Summary</h2>
@@ -156,7 +109,7 @@ function proceedToPayment() {
             <span>Total</span><span id="co-total">₹0</span>
           </div>
           <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
-            <svg class="w-4 h-4 text-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <svg class="w-4 h-4 text-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             Payments are 256-bit SSL encrypted and secure.
           </div>
         </div>
@@ -170,6 +123,8 @@ function proceedToPayment() {
 
   <script src="products.js"></script>
   <script>
+    const BACKEND_URL = "http://localhost:5000";
+
     function renderCheckoutSummary() {
       const cart = getCart();
       const keys = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
@@ -196,12 +151,14 @@ function proceedToPayment() {
       }).join('') || '<p class="text-sm text-gray-400">No items in cart.</p>';
     }
 
-    document.getElementById('place-order-btn').addEventListener('click', () => {
+    async function handlePaymentWorkflow() {
+      // Input form check routines
       const fields = [
         ['f-firstname','First name'], ['f-lastname','Last name'], ['f-email','Email'],
-        ['f-phone','Phone'], ['f-addr1','Address'], ['f-city','City'], ['f-state','State'], ['f-pin','PIN Code']
+        ['f-phone','Phone'], ['f-addr1','Address Line 1'], ['f-city','City'], ['f-state','State'], ['f-pin','PIN Code']
       ];
       const errEl = document.getElementById('form-error');
+      
       for (const [id, label] of fields) {
         const val = document.getElementById(id).value.trim();
         if (!val) {
@@ -212,11 +169,73 @@ function proceedToPayment() {
         }
       }
       errEl.classList.add('hidden');
-      // Clear cart and redirect
-      localStorage.removeItem('alphabet_cart');
-      window.location.href = 'thank_you.html';
-    });
 
+      const cart = getCart();
+      const customerInfo = {
+        name: document.getElementById('f-firstname').value + " " + document.getElementById('f-lastname').value,
+        email: document.getElementById('f-email').value,
+        phone: document.getElementById('f-phone').value,
+        address: document.getElementById('f-addr1').value + ", " + document.getElementById('f-addr2').value + ", " + document.getElementById('f-city').value + ", " + document.getElementById('f-state').value + " - " + document.getElementById('f-pin').value
+      };
+
+      try {
+        // Step 1: Call your running cashier server to configure the transaction parameters
+        const response = await fetch(`${BACKEND_URL}/api/checkout/create-order`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cartItems: cart })
+        });
+        const orderData = await response.json();
+
+        if(orderData.error) {
+          throw new Error(orderData.error);
+        }
+
+        // Step 2: Open up Razorpay UI panel configurations matching your sleek aesthetic
+        const checkoutConfig = {
+          key: orderData.keyId,
+          amount: orderData.amount,
+          currency: orderData.currency,
+          name: "ALPHABET STORE",
+          description: "Order Checkout Terminal",
+          order_id: orderData.orderId,
+          handler: async function (paymentResponse) {
+            // Step 3: Verify security signatures once processing hits completion
+            const verifyResponse = await fetch(`${BACKEND_URL}/api/checkout/verify-payment`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(paymentResponse)
+            });
+            const result = await verifyResponse.json();
+
+            if (result.verified) {
+              // Flush out your structural client local variables
+              if (typeof saveCart === 'function') saveCart({});
+              else localStorage.removeItem('cart');
+              
+              window.location.href = 'thank_you.html';
+            } else {
+              alert("Verification checkpoint mismatch.");
+            }
+          },
+          prefill: {
+            name: customerInfo.name,
+            email: customerInfo.email,
+            contact: customerInfo.phone
+          },
+          theme: { color: "#121212" } // Keeps checkout UI matching your branding dark scheme
+        };
+
+        const razorpayUI = new Razorpay(checkoutConfig);
+        razorpayUI.open();
+
+      } catch (err) {
+        errEl.textContent = "Gateway error occurred: " + err.message;
+        errEl.classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('place-order-btn').addEventListener('click', handlePaymentWorkflow);
     renderCheckoutSummary();
   </script>
 </body>
