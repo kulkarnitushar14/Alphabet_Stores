@@ -28,7 +28,7 @@ const PRODUCTS = [
       'Coffe-frother-2.jpg',
       'Coffe-frother-3.jpg',
       'Coffe-frother-4.jpg',
-      'Coffe-frother-5.jpg'
+      'Coffe-frother-5.jpg',
     ]
   },
   {
