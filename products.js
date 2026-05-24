@@ -17,23 +17,17 @@ const PRODUCTS = [
     features: ['5 adjustable speeds', 'LED battery display', 'Foldable neck design', 'Rechargeable USB-C', 'Lightweight build', '10-day replacement']
   },
   {
-    id: 2,
+   id: 2,
     name: 'Rechargeable Milk Frother',
     subtitle: 'Dual Spring Tech • 3 Speeds • Matte Black',
     desc: 'Make café-quality coffee at home. This rechargeable milk frother features dual spring whisks for extra foam, 3 speed settings, and a matte black finish that looks sleek in any kitchen. USB rechargeable — no batteries needed.',
     price: 278,
     mrp: 1699,
+    emoji: '🍳',
     cat: 'kitchen',
     badge: 'Bestseller',
     reviews: 1,
     features: ['Dual spring whisk', '3 speed settings', 'USB rechargeable', 'Matte black finish', 'Dishwasher-safe whisk', '10-day replacement']
-    images: [
-      'Coffe-frother-1.jpg',
-      'Coffe-frother-2.jpg',
-      'Coffe-frother-3.jpg',
-      'Coffe-frother-4.jpg',
-      'Coffe-frother-5.jpg',
-    ]
   },
   {
     id: 3,
