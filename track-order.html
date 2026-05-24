@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order | Alphabet Store</title>
+  <meta name="description" content="Track your Alphabet Store order in real time. Enter your order ID or email address to see the latest shipping and delivery status.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="stylesheet" href="css.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{gold:'#D4AF37',dark:'#121212',offwhite:'#FAFAFA',grayLight:'#F3F4F6'},fontFamily:{sans:['Inter','sans-serif'],serif:['Merriweather','serif']}}}}</script>
+  <script src="products.js"></script>
+</head>
+<body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
+
+  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+    Free Shipping over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; 7-Day Easy Returns
+  </aside>
+
+  <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20">
+      <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
+        <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+        <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+      </div>
+      <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+        <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors flex items-center justify-center gap-2">
+          <svg class="w-7 h-7 hidden sm:block" viewBox="0 0 40 40" fill="none"><path d="M20 0L40 20L20 40L0 20L20 0Z" fill="#121212"/><path d="M20 10L30 20L20 30L10 20L20 10Z" fill="#FAFAFA"/><path d="M20 16L24 20L20 24L16 20L20 16Z" fill="#D4AF37"/></svg>
+          ALPHABET
+        </a>
+      </div>
+      <div class="flex flex-1 justify-end items-center gap-3">
+        <button onclick="toggleDarkMode()" id="dark-mode-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="cart.html" aria-label="Cart" class="hover:text-gold transition-colors flex items-center relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+          <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <section class="bg-dark py-16 text-center px-6">
+      <span class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-4 block">Order Management</span>
+      <h1 class="text-4xl md:text-5xl font-serif font-light text-white mb-4">Track Your Order</h1>
+      <div class="w-16 h-[2px] bg-gold mx-auto mb-6"></div>
+      <p class="text-gray-400 text-sm max-w-md mx-auto">Enter your order ID or registered email address to check the latest status of your delivery.</p>
+    </section>
+
+    <section class="max-w-xl mx-auto px-4 sm:px-6 py-16">
+      <!-- Search Box -->
+      <div class="bg-white border border-gray-200 p-8 mb-10 shadow-sm">
+        <h2 class="text-lg font-serif font-light text-dark mb-6">Find My Order</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2" for="order-id">Order ID</label>
+            <input id="order-id" type="text" placeholder="e.g. ALP-2026-00123" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2" for="order-email">Email Address</label>
+            <input id="order-email" type="email" placeholder="email you used at checkout" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+          </div>
+          <button onclick="trackOrder()" class="w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-dark transition-colors duration-300 mt-2">Track Order →</button>
+        </div>
+      </div>
+
+      <!-- DEMO RESULT (shown after tracking) -->
+      <div id="track-result" class="hidden">
+        <div class="bg-white border border-gray-200 p-8 shadow-sm">
+          <div class="flex justify-between items-start mb-6 pb-6 border-b border-gray-200">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Order ID</p>
+              <p class="font-bold text-dark" id="result-order-id">ALP-2026-00123</p>
+            </div>
+            <span class="inline-block bg-green-50 text-green-700 text-xs font-bold px-3 py-1 border border-green-200 uppercase tracking-widest">In Transit</span>
+          </div>
+          <div class="mb-6 pb-6 border-b border-gray-200">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Estimated Delivery</p>
+            <p class="font-semibold text-dark" id="result-eta">Thursday, 29 May 2026</p>
+            <p class="text-xs text-gray-500 mt-1">Via Delhivery · Tracking: <span class="text-gold font-medium">DEL2026138472</span></p>
+          </div>
+          <!-- TIMELINE -->
+          <h3 class="text-xs uppercase tracking-widest font-bold text-dark mb-6">Shipment Timeline</h3>
+          <div class="space-y-0">
+            <div class="track-step done flex gap-4 pb-6">
+              <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center flex-shrink-0 z-10">
+                <svg class="w-5 h-5 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-dark">Order Placed</p>
+                <p class="text-xs text-gray-500 mt-1">Mon, 26 May 2026 · 10:42 AM</p>
+                <p class="text-xs text-gray-400 mt-0.5">Your order was received and confirmed</p>
+              </div>
+            </div>
+            <div class="track-step done flex gap-4 pb-6">
+              <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center flex-shrink-0 z-10">
+                <svg class="w-5 h-5 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-dark">Processing</p>
+                <p class="text-xs text-gray-500 mt-1">Mon, 26 May 2026 · 3:15 PM</p>
+                <p class="text-xs text-gray-400 mt-0.5">Items picked, packed and quality checked</p>
+              </div>
+            </div>
+            <div class="track-step done flex gap-4 pb-6">
+              <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center flex-shrink-0 z-10">
+                <svg class="w-5 h-5 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-dark">Shipped</p>
+                <p class="text-xs text-gray-500 mt-1">Tue, 27 May 2026 · 9:00 AM</p>
+                <p class="text-xs text-gray-400 mt-0.5">Handed over to Delhivery for delivery</p>
+              </div>
+            </div>
+            <div class="track-step flex gap-4 pb-6">
+              <div class="w-10 h-10 rounded-full border-2 border-gold bg-gold/10 flex items-center justify-center flex-shrink-0 z-10">
+                <div class="w-3 h-3 rounded-full bg-gold animate-pulse"></div>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-dark">Out for Delivery <span class="ml-2 text-xs text-gold font-normal">(Today)</span></p>
+                <p class="text-xs text-gray-500 mt-1">Expected by 9 PM today</p>
+                <p class="text-xs text-gray-400 mt-0.5">Your package is on its way to your address</p>
+              </div>
+            </div>
+            <div class="track-step flex gap-4">
+              <div class="w-10 h-10 rounded-full border-2 border-gray-200 bg-gray-50 flex items-center justify-center flex-shrink-0 z-10">
+                <svg class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm text-gray-400">Delivered</p>
+                <p class="text-xs text-gray-400 mt-1">Pending</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400 text-center mt-4">Having issues? <a href="contact.html" class="text-gold hover:underline">Contact our support team</a></p>
+      </div>
+
+      <!-- INFO CARDS -->
+      <div id="track-info" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+        <div class="bg-white border border-gray-200 p-5">
+          <div class="text-gold text-xl mb-3">📦</div>
+          <h3 class="font-semibold text-sm text-dark mb-2">Where is my order ID?</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">Your order ID is in the confirmation email we sent you right after purchase. It starts with <strong>ALP-</strong> followed by the year and order number.</p>
+        </div>
+        <div class="bg-white border border-gray-200 p-5">
+          <div class="text-gold text-xl mb-3">📧</div>
+          <h3 class="font-semibold text-sm text-dark mb-2">Didn't receive a confirmation?</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">Check your spam or junk folder. If it's not there, <a href="contact.html" class="text-gold hover:underline">reach out to us</a> with your phone number and we'll help you out quickly.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-gray-400 py-8 px-6 text-center border-t border-gray-800 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 text-xs mb-4">
+      <a href="index.html" class="hover:text-gold">Home</a>
+      <a href="catalogue.html" class="hover:text-gold">Shop</a>
+      <a href="faq.html" class="hover:text-gold">FAQ</a>
+      <a href="contact.html" class="hover:text-gold">Contact</a>
+      <a href="refund-policy.html" class="hover:text-gold">Returns</a>
+    </div>
+    <p class="text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    updateCartBadge();
+    function trackOrder() {
+      const id = document.getElementById('order-id').value.trim();
+      const email = document.getElementById('order-email').value.trim();
+      if (!id && !email) { showToast('Please enter an order ID or email address.'); return; }
+      // Demo: show result
+      document.getElementById('track-result').classList.remove('hidden');
+      document.getElementById('track-info').classList.add('hidden');
+      if (id) document.getElementById('result-order-id').textContent = id;
+      document.getElementById('track-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
