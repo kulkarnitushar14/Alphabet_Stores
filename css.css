@@ -1,13 +1,156 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400&display=swap');
+
+/* ============================================================
+   ALPHABET STORE — Global Stylesheet
+   Includes: Base, Dark Mode, Animations, Scrollbar, Utilities
+   ============================================================ */
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: background-color 0.3s ease, color 0.3s ease; }
 
+/* ---- DARK MODE ---- */
+:root {
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #F3F4F6;
+  --bg-card: #FFFFFF;
+  --text-primary: #121212;
+  --text-secondary: #6B7280;
+  --border-color: #E5E7EB;
+  --nav-bg: rgba(250,250,250,0.95);
+  --input-bg: #F3F4F6;
+  --footer-bg: #121212;
+  --footer-text: #9CA3AF;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #111111;
+  --bg-secondary: #1A1A1A;
+  --bg-card: #1E1E1E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #9CA3AF;
+  --border-color: #2E2E2E;
+  --nav-bg: rgba(17,17,17,0.97);
+  --input-bg: #242424;
+  --footer-bg: #0A0A0A;
+  --footer-text: #6B7280;
+}
+
+[data-theme="dark"] body { background-color: #111111 !important; color: #F5F5F5 !important; }
+[data-theme="dark"] .bg-offwhite { background-color: #111111 !important; }
+[data-theme="dark"] .bg-white { background-color: #1E1E1E !important; }
+[data-theme="dark"] .bg-grayLight { background-color: #1A1A1A !important; }
+[data-theme="dark"] .bg-dark { background-color: #0A0A0A !important; }
+[data-theme="dark"] .text-dark { color: #F5F5F5 !important; }
+[data-theme="dark"] .text-gray-500 { color: #9CA3AF !important; }
+[data-theme="dark"] .text-gray-600 { color: #9CA3AF !important; }
+[data-theme="dark"] .text-gray-400 { color: #6B7280 !important; }
+[data-theme="dark"] .border-gray-200 { border-color: #2E2E2E !important; }
+[data-theme="dark"] .border-gray-300 { border-color: #333333 !important; }
+[data-theme="dark"] .bg-gray-100 { background-color: #242424 !important; }
+[data-theme="dark"] header.sticky { background-color: rgba(17,17,17,0.97) !important; border-color: #2E2E2E !important; }
+[data-theme="dark"] .shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.5) !important; }
+[data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea {
+  background-color: #242424 !important;
+  color: #F5F5F5 !important;
+  border-color: #333333 !important;
+}
+[data-theme="dark"] input::placeholder, [data-theme="dark"] textarea::placeholder { color: #6B7280 !important; }
+[data-theme="dark"] .filter-btn { border-color: #333 !important; color: #9CA3AF !important; }
+[data-theme="dark"] .filter-btn.active { background: #F5F5F5 !important; color: #111 !important; border-color: #F5F5F5 !important; }
+[data-theme="dark"] article.group figure { background-color: #242424 !important; }
+
+/* Dark mode toggle button */
+#dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  color: inherit;
+}
+#dark-mode-toggle:hover { background: rgba(212,175,55,0.15); }
+.icon-sun, .icon-moon { width: 20px; height: 20px; }
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: block; }
+.icon-moon { display: none; }
+.icon-sun { display: block; }
+
+/* ---- SCROLLBAR ---- */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #FAFAFA; }
 ::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: #1A1A1A; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #333; }
 
+/* ---- ANIMATIONS ---- */
+@keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse-gold { 0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); } 50% { box-shadow: 0 0 0 8px rgba(212,175,55,0); } }
+
+.animate-fade-in-up { animation: fadeInUp 0.7s ease forwards; }
+.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+.cart-notification { animation: slideInRight 0.4s ease forwards; }
+
+/* ---- INPUTS ---- */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; text-align: center; }
+
+/* ---- HIDE SCROLLBAR UTILITY ---- */
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-img { transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+/* ---- STAR RATING ---- */
+.stars-interactive { display: flex; gap: 4px; }
+.stars-interactive input { display: none; }
+.stars-interactive label { cursor: pointer; font-size: 24px; color: #D1D5DB; transition: color 0.15s; }
+.stars-interactive input:checked ~ label,
+.stars-interactive label:hover,
+.stars-interactive label:hover ~ label { color: #D4AF37; }
+
+/* ---- REVIEW CARD ---- */
+.review-card { border-left: 3px solid #D4AF37; }
+
+/* ---- FAQ ACCORDION ---- */
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+.faq-answer.open { max-height: 500px; }
+.faq-icon { transition: transform 0.3s ease; }
+.faq-open .faq-icon { transform: rotate(45deg); }
+
+/* ---- TRACK ORDER ---- */
+.track-step { position: relative; }
+.track-step::before { content: ''; position: absolute; left: 19px; top: 40px; width: 2px; height: calc(100% - 20px); background: #E5E7EB; }
+.track-step:last-child::before { display: none; }
+.track-step.done::before { background: #D4AF37; }
+[data-theme="dark"] .track-step::before { background: #2E2E2E; }
+[data-theme="dark"] .track-step.done::before { background: #D4AF37; }
+
+/* ---- BREADCRUMB ---- */
+.breadcrumb a:hover { color: #D4AF37; }
+
+/* ---- POLICY PAGE ---- */
+.policy-content h2 { font-family: 'Merriweather', serif; font-weight: 300; font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+.policy-content h3 { font-weight: 600; margin: 1.5rem 0 0.5rem; }
+.policy-content p, .policy-content li { color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem; font-size: 0.9rem; }
+.policy-content ul { list-style: disc; padding-left: 1.5rem; }
+
+/* ---- CONTACT FORM ---- */
+.contact-input { width: 100%; border: 1px solid #D1D5DB; padding: 12px 16px; font-size: 14px; outline: none; transition: border-color 0.2s; background: white; }
+.contact-input:focus { border-color: #121212; }
+[data-theme="dark"] .contact-input { background: #242424 !important; border-color: #333 !important; color: #F5F5F5 !important; }
+
+/* ---- TOAST ---- */
+#toast-msg { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: #121212; color: #fff; padding: 0.6rem 1.4rem; font-size: 13px; letter-spacing: 0.05em; z-index: 9999; border-bottom: 2px solid #D4AF37; pointer-events: none; transition: opacity 0.3s; }
+
+/* ---- MOBILE NAV ---- */
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+
+/* ---- SMOOTH TRANSITIONS ---- */
+a, button { transition-property: color, background-color, border-color, opacity; transition-duration: 0.2s; }
