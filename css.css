@@ -154,3 +154,33 @@ input[type=number] { -moz-appearance: textfield; text-align: center; }
 
 /* ---- SMOOTH TRANSITIONS ---- */
 a, button { transition-property: color, background-color, border-color, opacity; transition-duration: 0.2s; }
+
+/* ---- WHATSAPP FLOAT BUTTON ---- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  z-index: 9998;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+}
+.whatsapp-float svg { width: 30px; height: 30px; fill: white; }
+
+/* ---- PREMIUM PRODUCT CARD HOVER ---- */
+article.group figure { transition: box-shadow 0.3s ease; }
+article.group:hover figure { box-shadow: 0 8px 32px rgba(0,0,0,0.10); }
+
+/* ---- SMOOTH PAGE LOAD ---- */
+body { animation: fadeIn 0.4s ease; }

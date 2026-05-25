@@ -171,11 +171,50 @@
 
       </div>
 
-      <!-- WRITE A REVIEW CTA -->
-      <div class="mt-16 bg-grayLight border border-gray-200 p-8 text-center">
-        <h2 class="text-2xl font-serif font-light text-dark mb-3">Share Your Experience</h2>
-        <p class="text-gray-500 text-sm mb-6 max-w-md mx-auto">Bought something from us? We'd love to hear what you think. Your honest feedback helps other shoppers and helps us improve.</p>
-        <a href="contact.html?subject=review" class="inline-block bg-dark text-white px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-dark transition-colors duration-300">Write a Review</a>
+      <!-- WRITE A REVIEW FORM -->
+      <div class="mt-16 bg-grayLight border border-gray-200 p-8">
+        <h2 class="text-2xl font-serif font-light text-dark mb-2 text-center">Share Your Experience</h2>
+        <p class="text-gray-500 text-sm mb-8 max-w-md mx-auto text-center">Bought something from us? We'd love to hear what you think.</p>
+
+        <div id="review-success" class="hidden bg-green-50 border border-green-200 p-6 text-center mb-6">
+          <div class="text-3xl mb-2">🌟</div>
+          <p class="font-semibold text-green-800">Thank you for your review!</p>
+          <p class="text-sm text-green-700 mt-1">We'll publish it after a quick check.</p>
+        </div>
+
+        <div id="review-form" class="space-y-4 max-w-xl mx-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Your Name *</label>
+              <input id="r-name" type="text" placeholder="Priya S." class="contact-input">
+            </div>
+            <div>
+              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">City</label>
+              <input id="r-city" type="text" placeholder="Mumbai, Maharashtra" class="contact-input">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Product Purchased *</label>
+            <input id="r-product" type="text" placeholder="e.g. LED Digital Hand Fan" class="contact-input">
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Your Rating *</label>
+            <div class="flex gap-2 text-3xl">
+              <span class="star-btn cursor-pointer text-gray-300 hover:text-gold transition-colors" data-val="1">★</span>
+              <span class="star-btn cursor-pointer text-gray-300 hover:text-gold transition-colors" data-val="2">★</span>
+              <span class="star-btn cursor-pointer text-gray-300 hover:text-gold transition-colors" data-val="3">★</span>
+              <span class="star-btn cursor-pointer text-gray-300 hover:text-gold transition-colors" data-val="4">★</span>
+              <span class="star-btn cursor-pointer text-gray-300 hover:text-gold transition-colors" data-val="5">★</span>
+            </div>
+            <input type="hidden" id="r-rating" value="0">
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Your Review *</label>
+            <textarea id="r-body" rows="4" placeholder="Tell others what you think about the product..." class="contact-input resize-none"></textarea>
+          </div>
+          <div id="review-error" class="hidden text-red-600 text-sm border border-red-200 bg-red-50 px-4 py-3"></div>
+          <button id="review-submit-btn" onclick="submitReview()" class="w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-dark transition-colors duration-300">Submit Review →</button>
+        </div>
       </div>
     </section>
   </main>
@@ -193,5 +232,71 @@
   </footer>
 
   <script>updateCartBadge();</script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    const app = initializeApp({
+      apiKey: "AIzaSyA8kP9mASgrog-_Rbuldrnm4rRJm1LmaSU",
+      authDomain: "alphabet-stores.firebaseapp.com",
+      projectId: "alphabet-stores",
+      storageBucket: "alphabet-stores.firebasestorage.app",
+      messagingSenderId: "1068812719722",
+      appId: "1:1068812719722:web:9db5e8c634487dce121c13"
+    });
+    const db = getFirestore(app);
+
+    // Star rating interaction
+    let selectedRating = 0;
+    document.querySelectorAll('.star-btn').forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.dataset.val);
+        document.getElementById('r-rating').value = selectedRating;
+        document.querySelectorAll('.star-btn').forEach(s => {
+          s.classList.toggle('text-gold', parseInt(s.dataset.val) <= selectedRating);
+          s.classList.toggle('text-gray-300', parseInt(s.dataset.val) > selectedRating);
+        });
+      });
+    });
+
+    window.submitReview = async function() {
+      const name    = document.getElementById('r-name').value.trim();
+      const city    = document.getElementById('r-city').value.trim();
+      const product = document.getElementById('r-product').value.trim();
+      const rating  = parseInt(document.getElementById('r-rating').value);
+      const body    = document.getElementById('r-body').value.trim();
+      const errEl   = document.getElementById('review-error');
+      const btn     = document.getElementById('review-submit-btn');
+
+      if (!name || !product || !body || rating < 1) {
+        errEl.textContent = 'Please fill in all required fields and select a star rating.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      errEl.classList.add('hidden');
+      btn.textContent = 'Submitting…';
+      btn.disabled = true;
+
+      try {
+        await addDoc(collection(db, 'reviews'), {
+          name, city: city || null, product, rating, body,
+          status: 'pending',
+          createdAt: serverTimestamp()
+        });
+        document.getElementById('review-form').classList.add('hidden');
+        document.getElementById('review-success').classList.remove('hidden');
+      } catch(e) {
+        errEl.textContent = 'Something went wrong. Please try again.';
+        errEl.classList.remove('hidden');
+        btn.textContent = 'Submit Review →';
+        btn.disabled = false;
+        console.error(e);
+      }
+    };
+  </script>
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 </body>
 </html>

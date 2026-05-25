@@ -122,6 +122,27 @@
   </footer>
 
   <script src="products.js"></script>
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    const app = initializeApp({
+      apiKey: "AIzaSyA8kP9mASgrog-_Rbuldrnm4rRJm1LmaSU",
+      authDomain: "alphabet-stores.firebaseapp.com",
+      projectId: "alphabet-stores",
+      storageBucket: "alphabet-stores.firebasestorage.app",
+      messagingSenderId: "1068812719722",
+      appId: "1:1068812719722:web:9db5e8c634487dce121c13"
+    });
+    const db = getFirestore(app);
+
+    // Expose db so the inline script below can use it
+    window.__db = db;
+    window.__fsAddDoc = addDoc;
+    window.__fsCollection = collection;
+    window.__fsTimestamp = serverTimestamp;
+  </script>
   <script>
     const BACKEND_URL = "https://alphabet-backend-b1sb.onrender.com";
 
@@ -132,36 +153,28 @@
         const p = PRODUCTS.find(x => x.id === id);
         return p ? s + p.price * cart[id] : s;
       }, 0);
-
       document.getElementById('co-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
       document.getElementById('co-shipping').textContent = subtotal >= 999 ? 'FREE' : '₹49';
       document.getElementById('co-total').textContent = '₹' + (subtotal >= 999 ? subtotal : subtotal + 49).toLocaleString('en-IN');
-
       document.getElementById('checkout-items').innerHTML = keys.map(id => {
         const p = PRODUCTS.find(x => x.id === id);
         if (!p) return '';
         return `<div class="flex items-center gap-3">
           <div class="w-12 h-12 bg-white border border-gray-200 shrink-0 overflow-hidden"><img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover"></div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-dark truncate">${p.name}</p>
-            <p class="text-xs text-gray-500">Qty: ${cart[id]}</p>
-          </div>
+          <div class="flex-1 min-w-0"><p class="text-sm font-medium text-dark truncate">${p.name}</p><p class="text-xs text-gray-500">Qty: ${cart[id]}</p></div>
           <span class="text-sm font-semibold">₹${(p.price * cart[id]).toLocaleString('en-IN')}</span>
         </div>`;
       }).join('') || '<p class="text-sm text-gray-400">No items in cart.</p>';
     }
 
     async function handlePaymentWorkflow() {
-      // Input form check routines
       const fields = [
         ['f-firstname','First name'], ['f-lastname','Last name'], ['f-email','Email'],
         ['f-phone','Phone'], ['f-addr1','Address Line 1'], ['f-city','City'], ['f-state','State'], ['f-pin','PIN Code']
       ];
       const errEl = document.getElementById('form-error');
-      
       for (const [id, label] of fields) {
-        const val = document.getElementById(id).value.trim();
-        if (!val) {
+        if (!document.getElementById(id).value.trim()) {
           errEl.textContent = `Please fill in your ${label}.`;
           errEl.classList.remove('hidden');
           document.getElementById(id).focus();
@@ -172,35 +185,45 @@
 
       const cart = getCart();
       const customerInfo = {
-        name: document.getElementById('f-firstname').value + " " + document.getElementById('f-lastname').value,
-        email: document.getElementById('f-email').value,
-        phone: document.getElementById('f-phone').value,
-        address: document.getElementById('f-addr1').value + ", " + document.getElementById('f-addr2').value + ", " + document.getElementById('f-city').value + ", " + document.getElementById('f-state').value + " - " + document.getElementById('f-pin').value
+        name:    document.getElementById('f-firstname').value + " " + document.getElementById('f-lastname').value,
+        email:   document.getElementById('f-email').value.trim(),
+        phone:   document.getElementById('f-phone').value.trim(),
+        address: [
+          document.getElementById('f-addr1').value,
+          document.getElementById('f-addr2').value,
+          document.getElementById('f-city').value,
+          document.getElementById('f-state').value,
+          document.getElementById('f-pin').value
+        ].filter(Boolean).join(', ')
       };
 
+      // Build cart items list for Firestore
+      const cartKeys  = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
+      const cartItems = cartKeys.map(id => {
+        const p = PRODUCTS.find(x => x.id === id);
+        return p ? { id, name: p.name, qty: cart[id], price: p.price } : null;
+      }).filter(Boolean);
+      const subtotal  = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
+      const total     = subtotal >= 999 ? subtotal : subtotal + 49;
+
       try {
-        // Step 1: Call your running cashier server to configure the transaction parameters
         const response = await fetch(`${BACKEND_URL}/api/checkout/create-order`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ cartItems: cart })
         });
         const orderData = await response.json();
+        if (orderData.error) throw new Error(orderData.error);
 
-        if(orderData.error) {
-          throw new Error(orderData.error);
-        }
-
-        // Step 2: Open up Razorpay UI panel configurations matching your sleek aesthetic
         const checkoutConfig = {
           key: orderData.keyId,
           amount: orderData.amount,
           currency: orderData.currency,
           name: "ALPHABET STORE",
-          description: "Order Checkout Terminal",
+          description: "Order Checkout",
           order_id: orderData.orderId,
-          handler: async function (paymentResponse) {
-            // Step 3: Verify security signatures once processing hits completion
+          handler: async function(paymentResponse) {
+            // Verify with backend
             const verifyResponse = await fetch(`${BACKEND_URL}/api/checkout/verify-payment`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -209,28 +232,40 @@
             const result = await verifyResponse.json();
 
             if (result.verified) {
-              // Flush out your structural client local variables
+              // ✅ Save order to Firebase
+              try {
+                await window.__fsAddDoc(
+                  window.__fsCollection(window.__db, 'orders'), {
+                    razorpayOrderId:   orderData.orderId,
+                    razorpayPaymentId: paymentResponse.razorpay_payment_id,
+                    customer:          customerInfo,
+                    items:             cartItems,
+                    subtotal,
+                    total,
+                    status:            'paid',
+                    createdAt:         window.__fsTimestamp()
+                  }
+                );
+              } catch(fbErr) {
+                console.error('Firebase order save error:', fbErr);
+              }
+              // Clear cart and redirect
               if (typeof saveCart === 'function') saveCart({});
               else localStorage.removeItem('cart');
-              
               window.location.href = 'thank_you.html';
             } else {
-              alert("Verification checkpoint mismatch.");
+              alert("Payment verification failed. Please contact support.");
             }
           },
-          prefill: {
-            name: customerInfo.name,
-            email: customerInfo.email,
-            contact: customerInfo.phone
-          },
-          theme: { color: "#121212" } // Keeps checkout UI matching your branding dark scheme
+          prefill: { name: customerInfo.name, email: customerInfo.email, contact: customerInfo.phone },
+          theme: { color: "#121212" }
         };
 
-        const razorpayUI = new Razorpay(checkoutConfig);
-        razorpayUI.open();
+        const rzp = new Razorpay(checkoutConfig);
+        rzp.open();
 
       } catch (err) {
-        errEl.textContent = "Gateway error occurred: " + err.message;
+        errEl.textContent = "Payment error: " + err.message;
         errEl.classList.remove('hidden');
       }
     }
