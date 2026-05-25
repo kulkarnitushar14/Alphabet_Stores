@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
-  
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
@@ -25,9 +24,7 @@
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-6 text-xs uppercase tracking-widest">
       <span class="text-dark font-bold border-b-2 border-gold pb-1">1. Information</span>
       <span class="text-gray-300">→</span>
-      <span class="text-gray-400">2. Shipping</span>
-      <span class="text-gray-300">→</span>
-      <span class="text-gray-400">3. Payment</span>
+      <span class="text-gray-400">2. Payment</span>
     </div>
   </div>
 
@@ -37,63 +34,68 @@
       <div class="w-full lg:w-3/5">
         <h2 class="text-xl font-serif font-light tracking-wide mb-8 text-dark">Contact & Shipping</h2>
 
+        <!-- Backend status indicator -->
+        <div id="backend-status" class="hidden mb-4 text-xs text-amber-600 bg-amber-50 border border-amber-200 px-4 py-2 flex items-center gap-2">
+          <svg class="w-3 h-3 animate-spin shrink-0" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+          Connecting to payment server... Please fill the form while we connect.
+        </div>
+
         <div class="space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">First Name *</label>
-              <input id="f-firstname" type="text" placeholder="Raj" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+              <input id="f-firstname" type="text" placeholder="Raj" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="given-name">
             </div>
             <div>
               <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Last Name *</label>
-              <input id="f-lastname" type="text" placeholder="Sharma" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+              <input id="f-lastname" type="text" placeholder="Sharma" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="family-name">
             </div>
           </div>
           <div>
             <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Email Address *</label>
-            <input id="f-email" type="email" placeholder="raj@example.com" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+            <input id="f-email" type="email" placeholder="raj@example.com" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="email">
           </div>
           <div>
             <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Phone Number *</label>
-            <input id="f-phone" type="tel" placeholder="9876543210" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+            <input id="f-phone" type="tel" placeholder="9876543210" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="tel">
           </div>
           <div>
             <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Address Line 1 *</label>
-            <input id="f-addr1" type="text" placeholder="House / Flat number, Street name" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+            <input id="f-addr1" type="text" placeholder="House / Flat number, Street name" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="address-line1">
           </div>
           <div>
             <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Address Line 2</label>
-            <input id="f-addr2" type="text" placeholder="Area, Landmark (optional)" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+            <input id="f-addr2" type="text" placeholder="Area, Landmark (optional)" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="address-line2">
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
             <div>
               <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">City *</label>
-              <input id="f-city" type="text" placeholder="Mumbai" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+              <input id="f-city" type="text" placeholder="Mumbai" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="address-level2">
             </div>
             <div>
               <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">State *</label>
               <select id="f-state" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white text-gray-700">
                 <option value="">Select State</option>
-                <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option><option>Tamil Nadu</option><option>Telangana</option><option>Gujarat</option><option>Rajasthan</option><option>West Bengal</option><option>Uttar Pradesh</option><option>Kerala</option><option>Other</option>
+                <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option><option>Tamil Nadu</option><option>Telangana</option><option>Gujarat</option><option>Rajasthan</option><option>West Bengal</option><option>Uttar Pradesh</option><option>Kerala</option><option>Punjab</option><option>Haryana</option><option>Madhya Pradesh</option><option>Other</option>
               </select>
             </div>
             <div>
               <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">PIN Code *</label>
-              <input id="f-pin" type="text" placeholder="421202" maxlength="6" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white">
+              <input id="f-pin" type="text" placeholder="421202" maxlength="6" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="postal-code">
             </div>
           </div>
         </div>
 
-        <h2 class="text-xl font-serif font-light tracking-wide mt-12 mb-4 text-dark">Payment Routing</h2>
-        <div class="p-4 bg-white border border-gray-200 text-sm text-gray-600 font-light">
-          Clicking the button below loads our secure <strong>Razorpay payment checkout overlay</strong>, supporting Cards, NetBanking, and UPI apps like Google Pay or PhonePe.
+        <div id="form-error" class="hidden mt-4 text-red-600 text-sm border border-red-200 bg-red-50 px-4 py-3 flex items-center gap-2">
+          <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span id="form-error-msg"></span>
         </div>
 
-        <div id="form-error" class="hidden mt-4 text-red-600 text-sm border border-red-200 bg-red-50 px-4 py-3"></div>
-
-        <button id="place-order-btn" class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors duration-300 shadow-md hover:shadow-none">
-          Proceed to Pay →
+        <button id="place-order-btn" class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-dark transition-colors duration-300 shadow-md flex items-center justify-center gap-3">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <span id="btn-label">Proceed to Pay Securely</span>
         </button>
-        <p class="text-xs text-gray-400 mt-4 text-center">By placing your order you agree to our Terms & Privacy Policy</p>
+        <p class="text-xs text-gray-400 mt-3 text-center">By placing your order you agree to our <a href="privacy-policy.html" class="underline">Terms & Privacy Policy</a></p>
       </div>
 
       <div class="w-full lg:w-2/5">
@@ -108,9 +110,19 @@
           <div class="flex justify-between items-end mt-4 pt-4 border-t border-gray-300 text-lg font-semibold text-dark">
             <span>Total</span><span id="co-total">₹0</span>
           </div>
-          <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
-            <svg class="w-4 h-4 text-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            Payments are 256-bit SSL encrypted and secure.
+          <div class="mt-6 space-y-2">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              256-bit SSL Encrypted & Secure
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              UPI · Cards · Net Banking · COD
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              7-Day Hassle-Free Returns
+            </div>
           </div>
         </div>
       </div>
@@ -122,6 +134,7 @@
   </footer>
 
   <script src="products.js"></script>
+
   <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -136,15 +149,38 @@
       appId: "1:1068812719722:web:9db5e8c634487dce121c13"
     });
     const db = getFirestore(app);
-
-    // Expose db so the inline script below can use it
     window.__db = db;
     window.__fsAddDoc = addDoc;
     window.__fsCollection = collection;
     window.__fsTimestamp = serverTimestamp;
   </script>
+
   <script>
     const BACKEND_URL = "https://alphabet-backend-b1sb.onrender.com";
+
+    // ============================================================
+    // WAKE UP RENDER BACKEND IMMEDIATELY when page loads
+    // Customer fills the form (takes ~60 seconds) → backend wakes
+    // up in the background → by the time they click Pay, it's ready!
+    // ============================================================
+    let backendReady = false;
+    const statusBar = document.getElementById('backend-status');
+
+    function wakeBackend() {
+      statusBar.classList.remove('hidden');
+      fetch(`${BACKEND_URL}/api/health`, { method: 'GET', signal: AbortSignal.timeout(30000) })
+        .then(r => {
+          if (r.ok) {
+            backendReady = true;
+            statusBar.classList.add('hidden'); // hide once ready
+          }
+        })
+        .catch(() => {
+          // Retry silently after 10s
+          setTimeout(wakeBackend, 10000);
+        });
+    }
+    wakeBackend(); // start immediately on page load
 
     function renderCheckoutSummary() {
       const cart = getCart();
@@ -153,29 +189,41 @@
         const p = PRODUCTS.find(x => x.id === id);
         return p ? s + p.price * cart[id] : s;
       }, 0);
+      const shipping = subtotal >= 999 ? 0 : 49;
+      const total = subtotal + shipping;
       document.getElementById('co-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
-      document.getElementById('co-shipping').textContent = subtotal >= 999 ? 'FREE' : '₹49';
-      document.getElementById('co-total').textContent = '₹' + (subtotal >= 999 ? subtotal : subtotal + 49).toLocaleString('en-IN');
+      document.getElementById('co-shipping').textContent = shipping === 0 ? 'FREE' : '₹49';
+      document.getElementById('co-total').textContent = '₹' + total.toLocaleString('en-IN');
       document.getElementById('checkout-items').innerHTML = keys.map(id => {
         const p = PRODUCTS.find(x => x.id === id);
         if (!p) return '';
         return `<div class="flex items-center gap-3">
           <div class="w-12 h-12 bg-white border border-gray-200 shrink-0 overflow-hidden"><img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover"></div>
           <div class="flex-1 min-w-0"><p class="text-sm font-medium text-dark truncate">${p.name}</p><p class="text-xs text-gray-500">Qty: ${cart[id]}</p></div>
-          <span class="text-sm font-semibold">₹${(p.price * cart[id]).toLocaleString('en-IN')}</span>
+          <span class="text-sm font-semibold">Rs.${(p.price * cart[id]).toLocaleString('en-IN')}</span>
         </div>`;
       }).join('') || '<p class="text-sm text-gray-400">No items in cart.</p>';
     }
 
+    function resetBtn() {
+      document.getElementById('place-order-btn').disabled = false;
+      document.getElementById('btn-label').textContent = 'Proceed to Pay Securely';
+    }
+
     async function handlePaymentWorkflow() {
       const fields = [
-        ['f-firstname','First name'], ['f-lastname','Last name'], ['f-email','Email'],
-        ['f-phone','Phone'], ['f-addr1','Address Line 1'], ['f-city','City'], ['f-state','State'], ['f-pin','PIN Code']
+        ['f-firstname','First name'], ['f-lastname','Last name'],
+        ['f-email','Email'], ['f-phone','Phone'],
+        ['f-addr1','Address'], ['f-city','City'],
+        ['f-state','State'], ['f-pin','PIN Code']
       ];
-      const errEl = document.getElementById('form-error');
+      const errEl  = document.getElementById('form-error');
+      const errMsg = document.getElementById('form-error-msg');
+      const btn    = document.getElementById('place-order-btn');
+
       for (const [id, label] of fields) {
         if (!document.getElementById(id).value.trim()) {
-          errEl.textContent = `Please fill in your ${label}.`;
+          errMsg.textContent = `Please fill in your ${label}.`;
           errEl.classList.remove('hidden');
           document.getElementById(id).focus();
           return;
@@ -184,89 +232,126 @@
       errEl.classList.add('hidden');
 
       const cart = getCart();
+      const cartKeys = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
+      if (!cartKeys.length) {
+        errMsg.textContent = 'Your cart is empty!';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
       const customerInfo = {
-        name:    document.getElementById('f-firstname').value + " " + document.getElementById('f-lastname').value,
+        name:    document.getElementById('f-firstname').value.trim() + ' ' + document.getElementById('f-lastname').value.trim(),
         email:   document.getElementById('f-email').value.trim(),
         phone:   document.getElementById('f-phone').value.trim(),
         address: [
-          document.getElementById('f-addr1').value,
-          document.getElementById('f-addr2').value,
-          document.getElementById('f-city').value,
-          document.getElementById('f-state').value,
-          document.getElementById('f-pin').value
+          document.getElementById('f-addr1').value.trim(),
+          document.getElementById('f-addr2').value.trim(),
+          document.getElementById('f-city').value.trim(),
+          document.getElementById('f-state').value.trim(),
+          document.getElementById('f-pin').value.trim()
         ].filter(Boolean).join(', ')
       };
 
-      // Build cart items list for Firestore
-      const cartKeys  = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
       const cartItems = cartKeys.map(id => {
         const p = PRODUCTS.find(x => x.id === id);
         return p ? { id, name: p.name, qty: cart[id], price: p.price } : null;
       }).filter(Boolean);
-      const subtotal  = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
-      const total     = subtotal >= 999 ? subtotal : subtotal + 49;
+
+      const subtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
+      const shipping = subtotal >= 999 ? 0 : 49;
+      const total    = subtotal + shipping;
+
+      // Show loading
+      btn.disabled = true;
+      document.getElementById('btn-label').textContent = 'Connecting to payment...';
 
       try {
+        // Step 1: Create Razorpay order via your backend
         const response = await fetch(`${BACKEND_URL}/api/checkout/create-order`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ cartItems: cart })
         });
+
+        if (!response.ok) throw new Error('Server error. Please try again.');
         const orderData = await response.json();
         if (orderData.error) throw new Error(orderData.error);
 
-        const checkoutConfig = {
+        document.getElementById('btn-label').textContent = 'Opening Razorpay...';
+
+        // Step 2: Open Razorpay checkout
+        const options = {
           key: orderData.keyId,
           amount: orderData.amount,
           currency: orderData.currency,
-          name: "ALPHABET STORE",
-          description: "Order Checkout",
+          name: 'ALPHABET STORE',
+          description: `Order — ${cartItems.length} item(s)`,
           order_id: orderData.orderId,
           handler: async function(paymentResponse) {
-            // Verify with backend
-            const verifyResponse = await fetch(`${BACKEND_URL}/api/checkout/verify-payment`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(paymentResponse)
-            });
-            const result = await verifyResponse.json();
+            // Step 3: Verify payment
+            try {
+              const verifyRes = await fetch(`${BACKEND_URL}/api/checkout/verify-payment`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paymentResponse)
+              });
+              const result = await verifyRes.json();
 
-            if (result.verified) {
-              // ✅ Save order to Firebase
-              try {
-                await window.__fsAddDoc(
-                  window.__fsCollection(window.__db, 'orders'), {
-                    razorpayOrderId:   orderData.orderId,
-                    razorpayPaymentId: paymentResponse.razorpay_payment_id,
-                    customer:          customerInfo,
-                    items:             cartItems,
-                    subtotal,
-                    total,
-                    status:            'paid',
-                    createdAt:         window.__fsTimestamp()
-                  }
-                );
-              } catch(fbErr) {
-                console.error('Firebase order save error:', fbErr);
+              if (result.verified) {
+                // Save order to Firebase
+                try {
+                  await window.__fsAddDoc(
+                    window.__fsCollection(window.__db, 'orders'), {
+                      razorpayOrderId:   orderData.orderId,
+                      razorpayPaymentId: paymentResponse.razorpay_payment_id,
+                      customer:  customerInfo,
+                      items:     cartItems,
+                      subtotal, shipping, total,
+                      status:    'paid',
+                      createdAt: window.__fsTimestamp()
+                    }
+                  );
+                } catch(fbErr) { console.error('Firebase save error:', fbErr); }
+
+                // Clear cart and go to thank you
+                try { saveCart({}); } catch(e) { localStorage.removeItem('alphabet_cart'); }
+                window.location.href = 'thank_you.html';
+              } else {
+                errMsg.textContent = 'Payment verification failed. Please contact us on WhatsApp.';
+                errEl.classList.remove('hidden');
+                resetBtn();
               }
-              // Clear cart and redirect
-              if (typeof saveCart === 'function') saveCart({});
-              else localStorage.removeItem('cart');
+            } catch(verifyErr) {
+              // Payment went through but verify failed — still redirect to be safe
+              try { saveCart({}); } catch(e) {}
               window.location.href = 'thank_you.html';
-            } else {
-              alert("Payment verification failed. Please contact support.");
             }
           },
-          prefill: { name: customerInfo.name, email: customerInfo.email, contact: customerInfo.phone },
-          theme: { color: "#121212" }
+          prefill: {
+            name:    customerInfo.name,
+            email:   customerInfo.email,
+            contact: customerInfo.phone
+          },
+          notes: { address: customerInfo.address },
+          theme: { color: '#D4AF37' },
+          modal: {
+            ondismiss: function() { resetBtn(); }
+          }
         };
 
-        const rzp = new Razorpay(checkoutConfig);
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function(response) {
+          errMsg.textContent = 'Payment failed: ' + (response.error.description || 'Please try again.');
+          errEl.classList.remove('hidden');
+          resetBtn();
+        });
         rzp.open();
 
-      } catch (err) {
-        errEl.textContent = "Payment error: " + err.message;
+      } catch(err) {
+        console.error(err);
+        errMsg.textContent = 'Could not connect to payment server. Please try again in a moment or WhatsApp us at +91 70219 09150.';
         errEl.classList.remove('hidden');
+        resetBtn();
       }
     }
 
