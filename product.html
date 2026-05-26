@@ -2,6 +2,9 @@
 <html lang="en" dir="ltr" data-theme="">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 0L40 20L20 40L0 20L20 0Z' fill='%23121212'/%3E%3Cpath d='M20 10L30 20L20 30L10 20L20 10Z' fill='%23FAFAFA'/%3E%3Cpath d='M20 16L24 20L20 24L16 20L20 16Z' fill='%23D4AF37'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 0L40 20L20 40L0 20L20 0Z' fill='%23121212'/%3E%3Cpath d='M20 10L30 20L20 30L10 20L20 10Z' fill='%23FAFAFA'/%3E%3Cpath d='M20 16L24 20L20 24L16 20L20 16Z' fill='%23D4AF37'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#121212">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
   <link rel="dns-prefetch" href="https://www.gstatic.com">
@@ -15,7 +18,7 @@
   <meta property="og:description" content="Premium home essentials with up to 90% off MRP.">
   <meta property="og:type" content="product">
   <meta property="og:url" content="https://www.alphabetstores.com/product.html">
-  <meta property="og:image" content="https://www.alphabetstores.com/og-image.jpg">
+  <meta property="og:image" content="https://www.alphabetstores.com/og-image.svg">
   <meta property="og:site_name" content="Alphabet Store">
   <link rel="stylesheet" href="css.css">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -454,6 +457,27 @@
       s2.text = JSON.stringify(breadcrumb);
       document.head.appendChild(s2);
     });
+  </script>
+  <!-- Back to Top -->
+  <a href="#top" class="back-to-top" aria-label="Back to top" id="back-to-top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </a>
+  <script>
+    (function() {
+      const btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 400);
+      });
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      // Smooth image loading
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (img.complete) img.classList.add('loaded');
+        else img.addEventListener('load', () => img.classList.add('loaded'));
+      });
+    })();
   </script>
   <script src="chatbot.js" defer></script>
 </body>

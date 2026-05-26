@@ -184,3 +184,53 @@ article.group:hover figure { box-shadow: 0 8px 32px rgba(0,0,0,0.10); }
 
 /* ---- SMOOTH PAGE LOAD ---- */
 body { animation: fadeIn 0.4s ease; }
+
+/* ---- BACK TO TOP BUTTON ---- */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  background: #121212;
+  border: 1px solid #D4AF37;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9996;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.back-to-top.show { display: flex; }
+.back-to-top:hover { background: #D4AF37; transform: translateY(-3px); }
+.back-to-top svg { width: 18px; height: 18px; stroke: #D4AF37; }
+.back-to-top:hover svg { stroke: #121212; }
+
+/* ---- IMPROVED FOCUS STATES (accessibility) ---- */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}
+
+/* ---- SMOOTH IMAGE LOADING ---- */
+img { transition: opacity 0.3s ease; }
+img[loading="lazy"] { opacity: 0; }
+img.loaded, img[loading="lazy"].loaded { opacity: 1; }
+
+/* ---- BETTER MOBILE TAP TARGETS ---- */
+@media (max-width: 640px) {
+  button, a { min-height: 44px; }
+  .nav-item, nav a { padding: 8px 12px; }
+}
+
+/* ---- PREVENT TEXT SELECTION ON BUTTONS ---- */
+button { user-select: none; -webkit-user-select: none; }
+
+/* ---- PRINT STYLES ---- */
+@media print {
+  .whatsapp-float, .alpha-chat-toggle, .alpha-chat-window, .back-to-top, header.sticky, footer { display: none !important; }
+  body { background: white; color: black; }
+}

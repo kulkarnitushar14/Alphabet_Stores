@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#121212"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#B8941F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Diamond logo -->
+  <g transform="translate(600,180)">
+    <path d="M0 -60L60 0L0 60L-60 0Z" fill="#FAFAFA"/>
+    <path d="M0 -45L45 0L0 45L-45 0Z" fill="#121212"/>
+    <path d="M0 -25L25 0L0 25L-25 0Z" fill="url(#gold)"/>
+  </g>
+
+  <!-- ALPHABET wordmark -->
+  <text x="600" y="320" text-anchor="middle" font-family="Inter, sans-serif" font-size="68" font-weight="800" fill="#FAFAFA" letter-spacing="14">ALPHABET</text>
+  <text x="600" y="362" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#D4AF37" letter-spacing="8">STORE</text>
+
+  <!-- Tagline -->
+  <text x="600" y="430" text-anchor="middle" font-family="Merriweather, serif" font-size="32" font-style="italic" fill="#FAFAFA" font-weight="300">Premium Home Essentials</text>
+  <text x="600" y="475" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" fill="#9CA3AF">Up to 90% off MRP · Free Shipping over ₹999</text>
+
+  <!-- Bottom accent -->
+  <line x1="450" y1="540" x2="750" y2="540" stroke="#D4AF37" stroke-width="2"/>
+  <text x="600" y="575" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" fill="#9CA3AF" letter-spacing="4">EST. 2020 · MUMBAI, INDIA</text>
+</svg>

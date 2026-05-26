@@ -24,7 +24,7 @@
     },
     contact: {
       keywords: ['contact', 'call', 'whatsapp', 'phone', 'speak to', 'talk to human', 'customer care', 'support'],
-      reply: '💬 Talk to our founders directly!<br>📞 Tushar: +91 70219 09150<br>📞 Ashish: +91 88048 88885<br>📧 alphabetstores@gmail.com<br>WhatsApp the green button below or <a href="contact.html" style="color:#D4AF37">visit contact page</a>'
+      reply: '💬 Talk to our founders directly!<br>📞 Tushar: +91 70219 09150<br>📞 Ashish: +91 88048 88051<br>📧 alphabetstores@gmail.com<br>WhatsApp the green button below or <a href="contact.html" style="color:#D4AF37">visit contact page</a>'
     },
     products: {
       keywords: ['product', 'what do you sell', 'catalogue', 'catalog', 'items', 'shop', 'buy'],
