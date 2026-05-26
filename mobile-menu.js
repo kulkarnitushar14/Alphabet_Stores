@@ -1,109 +1,131 @@
-// ============================================================
-// ALPHABET STORE — Mobile Menu + Global Search
-// Adds responsive hamburger menu and search bar to all pages
-// ============================================================
-
+// ALPHABET STORE — Mobile Menu v2 (bulletproof)
 (function() {
-  // Inject CSS once
+  'use strict';
+
   const css = `
-    /* Mobile Hamburger Button */
     .alpha-hamburger {
       display: none;
-      width: 32px; height: 32px;
+      width: 44px; height: 44px;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       gap: 5px;
-      background: none;
+      background: #D4AF37;
       border: none;
       cursor: pointer;
       padding: 0;
-      margin-right: 12px;
+      margin-right: 8px;
       z-index: 60;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      border-radius: 2px;
     }
+    .alpha-hamburger:hover { background: #b8941f; }
     .alpha-hamburger span {
       display: block;
-      width: 22px; height: 2px;
-      background: var(--text-primary, #121212);
+      width: 22px; height: 2.5px;
+      background: #121212;
       transition: all 0.3s ease;
+      border-radius: 2px;
     }
-    .alpha-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .alpha-hamburger.open { background: #121212; }
+    .alpha-hamburger.open span { background: #fff; }
+    .alpha-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
     .alpha-hamburger.open span:nth-child(2) { opacity: 0; }
-    .alpha-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .alpha-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-    /* Mobile Drawer */
     .alpha-drawer {
-      position: fixed;
-      top: 0; left: -100%;
-      width: 85%; max-width: 320px; height: 100vh;
+      position: fixed; top: 0; right: -100%;
+      width: 88%; max-width: 360px;
+      height: 100vh; height: 100dvh;
       background: #FAFAFA;
-      z-index: 100;
-      transition: left 0.3s ease;
-      box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+      z-index: 99999;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -8px 0 32px rgba(0,0,0,0.25);
       overflow-y: auto;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
+      -webkit-overflow-scrolling: touch;
     }
-    [data-theme="dark"] .alpha-drawer { background: #111; }
-    .alpha-drawer.open { left: 0; }
+    .alpha-drawer.open { right: 0; }
+
     .alpha-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 99;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 99998;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.35s ease;
     }
     .alpha-drawer-overlay.show { opacity: 1; pointer-events: auto; }
 
     .alpha-drawer-header {
-      padding: 28px 24px 20px;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 24px 24px 20px;
+      background: #121212;
+      color: #fff;
       display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 2;
     }
-    [data-theme="dark"] .alpha-drawer-header { border-color: #2e2e2e; }
     .alpha-drawer-logo {
       font-family: 'Inter', sans-serif;
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       letter-spacing: 0.25em;
-      color: var(--text-primary, #121212);
+      color: #fff;
       text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
     }
+    .alpha-drawer-logo svg { width: 24px; height: 24px; }
     .alpha-drawer-close {
-      background: none; border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-primary, #121212);
-      line-height: 1;
+      background: transparent; border: none;
+      width: 36px; height: 36px;
+      cursor: pointer; color: #fff;
+      font-size: 1.5rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s;
     }
+    .alpha-drawer-close:hover { background: rgba(255,255,255,0.1); }
 
     .alpha-drawer-search {
-      padding: 16px 24px;
+      padding: 16px 20px;
+      background: #fff;
       border-bottom: 1px solid #e5e7eb;
     }
-    [data-theme="dark"] .alpha-drawer-search { border-color: #2e2e2e; }
+    .alpha-drawer-search-wrap { position: relative; }
     .alpha-drawer-search-input {
       width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #d1d5db;
-      background: white;
-      font-size: 0.9rem;
+      padding: 12px 16px 12px 42px;
+      border: 1.5px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 0.92rem;
       outline: none;
       font-family: 'Inter', sans-serif;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
-    [data-theme="dark"] .alpha-drawer-search-input { background: #1e1e1e; color: #f5f5f5; border-color: #333; }
-    .alpha-drawer-search-input:focus { border-color: #D4AF37; }
+    .alpha-drawer-search-input:focus { border-color: #D4AF37; background: #fff; }
+    .alpha-drawer-search-icon {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      pointer-events: none; opacity: 0.4;
+    }
 
-    .alpha-drawer-nav {
-      flex: 1;
-      padding: 12px 0;
+    .alpha-drawer-section {
+      padding: 14px 24px 8px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #9ca3af;
+      font-weight: 700;
+      background: #f3f4f6;
     }
+    .alpha-drawer-nav { background: #fff; }
     .alpha-drawer-nav a {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 24px;
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 24px;
       font-size: 0.95rem;
-      color: var(--text-primary, #121212);
+      color: #121212;
       text-decoration: none;
       border-bottom: 1px solid #f0f0f0;
       font-weight: 500;
@@ -111,196 +133,156 @@
       text-transform: uppercase;
       transition: all 0.15s;
     }
-    [data-theme="dark"] .alpha-drawer-nav a { border-color: #1e1e1e; color: #f5f5f5; }
-    .alpha-drawer-nav a:hover {
-      background: rgba(212,175,55,0.1);
+    .alpha-drawer-nav a:hover, .alpha-drawer-nav a:active {
+      background: rgba(212,175,55,0.08);
       color: #D4AF37;
       padding-left: 30px;
     }
-    .alpha-drawer-nav .nav-icon {
-      width: 18px; height: 18px;
-      stroke: currentColor;
-      flex-shrink: 0;
-    }
-
-    .alpha-drawer-section {
-      padding: 12px 24px;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #999;
-      font-weight: 600;
-      background: rgba(0,0,0,0.02);
-    }
-    [data-theme="dark"] .alpha-drawer-section { background: rgba(255,255,255,0.02); color: #666; }
+    .alpha-drawer-nav .nav-icon { width: 20px; height: 20px; stroke: currentColor; flex-shrink: 0; }
+    .alpha-drawer-nav .arrow { margin-left: auto; width: 14px; height: 14px; opacity: 0.3; }
 
     .alpha-drawer-footer {
       padding: 20px 24px;
-      border-top: 1px solid #e5e7eb;
       background: #121212;
-      color: white;
+      color: #fff;
+      margin-top: auto;
     }
     .alpha-drawer-footer-title {
       font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: #D4AF37;
-      margin-bottom: 10px;
-      font-weight: 600;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
     .alpha-drawer-footer-link {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 0;
-      font-size: 0.85rem;
-      color: #ccc;
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0;
+      font-size: 0.88rem;
+      color: #d1d5db;
       text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+    .alpha-drawer-footer-link:last-child { border-bottom: none; }
     .alpha-drawer-footer-link:hover { color: #D4AF37; }
-    .alpha-drawer-footer-link svg { width: 14px; height: 14px; opacity: 0.7; }
+    .alpha-drawer-footer-link svg { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
 
-    /* Global Search Bar (for desktop where space allows) */
-    .alpha-global-search {
-      position: relative;
-      max-width: 260px;
-      width: 100%;
-    }
-    .alpha-global-search-input {
-      width: 100%;
-      padding: 8px 14px 8px 38px;
-      border: 1px solid #e5e7eb;
-      background: rgba(0,0,0,0.03);
-      font-size: 0.8rem;
-      outline: none;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
-    }
-    [data-theme="dark"] .alpha-global-search-input { background: #1a1a1a; color: #f5f5f5; border-color: #333; }
-    .alpha-global-search-input:focus { border-color: #D4AF37; background: white; max-width: 320px; }
-    [data-theme="dark"] .alpha-global-search-input:focus { background: #242424; }
-    .alpha-global-search-icon {
-      position: absolute;
-      left: 12px; top: 50%;
-      transform: translateY(-50%);
-      width: 16px; height: 16px;
-      pointer-events: none;
-      opacity: 0.5;
-    }
-
-    /* Search Results Dropdown */
     .alpha-search-results {
-      position: absolute;
-      top: 100%; left: 0; right: 0;
-      background: white;
-      border: 1px solid #e5e7eb;
-      max-height: 400px;
+      max-height: 320px;
       overflow-y: auto;
-      z-index: 50;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
       display: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     }
-    [data-theme="dark"] .alpha-search-results { background: #1e1e1e; border-color: #333; }
     .alpha-search-results.show { display: block; }
     .alpha-search-result {
       display: flex; align-items: center; gap: 12px;
-      padding: 10px 14px;
+      padding: 12px 20px;
       border-bottom: 1px solid #f0f0f0;
-      cursor: pointer;
       text-decoration: none;
       color: inherit;
-      transition: background 0.15s;
     }
-    [data-theme="dark"] .alpha-search-result { border-color: #2a2a2a; }
-    .alpha-search-result:hover { background: rgba(212,175,55,0.08); }
+    .alpha-search-result:hover { background: rgba(212,175,55,0.06); }
     .alpha-search-result-img {
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       object-fit: cover;
       background: #f3f4f6;
       flex-shrink: 0;
+      border-radius: 3px;
     }
     .alpha-search-result-info { flex: 1; min-width: 0; }
     .alpha-search-result-name {
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      color: var(--text-primary, #121212);
+      color: #121212;
       margin-bottom: 2px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .alpha-search-result-price {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       color: #D4AF37;
       font-weight: 600;
     }
     .alpha-search-empty {
-      padding: 30px 14px;
+      padding: 24px 14px;
       text-align: center;
-      color: #999;
+      color: #9ca3af;
       font-size: 0.85rem;
     }
 
-    /* RESPONSIVE: show hamburger only on mobile */
     @media (max-width: 768px) {
-      .alpha-hamburger { display: flex; }
-      .alpha-global-search { display: none; }
+      .alpha-hamburger { display: flex !important; }
     }
-    @media (max-width: 480px) {
-      .alpha-drawer { width: 92%; }
-    }
+
+    body.drawer-open { overflow: hidden; }
   `;
+
   const style = document.createElement('style');
+  style.id = 'alpha-mobile-menu-styles';
   style.textContent = css;
   document.head.appendChild(style);
 
-  // Build the drawer HTML
   function buildDrawer() {
     const drawer = document.createElement('aside');
     drawer.className = 'alpha-drawer';
     drawer.setAttribute('aria-label', 'Mobile navigation');
     drawer.innerHTML = `
       <div class="alpha-drawer-header">
-        <a href="index.html" class="alpha-drawer-logo">ALPHABET</a>
+        <a href="index.html" class="alpha-drawer-logo">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M20 0L40 20L20 40L0 20L20 0Z" fill="#FAFAFA"/>
+            <path d="M20 10L30 20L20 30L10 20L20 10Z" fill="#121212"/>
+            <path d="M20 16L24 20L20 24L16 20L20 16Z" fill="#D4AF37"/>
+          </svg>
+          ALPHABET
+        </a>
         <button class="alpha-drawer-close" aria-label="Close menu">✕</button>
       </div>
       <div class="alpha-drawer-search">
-        <input type="text" placeholder="Search products..." class="alpha-drawer-search-input" id="alpha-mobile-search" aria-label="Search products">
-        <div class="alpha-search-results" id="alpha-mobile-results"></div>
+        <div class="alpha-drawer-search-wrap">
+          <svg class="alpha-drawer-search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          <input type="text" placeholder="Search products..." class="alpha-drawer-search-input" id="alpha-mobile-search" autocomplete="off">
+        </div>
       </div>
+      <div class="alpha-search-results" id="alpha-mobile-results"></div>
+
       <div class="alpha-drawer-section">Shop</div>
       <nav class="alpha-drawer-nav">
-        <a href="index.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12L12 2.25 21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/></svg>Home</a>
-        <a href="catalogue.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>Shop All Products</a>
-        <a href="catalogue.html?cat=kitchen"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Kitchen Essentials</a>
-        <a href="catalogue.html?cat=gadgets"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>Smart Gadgets</a>
-        <a href="catalogue.html?cat=home"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75z"/></svg>Home & Storage</a>
-        <a href="catalogue.html?cat=stationery"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg>Stationery</a>
+        <a href="index.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12L12 2.25 21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/></svg>Home<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="catalogue.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/></svg>All Products<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="cart.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>My Cart<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="track-order.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9-1.5h11.25m-11.25 0a1.5 1.5 0 01-1.5-1.5V6a1.5 1.5 0 011.5-1.5h11.25a1.5 1.5 0 011.5 1.5v9.75m-12.75 0V18a.75.75 0 00.75.75H17.25"/></svg>Track Order<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
       </nav>
 
       <div class="alpha-drawer-section">Discover</div>
       <nav class="alpha-drawer-nav">
-        <a href="blog.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5"/></svg>Blog & Guides</a>
-        <a href="reviews.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>Customer Reviews</a>
-        <a href="about_us.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>About Us</a>
+        <a href="blog.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5"/></svg>Blog<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="reviews.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>Reviews<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="about_us.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>Our Story<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
       </nav>
 
-      <div class="alpha-drawer-section">Account & Support</div>
+      <div class="alpha-drawer-section">Support</div>
       <nav class="alpha-drawer-nav">
-        <a href="cart.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>My Cart</a>
-        <a href="track-order.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>Track Order</a>
-        <a href="faq.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>FAQ</a>
-        <a href="contact.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>Contact Us</a>
+        <a href="contact.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>Contact<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="faq.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>FAQ<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="shipping-policy.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9-1.5h11.25m-11.25 0a1.5 1.5 0 01-1.5-1.5V6a1.5 1.5 0 011.5-1.5h11.25a1.5 1.5 0 011.5 1.5v9.75m-12.75 0V18a.75.75 0 00.75.75H17.25"/></svg>Shipping<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+        <a href="refund-policy.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"/></svg>Returns<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
       </nav>
 
       <div class="alpha-drawer-footer">
-        <div class="alpha-drawer-footer-title">Need help?</div>
-        <a href="tel:+917021909150" class="alpha-drawer-footer-link">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          +91 70219 09150
-        </a>
-        <a href="https://wa.me/917021909150" target="_blank" rel="noopener" class="alpha-drawer-footer-link">
+        <div class="alpha-drawer-footer-title">Talk to us</div>
+        <a href="https://wa.me/917021909150?text=Hi%20Alphabet%20Store!" target="_blank" rel="noopener" class="alpha-drawer-footer-link">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
           WhatsApp Us
         </a>
+        <a href="tel:+917021909150" class="alpha-drawer-footer-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          +91 70219 09150
+        </a>
         <a href="mailto:alphabetstores@gmail.com" class="alpha-drawer-footer-link">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
           alphabetstores@gmail.com
         </a>
       </div>
@@ -314,101 +296,91 @@
     return { drawer, overlay };
   }
 
-  // Search functionality
   function setupSearch(inputEl, resultsEl) {
     if (!inputEl || !resultsEl) return;
     let timer;
     inputEl.addEventListener('input', () => {
       clearTimeout(timer);
       const q = inputEl.value.trim().toLowerCase();
-      if (!q) { resultsEl.classList.remove('show'); resultsEl.innerHTML=''; return; }
+      if (!q) { resultsEl.classList.remove('show'); resultsEl.innerHTML = ''; return; }
       timer = setTimeout(() => {
-        if (typeof PRODUCTS === 'undefined') return;
+        if (typeof PRODUCTS === 'undefined') {
+          resultsEl.innerHTML = '<div class="alpha-search-empty">Loading...</div>';
+          resultsEl.classList.add('show');
+          return;
+        }
         const matches = PRODUCTS.filter(p =>
           (p.name||'').toLowerCase().includes(q) ||
           (p.subtitle||'').toLowerCase().includes(q) ||
           (p.desc||'').toLowerCase().includes(q) ||
           (p.cat||'').toLowerCase().includes(q)
-        ).slice(0, 6);
+        ).slice(0, 5);
         if (!matches.length) {
           resultsEl.innerHTML = '<div class="alpha-search-empty">No products found for "' + q + '"</div>';
         } else {
           resultsEl.innerHTML = matches.map(p => `
             <a href="product.html?id=${p.id}" class="alpha-search-result">
-              <img loading="lazy" src="${p.image}" alt="${p.name}" class="alpha-search-result-img">
+              <img loading="lazy" src="${p.image}" alt="${p.name}" class="alpha-search-result-img" onerror="this.style.display='none'">
               <div class="alpha-search-result-info">
                 <div class="alpha-search-result-name">${p.name}</div>
-                <div class="alpha-search-result-price">₹${p.price} <span style="color:#999;text-decoration:line-through;font-weight:normal;margin-left:6px">₹${p.mrp}</span></div>
+                <div class="alpha-search-result-price">₹${p.price} <span style="color:#9ca3af;text-decoration:line-through;font-weight:normal;margin-left:6px;font-size:0.7rem">₹${p.mrp}</span></div>
               </div>
             </a>
-          `).join('') + `<a href="catalogue.html?q=${encodeURIComponent(q)}" class="alpha-search-result" style="background:rgba(212,175,55,0.05);justify-content:center;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#D4AF37;font-weight:600">View all results →</a>`;
+          `).join('') + `<a href="catalogue.html?q=${encodeURIComponent(q)}" class="alpha-search-result" style="justify-content:center;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:#D4AF37;font-weight:600;background:rgba(212,175,55,0.05)">View all results →</a>`;
         }
         resultsEl.classList.add('show');
       }, 150);
     });
-    inputEl.addEventListener('blur', () => setTimeout(() => resultsEl.classList.remove('show'), 200));
-    inputEl.addEventListener('focus', () => { if (inputEl.value) resultsEl.classList.add('show'); });
   }
 
-  // Initialize
   function init() {
     if (document.querySelector('.alpha-hamburger')) return;
-    const header = document.querySelector('header nav, header > nav, nav.max-w-7xl');
-    if (!header) return;
+    const nav = document.querySelector('header nav') || document.querySelector('nav.max-w-7xl') || document.querySelector('header');
+    if (!nav) { console.warn('Alpha menu: nav not found'); return; }
 
-    // Build hamburger button
     const hamburger = document.createElement('button');
     hamburger.className = 'alpha-hamburger';
     hamburger.setAttribute('aria-label', 'Open menu');
+    hamburger.setAttribute('aria-expanded', 'false');
     hamburger.innerHTML = '<span></span><span></span><span></span>';
-    header.insertBefore(hamburger, header.firstChild);
+    nav.insertBefore(hamburger, nav.firstChild);
 
-    // Build drawer
     const { drawer, overlay } = buildDrawer();
 
-    // Toggle handlers
-    function open() {
+    function openDrawer() {
       drawer.classList.add('open');
       overlay.classList.add('show');
       hamburger.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('drawer-open');
     }
-    function close() {
+    function closeDrawer() {
       drawer.classList.remove('open');
       overlay.classList.remove('show');
       hamburger.classList.remove('open');
-      document.body.style.overflow = '';
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('drawer-open');
     }
-    hamburger.addEventListener('click', open);
-    overlay.addEventListener('click', close);
-    drawer.querySelector('.alpha-drawer-close').addEventListener('click', close);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-    // Setup mobile search
+    hamburger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+
+    overlay.addEventListener('click', closeDrawer);
+    drawer.querySelector('.alpha-drawer-close').addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+    });
+
     setupSearch(
       drawer.querySelector('#alpha-mobile-search'),
       drawer.querySelector('#alpha-mobile-results')
     );
 
-    // Try to add desktop search to nav if there's space
-    const navRight = header.querySelector('.flex.flex-1.justify-end');
-    if (navRight && !document.querySelector('.alpha-global-search')) {
-      // Only add if there isn't already a search-input (catalogue.html already has one)
-      if (!document.getElementById('search-input')) {
-        const desktopSearch = document.createElement('div');
-        desktopSearch.className = 'alpha-global-search hidden md:block';
-        desktopSearch.innerHTML = `
-          <svg class="alpha-global-search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-          <input type="text" placeholder="Search products..." class="alpha-global-search-input" id="alpha-desktop-search" aria-label="Search products">
-          <div class="alpha-search-results" id="alpha-desktop-results"></div>
-        `;
-        navRight.insertBefore(desktopSearch, navRight.firstChild);
-        setupSearch(
-          desktopSearch.querySelector('#alpha-desktop-search'),
-          desktopSearch.querySelector('#alpha-desktop-results')
-        );
-      }
-    }
+    console.log('✓ Alphabet mobile menu loaded');
   }
 
   if (document.readyState === 'loading') {

@@ -304,10 +304,14 @@
               const result = await verifyRes.json();
 
               if (result.verified) {
+                // Generate proper order ID for Shiprocket
+                const alpOrderId = 'ALP-' + new Date().getFullYear() + '-' + String(Date.now()).slice(-6);
+                
                 // Save order to Firebase
                 try {
                   await window.__fsAddDoc(
                     window.__fsCollection(window.__db, 'orders'), {
+                      orderId:           alpOrderId,
                       razorpayOrderId:   orderData.orderId,
                       razorpayPaymentId: paymentResponse.razorpay_payment_id,
                       customer:  customerInfo,
@@ -318,6 +322,32 @@
                     }
                   );
                 } catch(fbErr) { console.error('Firebase save error:', fbErr); }
+
+                // Push to Shiprocket (fire-and-forget, don't block redirect)
+                fetch(`${BACKEND_URL}/api/shiprocket/create-order`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    order: {
+                      orderId: alpOrderId,
+                      customer: customerInfo,
+                      items: cartItems.map(it => ({
+                        id: it.id,
+                        name: it.name,
+                        quantity: it.quantity || 1,
+                        price: it.price
+                      })),
+                      subtotal,
+                      total,
+                      paymentMethod: 'prepaid'
+                    }
+                  })
+                }).then(r => r.json())
+                  .then(d => console.log('Shiprocket:', d))
+                  .catch(e => console.error('Shiprocket push failed:', e));
+
+                // Store order ID for thank you page
+                try { sessionStorage.setItem('lastOrderId', alpOrderId); } catch(e) {}
 
                 // Clear cart and go to thank you
                 try { saveCart({}); } catch(e) { localStorage.removeItem('alphabet_cart'); }
@@ -364,6 +394,6 @@
     document.getElementById('place-order-btn').addEventListener('click', handlePaymentWorkflow);
     renderCheckoutSummary();
   </script>
-  <script src="mobile-menu.js" defer></script>
+  <script src="mobile-menu.js"></script>
 </body>
 </html>

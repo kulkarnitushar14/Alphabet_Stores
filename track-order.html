@@ -174,15 +174,190 @@
 
   <script>
     updateCartBadge();
-    function trackOrder() {
+    const BACKEND_URL = "https://alphabet-backend-b1sb.onrender.com";
+    
+    // Wake up backend on page load (free tier sleeps)
+    fetch(`${BACKEND_URL}/api/health`).catch(() => {});
+    
+    async function trackOrder() {
       const id = document.getElementById('order-id').value.trim();
       const email = document.getElementById('order-email').value.trim();
-      if (!id && !email) { showToast('Please enter an order ID or email address.'); return; }
-      // Demo: show result
-      document.getElementById('track-result').classList.remove('hidden');
-      document.getElementById('track-info').classList.add('hidden');
-      if (id) document.getElementById('result-order-id').textContent = id;
-      document.getElementById('track-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      if (!id) { 
+        showToast('Please enter your order ID (starts with ALP-).');
+        return;
+      }
+      
+      // Show loading state
+      const btn = document.querySelector('button[onclick="trackOrder()"]');
+      const originalText = btn ? btn.textContent : 'Track';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span class="inline-block animate-spin">⟳</span> Tracking...';
+      }
+      
+      try {
+        // Try real Shiprocket tracking first
+        const response = await fetch(`${BACKEND_URL}/api/shiprocket/track/${encodeURIComponent(id)}`);
+        const data = await response.json();
+        
+        if (data.success && data.order) {
+          renderRealTracking(data.order, data.tracking, id);
+        } else {
+          // Fallback: try Firebase
+          await trackFromFirebase(id, email);
+        }
+      } catch (err) {
+        console.error('Tracking error:', err);
+        // Fallback: try Firebase
+        try {
+          await trackFromFirebase(id, email);
+        } catch (e) {
+          showTrackingNotFound(id);
+        }
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+      }
+    }
+    
+    async function trackFromFirebase(orderId, email) {
+      // Try fetching from Firebase as fallback (order might be created but not yet in Shiprocket)
+      if (!window.firebase || !window.firebase.firestore) {
+        showTrackingNotFound(orderId);
+        return;
+      }
+      const db = firebase.firestore();
+      const snapshot = await db.collection('orders').where('orderId', '==', orderId).limit(1).get();
+      if (snapshot.empty) {
+        showTrackingNotFound(orderId);
+        return;
+      }
+      const order = snapshot.docs[0].data();
+      renderFirebaseTracking(order, orderId);
+    }
+    
+    function renderRealTracking(order, tracking, orderId) {
+      const trackResult = document.getElementById('track-result');
+      const trackInfo = document.getElementById('track-info');
+      
+      // Get status
+      const status = (order.status || 'Processing').toUpperCase();
+      const statusColor = {
+        'DELIVERED': 'bg-green-100 text-green-800 border-green-200',
+        'IN TRANSIT': 'bg-blue-50 text-blue-700 border-blue-200',
+        'OUT FOR DELIVERY': 'bg-yellow-50 text-yellow-700 border-yellow-200',
+        'PICKED UP': 'bg-purple-50 text-purple-700 border-purple-200',
+        'PROCESSING': 'bg-gray-100 text-gray-700 border-gray-200'
+      };
+      const colorClass = statusColor[status] || 'bg-blue-50 text-blue-700 border-blue-200';
+      
+      // Build timeline from Shiprocket tracking activities
+      let timelineHTML = '';
+      if (tracking && tracking.tracking_data && tracking.tracking_data.shipment_track_activities) {
+        const activities = tracking.tracking_data.shipment_track_activities;
+        timelineHTML = activities.map((a, i) => `
+          <div class="track-step ${i === 0 ? 'current' : 'done'} flex gap-4 pb-6">
+            <div class="w-10 h-10 rounded-full ${i === 0 ? 'border-2 border-gold bg-gold/10' : 'bg-gold'} flex items-center justify-center flex-shrink-0 z-10">
+              ${i === 0 
+                ? '<div class="w-3 h-3 rounded-full bg-gold animate-pulse"></div>'
+                : '<svg class="w-5 h-5 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>'
+              }
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-dark">${a.activity || a['sr-status-label'] || 'Update'}</p>
+              <p class="text-xs text-gray-500 mt-1">${a.date || ''}</p>
+              <p class="text-xs text-gray-400 mt-0.5">${a.location || ''}</p>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        timelineHTML = `
+          <div class="track-step done flex gap-4 pb-6">
+            <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center flex-shrink-0 z-10">
+              <svg class="w-5 h-5 text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-dark">Order Placed</p>
+              <p class="text-xs text-gray-500 mt-1">${new Date(order.created_at || Date.now()).toLocaleString('en-IN')}</p>
+              <p class="text-xs text-gray-400 mt-0.5">Your order is being processed. Shipment details will appear here once dispatched.</p>
+            </div>
+          </div>
+        `;
+      }
+      
+      const awb = order.shipments && order.shipments[0] && order.shipments[0].awb;
+      const courier = order.shipments && order.shipments[0] && order.shipments[0].courier_name;
+      
+      trackResult.innerHTML = `
+        <div class="bg-white border border-gray-200 p-8 shadow-sm">
+          <div class="flex justify-between items-start mb-6 pb-6 border-b border-gray-200">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Order ID</p>
+              <p class="font-bold text-dark">${orderId}</p>
+            </div>
+            <span class="inline-block ${colorClass} text-xs font-bold px-3 py-1 border uppercase tracking-widest">${status}</span>
+          </div>
+          ${awb ? `
+          <div class="mb-6 pb-6 border-b border-gray-200">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Tracking Info</p>
+            <p class="font-semibold text-dark">${courier || 'Courier assigned'}</p>
+            <p class="text-xs text-gray-500 mt-1">AWB: <span class="text-gold font-medium">${awb}</span></p>
+          </div>` : ''}
+          <h3 class="text-xs uppercase tracking-widest font-bold text-dark mb-6">Shipment Timeline</h3>
+          <div class="space-y-0">${timelineHTML}</div>
+        </div>
+        <p class="text-xs text-gray-400 text-center mt-4">Having issues? <a href="contact.html" class="text-gold hover:underline">Contact our support team</a></p>
+      `;
+      trackResult.classList.remove('hidden');
+      trackInfo.classList.add('hidden');
+      trackResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    function renderFirebaseTracking(order, orderId) {
+      const trackResult = document.getElementById('track-result');
+      const trackInfo = document.getElementById('track-info');
+      const status = order.status || 'Order Placed';
+      
+      trackResult.innerHTML = `
+        <div class="bg-white border border-gray-200 p-8 shadow-sm">
+          <div class="flex justify-between items-start mb-6 pb-6 border-b border-gray-200">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Order ID</p>
+              <p class="font-bold text-dark">${orderId}</p>
+            </div>
+            <span class="inline-block bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 border border-blue-200 uppercase tracking-widest">${status}</span>
+          </div>
+          <div class="mb-6 pb-6 border-b border-gray-200">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-1">Order Details</p>
+            <p class="font-semibold text-dark">Total: ₹${order.total || '—'}</p>
+            <p class="text-xs text-gray-500 mt-1">${order.items ? order.items.length : 0} item(s)</p>
+          </div>
+          <p class="text-sm text-gray-600">Your order has been received. Shipment tracking will be available once it's dispatched (usually within 24 hours).</p>
+        </div>
+        <p class="text-xs text-gray-400 text-center mt-4">For instant updates, message us on WhatsApp at <a href="https://wa.me/917021909150" class="text-gold hover:underline">+91 70219 09150</a></p>
+      `;
+      trackResult.classList.remove('hidden');
+      trackInfo.classList.add('hidden');
+      trackResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    function showTrackingNotFound(orderId) {
+      const trackResult = document.getElementById('track-result');
+      const trackInfo = document.getElementById('track-info');
+      trackResult.innerHTML = `
+        <div class="bg-white border border-red-200 p-8 shadow-sm text-center">
+          <div class="text-4xl mb-3">😔</div>
+          <h3 class="font-bold text-dark mb-2">Order not found</h3>
+          <p class="text-sm text-gray-500 mb-4">We couldn't find order <strong>${orderId}</strong>. Please double-check your order ID or contact us.</p>
+          <a href="https://wa.me/917021909150?text=Hi, I need help tracking my order ${orderId}" target="_blank" class="inline-block bg-dark text-white px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-gold transition-colors">WhatsApp for Help</a>
+        </div>
+      `;
+      trackResult.classList.remove('hidden');
+      trackInfo.classList.add('hidden');
+      trackResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   </script>
   <!-- WhatsApp Float Button -->
@@ -210,7 +385,7 @@
       });
     })();
   </script>
-  <script src="mobile-menu.js" defer></script>
+  <script src="mobile-menu.js"></script>
   <script src="chatbot.js" defer></script>
 </body>
 </html>
