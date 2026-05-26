@@ -2,8 +2,21 @@
 <html lang="en" dir="ltr" data-theme="">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://www.gstatic.com">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product | Alphabet Store</title>
+  <title>Product Details | Alphabet Store — Premium Home Essentials</title>
+  <meta name="description" content="View product details, specifications, customer reviews and price. Premium home essentials from Alphabet Store with up to 90% off MRP. Free shipping over ₹999.">
+  <meta name="keywords" content="alphabet store product, buy home essentials India, kitchen gadgets online">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.alphabetstores.com/product.html">
+  <meta property="og:title" content="Product Details | Alphabet Store">
+  <meta property="og:description" content="Premium home essentials with up to 90% off MRP.">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://www.alphabetstores.com/product.html">
+  <meta property="og:image" content="https://www.alphabetstores.com/og-image.jpg">
+  <meta property="og:site_name" content="Alphabet Store">
   <link rel="stylesheet" href="css.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
@@ -19,6 +32,7 @@
       <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
         <a href="index.html" class="hover:text-gold transition-colors">Home</a>
         <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+        <a href="blog.html" class="hover:text-gold transition-colors">Blog</a>
         <a href="about_us.html" class="hover:text-gold transition-colors">About</a>
       </div>
       <div class="flex-shrink-0 text-center flex-1 md:flex-none">
@@ -54,21 +68,21 @@
       <!-- IMAGE -->
       <div class="w-full lg:w-1/2">
         <div id="product-image" class="bg-gray-100 aspect-square w-full overflow-hidden border border-gray-200">
-          <img id="product-main-img" src="" alt="" class="w-full h-full object-cover transition-opacity duration-300">
+          <img loading="lazy" id="product-main-img" src="" alt="" class="w-full h-full object-cover transition-opacity duration-300">
         </div>
         <!-- Thumbnails -->
         <div class="grid grid-cols-4 gap-3 mt-3">
           <div class="bg-gray-100 aspect-square border-2 border-dark overflow-hidden cursor-pointer" id="thumb-1" onclick="setMainImage(0)">
-            <img class="w-full h-full object-cover thumb-img" src="" alt="">
+            <img loading="lazy" class="w-full h-full object-cover thumb-img" src="" alt="">
           </div>
           <div class="bg-gray-100 aspect-square border border-gray-200 overflow-hidden cursor-pointer hover:border-dark transition-colors" id="thumb-2" onclick="setMainImage(1)">
-            <img class="w-full h-full object-cover thumb-img" src="" alt="">
+            <img loading="lazy" class="w-full h-full object-cover thumb-img" src="" alt="">
           </div>
           <div class="bg-gray-100 aspect-square border border-gray-200 overflow-hidden cursor-pointer hover:border-dark transition-colors" id="thumb-3" onclick="setMainImage(2)">
-            <img class="w-full h-full object-cover thumb-img" src="" alt="">
+            <img loading="lazy" class="w-full h-full object-cover thumb-img" src="" alt="">
           </div>
           <div class="bg-gray-100 aspect-square border border-gray-200 overflow-hidden cursor-pointer hover:border-dark transition-colors" id="thumb-4" onclick="setMainImage(3)">
-            <img class="w-full h-full object-cover thumb-img" src="" alt="">
+            <img loading="lazy" class="w-full h-full object-cover thumb-img" src="" alt="">
           </div>
         </div>
       </div>
@@ -287,7 +301,7 @@
     rGrid.innerHTML = related.map(p => {
       const o = Math.round((1-p.price/p.mrp)*100);
       return `<a href="product.html?id=${p.id}" class="group block">
-        <div class="bg-gray-100 aspect-square mb-3 border border-transparent group-hover:border-gray-300 transition-colors overflow-hidden"><img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy"></div>
+        <div class="bg-gray-100 aspect-square mb-3 border border-transparent group-hover:border-gray-300 transition-colors overflow-hidden"><img loading="lazy" src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" ></div>
         <p class="text-sm font-medium group-hover:text-gold transition-colors">${p.name}</p>
         <div class="flex items-center gap-1 text-gold text-xs mt-1">${star.repeat(5)}</div>
         <div class="flex items-center gap-2 mt-1">
@@ -384,5 +398,63 @@
   <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
+
+  <!-- Dynamic Product Schema for SEO -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const pid = parseInt(params.get('id')) || 1;
+      const p = PRODUCTS && PRODUCTS.find(x => x.id === pid);
+      if (!p) return;
+      const off = Math.round((1 - p.price / p.mrp) * 100);
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": p.name,
+        "description": p.desc || p.subtitle,
+        "image": p.image,
+        "brand": {"@type": "Brand", "name": "Alphabet Store"},
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": p.price,
+          "availability": "https://schema.org/InStock",
+          "seller": {"@type": "Organization", "name": "Alphabet Store"},
+          "url": "https://www.alphabetstores.com/product.html?id=" + p.id,
+          "priceValidUntil": "2026-12-31"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": p.reviews || 10,
+          "bestRating": "5"
+        }
+      };
+      // Add breadcrumb
+      const breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.alphabetstores.com/"},
+          {"@type":"ListItem","position":2,"name":"Shop","item":"https://www.alphabetstores.com/catalogue.html"},
+          {"@type":"ListItem","position":3,"name":p.name,"item":"https://www.alphabetstores.com/product.html?id="+p.id}
+        ]
+      };
+      // Update page title and meta
+      document.title = "Buy " + p.name + " | Up to " + off + "% Off | Alphabet Store India";
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.content = "Buy " + p.name + " online at ₹" + p.price + " (MRP ₹" + p.mrp + "). " + (p.subtitle || '') + ". Free delivery over ₹999. 7-day returns. Shop at Alphabet Store India.";
+      // Inject schema
+      const s1 = document.createElement('script');
+      s1.type = 'application/ld+json';
+      s1.text = JSON.stringify(schema);
+      document.head.appendChild(s1);
+      const s2 = document.createElement('script');
+      s2.type = 'application/ld+json';
+      s2.text = JSON.stringify(breadcrumb);
+      document.head.appendChild(s2);
+    });
+  </script>
+  <script src="chatbot.js" defer></script>
 </body>
 </html>

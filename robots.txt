@@ -3,5 +3,10 @@ Allow: /
 Disallow: /cart.html
 Disallow: /payment.html
 Disallow: /thank_you.html
+Disallow: /admin-dashboard.html
 
-Sitemap: https://alphabetstore.in/sitemap.xml
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+Sitemap: https://www.alphabetstores.com/sitemap.xml
