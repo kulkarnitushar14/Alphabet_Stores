@@ -217,6 +217,68 @@
     }
 
     body.drawer-open { overflow: hidden; }
+
+    /* ============ DARK MODE ============ */
+    [data-theme="dark"] .alpha-drawer {
+      background: #111111;
+      color: #F5F5F5;
+    }
+    [data-theme="dark"] .alpha-drawer-header {
+      background: #000;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    [data-theme="dark"] .alpha-drawer-search {
+      background: #1a1a1a;
+      border-bottom-color: #2a2a2a;
+    }
+    [data-theme="dark"] .alpha-drawer-search-input {
+      background: #242424;
+      border-color: #333;
+      color: #F5F5F5;
+    }
+    [data-theme="dark"] .alpha-drawer-search-input:focus {
+      background: #2a2a2a;
+      border-color: #D4AF37;
+    }
+    [data-theme="dark"] .alpha-drawer-search-input::placeholder {
+      color: #888;
+    }
+    [data-theme="dark"] .alpha-drawer-section {
+      background: #0a0a0a;
+      color: #888;
+    }
+    [data-theme="dark"] .alpha-drawer-nav {
+      background: #1a1a1a;
+    }
+    [data-theme="dark"] .alpha-drawer-nav a {
+      color: #F5F5F5;
+      border-bottom-color: #2a2a2a;
+    }
+    [data-theme="dark"] .alpha-drawer-nav a:hover,
+    [data-theme="dark"] .alpha-drawer-nav a:active {
+      background: rgba(212,175,55,0.12);
+      color: #D4AF37;
+    }
+    [data-theme="dark"] .alpha-drawer-footer {
+      background: #000;
+      border-top: 1px solid #2a2a2a;
+    }
+    [data-theme="dark"] .alpha-search-results {
+      background: #1a1a1a;
+      border-bottom-color: #2a2a2a;
+    }
+    [data-theme="dark"] .alpha-search-result {
+      border-bottom-color: #2a2a2a;
+    }
+    [data-theme="dark"] .alpha-search-result-name {
+      color: #F5F5F5;
+    }
+    [data-theme="dark"] .alpha-search-result:hover {
+      background: rgba(212,175,55,0.08);
+    }
+    [data-theme="dark"] .alpha-search-empty {
+      color: #666;
+    }
   `;
 
   const style = document.createElement('style');
@@ -231,14 +293,15 @@
     drawer.innerHTML = `
       <div class="alpha-drawer-header">
         <a href="index.html" class="alpha-drawer-logo">
-          <svg viewBox="0 0 40 40" fill="none">
-            <path d="M20 0L40 20L20 40L0 20L20 0Z" fill="#FAFAFA"/>
-            <path d="M20 10L30 20L20 30L10 20L20 10Z" fill="#121212"/>
-            <path d="M20 16L24 20L20 24L16 20L20 16Z" fill="#D4AF37"/>
-          </svg>
+          <img src="logo-sm.png" alt="Alphabet" style="width:28px;height:28px;border-radius:4px;background:white;padding:2px">
           ALPHABET
         </a>
-        <button class="alpha-drawer-close" aria-label="Close menu">✕</button>
+        <div style="display:flex;align-items:center;gap:8px">
+          <button class="alpha-drawer-darkmode" aria-label="Toggle dark mode" onclick="if(typeof toggleDarkMode==='function')toggleDarkMode()" style="background:transparent;border:none;width:36px;height:36px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+          </button>
+          <button class="alpha-drawer-close" aria-label="Close menu">✕</button>
+        </div>
       </div>
       <div class="alpha-drawer-search">
         <div class="alpha-drawer-search-wrap">
@@ -261,6 +324,26 @@
         <a href="blog.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5"/></svg>Blog<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
         <a href="reviews.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>Reviews<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
         <a href="about_us.html"><svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>Our Story<svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+      </nav>
+
+      <div class="alpha-drawer-section">Also Shop On</div>
+      <nav class="alpha-drawer-nav">
+        <a href="https://www.amazon.in/l/27943762031?me=A26U434B1B4F73&tag=ShopReferral_84abbad7-b49a-425c-ae7c-281bfe72df47&ref=sf_seller_app_share_new_ls_srb" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#FFF9E6,#FFFBF0);border-left:3px solid #FF9900">
+          <svg viewBox="0 0 100 30" style="height:22px;width:auto;flex-shrink:0">
+            <text x="0" y="20" font-family="Arial, sans-serif" font-weight="700" font-size="20" fill="#232F3E">amazon</text>
+            <path d="M2 24 Q 35 30 70 24" stroke="#FF9900" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M64 21 L 70 24 L 65 28" stroke="#FF9900" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Storefront
+          <svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="#" onclick="event.preventDefault();alert('Flipkart store launching soon!');" style="opacity:0.6">
+          <svg viewBox="0 0 100 30" style="height:22px;width:auto;flex-shrink:0">
+            <text x="0" y="20" font-family="Arial, sans-serif" font-weight="700" font-size="20" fill="#2874F0" font-style="italic">Flipkart</text>
+          </svg>
+          Coming Soon
+          <span style="margin-left:auto;font-size:0.6rem;background:#D4AF37;color:#121212;padding:2px 8px;font-weight:700;letter-spacing:0.1em">SOON</span>
+        </a>
       </nav>
 
       <div class="alpha-drawer-section">Support</div>
