@@ -42,6 +42,72 @@
 </head>
 <body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
 
+  <!-- ONE-TIME COUPON POPUP -->
+  <div id="coupon-popup" class="coupon-popup-overlay" role="dialog" aria-modal="true" aria-label="Welcome offer">
+    <div class="coupon-popup-card">
+      <button class="coupon-popup-close" onclick="closeCouponPopup()" aria-label="Close offer">&times;</button>
+      <div class="coupon-popup-inner">
+        <p class="cp-eyebrow">✨ Welcome to Alphabet Store</p>
+        <h2 class="cp-title">FLAT <span>₹101 OFF</span></h2>
+        <p class="cp-sub">Your first order — no minimum spend.</p>
+        <div class="cp-code-box">
+          <span class="cp-code" id="cp-code">ALPHA101</span>
+          <button class="cp-copy" id="cp-copy" onclick="copyCoupon()">Copy</button>
+        </div>
+        <a href="catalogue.html" class="cp-shop">Shop Now & Save →</a>
+        <p class="cp-fine">Apply code <b>ALPHA101</b> at checkout. Limited-time offer.</p>
+      </div>
+    </div>
+  </div>
+  <style>
+    .coupon-popup-overlay {
+      position: fixed; inset: 0; background: rgba(18,18,18,0.7); backdrop-filter: blur(3px);
+      z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .coupon-popup-overlay.show { display: flex; opacity: 1; }
+    .coupon-popup-card {
+      background: #fff; max-width: 380px; width: 100%; position: relative;
+      border-radius: 6px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transform: scale(0.9) translateY(20px); transition: transform 0.35s cubic-bezier(.2,.9,.3,1.2);
+      border: 1px solid #e8e0cc;
+    }
+    .coupon-popup-overlay.show .coupon-popup-card { transform: scale(1) translateY(0); }
+    .coupon-popup-close {
+      position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.9); border: 1px solid #eee; font-size: 22px; line-height: 1;
+      color: #555; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .coupon-popup-close:hover { background: #f0f0f0; color: #000; }
+    .coupon-popup-inner {
+      padding: 40px 28px 30px; text-align: center;
+      background: radial-gradient(ellipse at top, #FFFDF6, #FFF7E6);
+      border-top: 5px solid #D4AF37;
+    }
+    .cp-eyebrow { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9a6f15; font-weight: 700; margin-bottom: 14px; }
+    .cp-title { font-family: Merriweather, serif; font-size: 2.4rem; font-weight: 300; color: #121212; line-height: 1; margin-bottom: 10px; }
+    .cp-title span { color: #D4AF37; font-weight: 700; }
+    .cp-sub { color: #6b7280; font-size: 0.9rem; margin-bottom: 22px; }
+    .cp-code-box {
+      display: flex; align-items: stretch; max-width: 260px; margin: 0 auto 18px;
+      border: 2px dashed #D4AF37; border-radius: 4px; overflow: hidden; background: #fff;
+    }
+    .cp-code { flex: 1; padding: 12px; font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 0.15em; font-size: 1.1rem; color: #121212; display: flex; align-items: center; justify-content: center; }
+    .cp-copy { background: #D4AF37; color: #121212; border: none; padding: 0 18px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s; }
+    .cp-copy:hover { background: #121212; color: #fff; }
+    .cp-shop { display: block; background: #121212; color: #fff; padding: 14px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; transition: background 0.2s; margin-bottom: 14px; }
+    .cp-shop:hover { background: #D4AF37; color: #121212; }
+    .cp-fine { font-size: 0.7rem; color: #9ca3af; }
+    [data-theme="dark"] .coupon-popup-card { background: #1e1e1e; border-color: #333; }
+    [data-theme="dark"] .coupon-popup-inner { background: radial-gradient(ellipse at top, #262626, #1e1e1e); }
+    [data-theme="dark"] .cp-title { color: #fff; }
+    [data-theme="dark"] .cp-code-box { background: #121212; }
+    [data-theme="dark"] .cp-code { color: #fff; }
+    [data-theme="dark"] .coupon-popup-close { background: #333; color: #ddd; border-color: #444; }
+    @media (max-width: 420px) { .cp-title { font-size: 2rem; } }
+  </style>
+
   <!-- ANNOUNCEMENT BAR (scrolling marquee) -->
   <aside class="alpha-marquee bg-dark text-offwhite text-xs py-2.5 z-50" aria-label="Store announcements">
     <div class="alpha-marquee-track">
@@ -545,6 +611,40 @@
         else img.addEventListener('load', () => img.classList.add('loaded'));
       });
     })();
+
+    // ===== ONE-TIME COUPON POPUP =====
+    (function() {
+      // Show only once per browser session (so it doesn't annoy on every page view)
+      if (sessionStorage.getItem('alpha_popup_seen')) return;
+      const overlay = document.getElementById('coupon-popup');
+      if (!overlay) return;
+      setTimeout(() => {
+        overlay.classList.add('show');
+        sessionStorage.setItem('alpha_popup_seen', '1');
+      }, 1500); // 1.5s after load — like Prao
+    })();
+    function closeCouponPopup() {
+      const overlay = document.getElementById('coupon-popup');
+      overlay.classList.remove('show');
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    }
+    function copyCoupon() {
+      const code = 'ALPHA101';
+      const btn = document.getElementById('cp-copy');
+      navigator.clipboard?.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      }).catch(() => { btn.textContent = 'ALPHA101'; });
+    }
+    window.closeCouponPopup = closeCouponPopup;
+    window.copyCoupon = copyCoupon;
+    // Close on overlay click or Escape
+    document.getElementById('coupon-popup')?.addEventListener('click', function(e) {
+      if (e.target === this) closeCouponPopup();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { const o = document.getElementById('coupon-popup'); if (o && o.classList.contains('show')) closeCouponPopup(); }
+    });
   </script>
   <!-- Auth state indicator (green dot on account icon when logged in) -->
   <script type="module">

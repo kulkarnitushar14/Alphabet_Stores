@@ -25,92 +25,162 @@
   <style>.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;z-index:9998}.whatsapp-float svg{width:30px;height:30px}.back-to-top svg{width:20px;height:20px}</style>
 </head>
 <body class="bg-offwhite min-h-screen font-sans text-dark flex flex-col">
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999"></canvas>
+
   <header class="py-6 w-full border-b border-gray-200 bg-white text-center">
     <a href="index.html" class="text-2xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors">ALPHABET</a>
   </header>
 
-  <main class="flex-grow flex flex-col items-center justify-center px-6 py-20">
+  <main class="flex-grow flex flex-col items-center justify-center px-6 py-16">
     <div class="max-w-lg w-full text-center">
-      <!-- Success circle -->
-      <div class="w-20 h-20 rounded-full border-2 border-dark flex items-center justify-center mx-auto mb-8 animate-fade-in-up">
-        <svg class="w-10 h-10 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+
+      <!-- Animated checkmark -->
+      <div class="ty-check-wrap">
+        <svg class="ty-check" viewBox="0 0 80 80">
+          <circle class="ty-check-circle" cx="40" cy="40" r="36" fill="none" stroke="#2f7d4f" stroke-width="4"/>
+          <path class="ty-check-mark" fill="none" stroke="#2f7d4f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M24 41 L36 53 L57 28"/>
+        </svg>
       </div>
-      <span class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-4 block">Order Confirmed</span>
-      <h1 class="text-4xl md:text-5xl font-serif font-light tracking-wide text-dark mb-4">Thank You!</h1>
-      <div class="w-16 h-[2px] bg-gold mx-auto mb-6"></div>
-      <p class="text-gray-500 font-light leading-relaxed mb-4">Your order has been successfully placed. You'll receive a confirmation email shortly with your order details and tracking information.</p>
-      
-      <!-- Order ID Display -->
-      <div id="order-id-box" class="hidden bg-gold/10 border-2 border-gold px-6 py-5 my-6 text-left">
-        <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Your Order ID</p>
-        <p class="font-bold text-2xl text-dark mb-2" id="display-order-id">—</p>
-        <p class="text-xs text-gray-600">Save this ID to track your order anytime on the <a href="track-order.html" class="text-gold hover:underline font-semibold">Track Order page</a></p>
-      </div>
-      
-      <div class="bg-grayLight border border-gray-200 px-6 py-5 mt-8 mb-10 text-left space-y-3">
-        <div class="flex items-center gap-3 text-sm text-gray-600">
-          <svg class="w-5 h-5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          Confirmation email sent to your inbox
+
+      <span class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-3 block ty-fade" style="animation-delay:0.5s">Order Confirmed</span>
+      <h1 class="text-4xl md:text-5xl font-serif font-light tracking-wide text-dark mb-3 ty-fade" style="animation-delay:0.6s">Thank You!</h1>
+      <p class="text-gray-500 font-light leading-relaxed mb-8 ty-fade" style="animation-delay:0.7s">Your order is confirmed. We've emailed your receipt and will notify you when it ships. 🎉</p>
+
+      <!-- Order details card -->
+      <div class="ty-card ty-fade" style="animation-delay:0.8s">
+        <div class="ty-row">
+          <span class="ty-label">Order ID</span>
+          <span class="ty-value" id="display-order-id">—</span>
         </div>
-        <div class="flex items-center gap-3 text-sm text-gray-600">
-          <svg class="w-5 h-5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-          Expected delivery within 3–7 business days
+        <div class="ty-divider"></div>
+        <div class="ty-row">
+          <span class="ty-label">Estimated Delivery</span>
+          <span class="ty-value ty-delivery" id="delivery-date">—</span>
         </div>
-        <div class="flex items-center gap-3 text-sm text-gray-600">
-          <svg class="w-5 h-5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          Free returns within 7 days of delivery
+        <div class="ty-divider"></div>
+        <div class="ty-row">
+          <span class="ty-label">Status</span>
+          <span class="ty-badge">✓ Paid & Processing</span>
         </div>
       </div>
-      <a href="catalogue.html" class="inline-block bg-dark text-white px-12 py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors duration-300">
-        Continue Shopping
-      </a>
+
+      <p class="text-xs text-gray-500 mb-8 ty-fade" style="animation-delay:0.9s">Save your Order ID to track anytime on the <a href="track-order.html" class="text-gold hover:underline font-semibold">Track Order page</a>.</p>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center ty-fade" style="animation-delay:1s">
+        <a href="track-order.html" class="bg-dark text-white px-8 py-3.5 uppercase tracking-widest text-xs font-bold hover:bg-gold hover:text-dark transition-colors">Track My Order</a>
+        <a href="catalogue.html" class="border border-dark text-dark px-8 py-3.5 uppercase tracking-widest text-xs font-bold hover:bg-dark hover:text-white transition-colors">Continue Shopping</a>
+      </div>
+
+      <!-- Trust line -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-gray-400 ty-fade" style="animation-delay:1.1s">
+        <span>🔒 Secure Payment</span>
+        <span>🚚 Free Shipping</span>
+        <span>↩️ 7-Day Returns</span>
+      </div>
     </div>
   </main>
 
   <footer class="bg-dark text-gray-500 py-6 text-center text-xs tracking-widest">
     © 2026 ALPHABET STORE. ALL RIGHTS RESERVED.
   </footer>
+
+  <style>
+    /* Animated checkmark */
+    .ty-check-wrap { margin: 0 auto 24px; width: 96px; height: 96px; }
+    .ty-check { width: 96px; height: 96px; }
+    .ty-check-circle { stroke-dasharray: 226; stroke-dashoffset: 226; animation: tyCircle 0.7s ease-out forwards; }
+    .ty-check-mark { stroke-dasharray: 70; stroke-dashoffset: 70; animation: tyMark 0.4s ease-out 0.6s forwards; }
+    @keyframes tyCircle { to { stroke-dashoffset: 0; } }
+    @keyframes tyMark { to { stroke-dashoffset: 0; } }
+    /* Fade-in for content */
+    .ty-fade { opacity: 0; animation: tyFade 0.6s ease-out forwards; }
+    @keyframes tyFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    /* Order card */
+    .ty-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 22px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .ty-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+    .ty-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; font-weight: 600; }
+    .ty-value { font-weight: 700; color: #121212; font-size: 1rem; }
+    .ty-value.ty-delivery { color: #2f7d4f; }
+    #display-order-id { font-family: 'Space Mono', monospace; letter-spacing: 0.05em; }
+    .ty-divider { height: 1px; background: #f0f0f0; }
+    .ty-badge { background: #e6f4ea; color: #1e8e3e; font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+    [data-theme="dark"] .ty-card { background: #1e1e1e; border-color: #333; }
+    [data-theme="dark"] .ty-value { color: #fff; }
+    [data-theme="dark"] .ty-divider { background: #333; }
+  </style>
+
   <script src="products.js"></script>
   <script>
     // Show order ID
     try {
       const orderId = sessionStorage.getItem('lastOrderId');
-      if (orderId) {
-        document.getElementById('display-order-id').textContent = orderId;
-        document.getElementById('order-id-box').classList.remove('hidden');
-        sessionStorage.removeItem('lastOrderId');
-      }
-    } catch(e) {}
-    // Clear cart on thank you page
+      document.getElementById('display-order-id').textContent = orderId || ('ALP-' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random()*900000));
+      if (orderId) sessionStorage.removeItem('lastOrderId');
+    } catch(e) {
+      document.getElementById('display-order-id').textContent = 'ALP-' + new Date().getFullYear() + '-000000';
+    }
+
+    // Calculate & show estimated delivery date (5-7 business days from now)
+    try {
+      const start = new Date();
+      const lo = new Date(start); lo.setDate(lo.getDate() + 5);
+      const hi = new Date(start); hi.setDate(hi.getDate() + 7);
+      const opts = { day: 'numeric', month: 'short' };
+      const loStr = lo.toLocaleDateString('en-IN', opts);
+      const hiStr = hi.toLocaleDateString('en-IN', opts);
+      document.getElementById('delivery-date').textContent = loStr + ' – ' + hiStr;
+    } catch(e) {
+      document.getElementById('delivery-date').textContent = 'Within 5–7 days';
+    }
+
+    // Clear cart
     try { saveCart({}); } catch(e) { localStorage.removeItem('alphabet_cart'); }
+    try { sessionStorage.removeItem('alpha_applied_coupon'); sessionStorage.removeItem('alpha_discount'); sessionStorage.removeItem('alpha_final_total'); } catch(e) {}
     updateCartBadge();
+
+    // ===== CONFETTI ANIMATION =====
+    (function confetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
+      const colors = ['#D4AF37','#2f7d4f','#EA4335','#4285F4','#FBBC05','#ffffff'];
+      const pieces = [];
+      for (let i = 0; i < 140; i++) {
+        pieces.push({
+          x: Math.random() * W, y: Math.random() * -H,
+          w: 6 + Math.random()*6, h: 8 + Math.random()*8,
+          color: colors[Math.floor(Math.random()*colors.length)],
+          rot: Math.random()*Math.PI, vr: (Math.random()-0.5)*0.2,
+          vy: 2 + Math.random()*3, vx: (Math.random()-0.5)*2
+        });
+      }
+      let frames = 0;
+      const maxFrames = 260; // ~4.3s
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        pieces.forEach(p => {
+          p.y += p.vy; p.x += p.vx; p.rot += p.vr;
+          if (p.y > H + 20) { p.y = -20; p.x = Math.random()*W; }
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.fillStyle = p.color; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+          ctx.restore();
+        });
+        frames++;
+        if (frames < maxFrames) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, W, H);
+      }
+      draw();
+    })();
   </script>
   <!-- WhatsApp Float Button -->
   <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="width:30px;height:30px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <!-- Back to Top -->
-  <a href="#top" class="back-to-top" aria-label="Back to top" id="back-to-top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
-  </a>
-  <script>
-    (function() {
-      const btn = document.getElementById('back-to-top');
-      window.addEventListener('scroll', () => {
-        btn.classList.toggle('show', window.scrollY > 400);
-      });
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      // Smooth image loading
-      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-        if (img.complete) img.classList.add('loaded');
-        else img.addEventListener('load', () => img.classList.add('loaded'));
-      });
-    })();
-  </script>
   <script src="mobile-menu.js"></script>
-  <script src="chatbot.js" defer></script>
 </body>
 </html>

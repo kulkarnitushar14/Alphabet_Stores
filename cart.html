@@ -285,6 +285,16 @@
 
     renderCart();
     updateCartBadge();
+
+    // ===== EARLY BACKEND WAKE-UP =====
+    // Render free tier sleeps after 15 min. Ping it the moment the cart loads
+    // so it's awake by the time the customer reaches checkout — much faster pay.
+    (function wakeBackendEarly() {
+      const BACKEND_URL = "https://alphabet-backend-b1sb.onrender.com";
+      try {
+        fetch(`${BACKEND_URL}/api/health`, { method: 'GET', mode: 'no-cors' }).catch(() => {});
+      } catch (e) {}
+    })();
   </script>
   <!-- WhatsApp Float Button -->
   <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
