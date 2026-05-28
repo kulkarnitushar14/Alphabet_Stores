@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | Alphabet Store — Login or Register</title>
+  <meta name="description" content="Login or create your Alphabet Store account to track orders, save favourites and checkout faster.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.alphabetstores.com/account.html">
+  <meta name="theme-color" content="#121212">
+  <link rel="icon" type="image/png" href="logo-sm.png">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
+  <link rel="stylesheet" href="css.css">
+  <style>.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;z-index:9998}.whatsapp-float svg{width:30px;height:30px}</style>
+</head>
+<body class="bg-offwhite font-sans text-dark flex flex-col min-h-screen">
+
+  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+    Free Shipping over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; Easy 7-Day Returns
+  </aside>
+
+  <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20" aria-label="Main navigation">
+      <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
+        <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+        <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+        <a href="video.html" class="hover:text-gold transition-colors">Videos</a>
+        <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
+      </div>
+      <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+        <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark flex items-center justify-center gap-2">
+          <img src="logo-sm.png" alt="Alphabet Stores Logo" class="w-9 h-9 hidden sm:block" loading="eager">ALPHABET
+        </a>
+      </div>
+      <div class="flex flex-1 justify-end items-center space-x-2 sm:space-x-4">
+        <a href="cart.html" aria-label="Cart" class="hover:text-gold transition-colors flex items-center relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+          <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-16">
+    <div class="w-full max-w-md">
+
+      <!-- LOGGED OUT: Auth card -->
+      <div id="auth-card" class="bg-white border border-gray-200 shadow-sm p-8">
+        <div class="text-center mb-8">
+          <h1 class="text-3xl font-serif font-light text-dark mb-2" id="auth-title">Welcome Back</h1>
+          <p class="text-gray-500 text-sm" id="auth-sub">Login to your Alphabet Store account</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex border border-gray-200 mb-6">
+          <button id="tab-login" onclick="switchTab('login')" class="flex-1 py-2.5 text-xs uppercase tracking-widest font-bold bg-dark text-white transition">Login</button>
+          <button id="tab-register" onclick="switchTab('register')" class="flex-1 py-2.5 text-xs uppercase tracking-widest font-bold bg-white text-dark transition">Register</button>
+        </div>
+
+        <div id="auth-msg" class="hidden text-sm p-3 mb-4 text-center"></div>
+
+        <!-- Name (register only) -->
+        <div id="name-field" class="mb-4 hidden">
+          <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Full Name</label>
+          <input type="text" id="name" placeholder="Your name" autocomplete="name" class="w-full border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold transition-colors">
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email" class="w-full border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold transition-colors">
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Password</label>
+          <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" class="w-full border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold transition-colors">
+          <p id="reset-link" class="text-xs text-gray-400 mt-2 text-right hidden"><button onclick="resetPassword()" class="hover:text-gold underline">Forgot password?</button></p>
+        </div>
+
+        <button id="auth-submit" onclick="submitAuth()" class="w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-dark transition-colors duration-300">Login</button>
+
+        <p class="text-xs text-gray-400 text-center mt-6">By continuing you agree to our <a href="privacy-policy.html" class="underline hover:text-gold">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- LOGGED IN: Account dashboard -->
+      <div id="account-card" class="bg-white border border-gray-200 shadow-sm p-8 hidden">
+        <div class="text-center mb-8">
+          <div class="w-20 h-20 rounded-full bg-gold/20 flex items-center justify-center text-2xl font-bold text-dark mx-auto mb-4" id="acct-avatar">A</div>
+          <h1 class="text-2xl font-serif font-light text-dark mb-1" id="acct-name">Welcome</h1>
+          <p class="text-gray-500 text-sm" id="acct-email"></p>
+        </div>
+        <div class="space-y-3">
+          <a href="track-order.html" class="block w-full border border-gray-300 py-3 text-center text-sm uppercase tracking-widest font-semibold hover:border-gold hover:text-gold transition">Track My Orders</a>
+          <a href="catalogue.html" class="block w-full border border-gray-300 py-3 text-center text-sm uppercase tracking-widest font-semibold hover:border-gold hover:text-gold transition">Continue Shopping</a>
+          <button onclick="doLogout()" class="block w-full bg-dark text-white py-3 text-center text-sm uppercase tracking-widest font-bold hover:bg-red-700 transition">Logout</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-dark text-gray-400 py-10 px-6 text-center text-sm">
+    <p class="mb-2"><a href="index.html" class="text-white font-bold tracking-widest">ALPHABET</a></p>
+    <p class="text-xs">© 2026 Alphabet Store · Mumbai, India 🇮🇳</p>
+  </footer>
+
+  <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="width:30px;height:30px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="products.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+             signOut, onAuthStateChanged, updateProfile, sendPasswordResetEmail }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const app = initializeApp({
+      apiKey: "AIzaSyA8kP9mASgrog-_Rbuldrnm4rRJm1LmaSU",
+      authDomain: "alphabet-stores.firebaseapp.com",
+      projectId: "alphabet-stores",
+      storageBucket: "alphabet-stores.firebasestorage.app",
+      messagingSenderId: "1068812719722",
+      appId: "1:1068812719722:web:9db5e8c634487dce121c13"
+    });
+    const auth = getAuth(app);
+
+    let mode = 'login';
+
+    window.switchTab = function(m) {
+      mode = m;
+      const isLogin = m === 'login';
+      document.getElementById('tab-login').className = `flex-1 py-2.5 text-xs uppercase tracking-widest font-bold transition ${isLogin?'bg-dark text-white':'bg-white text-dark'}`;
+      document.getElementById('tab-register').className = `flex-1 py-2.5 text-xs uppercase tracking-widest font-bold transition ${!isLogin?'bg-dark text-white':'bg-white text-dark'}`;
+      document.getElementById('name-field').classList.toggle('hidden', isLogin);
+      document.getElementById('reset-link').classList.toggle('hidden', !isLogin);
+      document.getElementById('auth-title').textContent = isLogin ? 'Welcome Back' : 'Create Account';
+      document.getElementById('auth-sub').textContent = isLogin ? 'Login to your Alphabet Store account' : 'Join Alphabet Store today';
+      document.getElementById('auth-submit').textContent = isLogin ? 'Login' : 'Create Account';
+      hideMsg();
+    };
+
+    function showMsg(text, ok) {
+      const m = document.getElementById('auth-msg');
+      m.textContent = text;
+      m.className = `text-sm p-3 mb-4 text-center ${ok?'bg-green-50 text-green-700 border border-green-200':'bg-red-50 text-red-600 border border-red-200'}`;
+      m.classList.remove('hidden');
+    }
+    function hideMsg(){ document.getElementById('auth-msg').classList.add('hidden'); }
+
+    function friendlyError(code) {
+      const map = {
+        'auth/invalid-email':'Please enter a valid email address.',
+        'auth/user-not-found':'No account found with this email. Try registering.',
+        'auth/wrong-password':'Incorrect password. Try again or reset it.',
+        'auth/invalid-credential':'Email or password is incorrect.',
+        'auth/email-already-in-use':'This email is already registered. Try logging in.',
+        'auth/weak-password':'Password should be at least 6 characters.',
+        'auth/too-many-requests':'Too many attempts. Please wait a moment and try again.',
+        'auth/network-request-failed':'Network error. Check your connection.'
+      };
+      return map[code] || 'Something went wrong. Please try again.';
+    }
+
+    window.submitAuth = async function() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const name = document.getElementById('name').value.trim();
+      const btn = document.getElementById('auth-submit');
+      if (!email || !password) { showMsg('Please fill in email and password.', false); return; }
+      if (mode === 'register' && !name) { showMsg('Please enter your name.', false); return; }
+      btn.disabled = true; const orig = btn.textContent; btn.textContent = 'Please wait…';
+      try {
+        if (mode === 'login') {
+          await signInWithEmailAndPassword(auth, email, password);
+        } else {
+          const cred = await createUserWithEmailAndPassword(auth, email, password);
+          if (name) await updateProfile(cred.user, { displayName: name });
+        }
+        // onAuthStateChanged will swap the UI
+      } catch (e) {
+        showMsg(friendlyError(e.code), false);
+        btn.disabled = false; btn.textContent = orig;
+      }
+    };
+
+    window.doLogout = async function() {
+      await signOut(auth);
+    };
+
+    window.resetPassword = async function() {
+      const email = document.getElementById('email').value.trim();
+      if (!email) { showMsg('Enter your email above first, then click reset.', false); return; }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMsg('Password reset email sent! Check your inbox.', true);
+      } catch (e) { showMsg(friendlyError(e.code), false); }
+    };
+
+    onAuthStateChanged(auth, (user) => {
+      const authCard = document.getElementById('auth-card');
+      const acctCard = document.getElementById('account-card');
+      if (user) {
+        authCard.classList.add('hidden');
+        acctCard.classList.remove('hidden');
+        const display = user.displayName || user.email.split('@')[0];
+        document.getElementById('acct-name').textContent = 'Hi, ' + display;
+        document.getElementById('acct-email').textContent = user.email;
+        document.getElementById('acct-avatar').textContent = (display[0] || 'A').toUpperCase();
+      } else {
+        authCard.classList.remove('hidden');
+        acctCard.classList.add('hidden');
+        const btn = document.getElementById('auth-submit');
+        btn.disabled = false;
+      }
+    });
+
+    switchTab('login');
+  </script>
+  <script>if (typeof updateCartBadge === 'function') updateCartBadge();</script>
+</body>
+</html>

@@ -42,16 +42,44 @@
 </head>
 <body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
 
-  <!-- ANNOUNCEMENT BAR -->
-  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium z-50">
-    Free Shipping on all orders over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; Easy 7-Day Returns &nbsp;|&nbsp; <a href="track-order.html" class="underline hover:text-gold">Track Your Order</a>
+  <!-- ANNOUNCEMENT BAR (scrolling marquee) -->
+  <aside class="alpha-marquee bg-dark text-offwhite text-xs py-2.5 z-50" aria-label="Store announcements">
+    <div class="alpha-marquee-track">
+      <span class="alpha-marquee-group">
+        <span class="amq">🚚 Free Shipping on orders over <b class="text-gold">₹999</b></span>
+        <span class="amq">✨ Use code <b class="text-gold">ALPHA101</b> for <b class="text-gold">₹101 OFF</b></span>
+        <span class="amq">↩️ Easy 7-Day Returns</span>
+        <span class="amq">🔒 100% Secure Payments</span>
+        <span class="amq">🇮🇳 Ships Pan-India · Made in Mumbai</span>
+        <span class="amq">⭐ 250+ Happy Customers</span>
+      </span>
+      <span class="alpha-marquee-group" aria-hidden="true">
+        <span class="amq">🚚 Free Shipping on orders over <b class="text-gold">₹999</b></span>
+        <span class="amq">✨ Use code <b class="text-gold">ALPHA101</b> for <b class="text-gold">₹101 OFF</b></span>
+        <span class="amq">↩️ Easy 7-Day Returns</span>
+        <span class="amq">🔒 100% Secure Payments</span>
+        <span class="amq">🇮🇳 Ships Pan-India · Made in Mumbai</span>
+        <span class="amq">⭐ 250+ Happy Customers</span>
+      </span>
+    </div>
   </aside>
+  <style>
+    .alpha-marquee { overflow: hidden; white-space: nowrap; position: relative; }
+    .alpha-marquee-track { display: inline-flex; will-change: transform; animation: alphaMarquee 28s linear infinite; }
+    .alpha-marquee-group { display: inline-flex; }
+    .amq { display: inline-block; padding: 0 2.5rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+    .amq b { font-weight: 800; }
+    @keyframes alphaMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .alpha-marquee:hover .alpha-marquee-track { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) { .alpha-marquee-track { animation: none; } }
+  </style>
 
   <!-- NAV -->
   <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
     <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20" aria-label="Main navigation">
       <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
         <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+        <a href="video.html" class="hover:text-gold transition-colors">Videos</a>
         <a href="blog.html" class="hover:text-gold transition-colors">Blog</a>
         <a href="about_us.html" class="hover:text-gold transition-colors">Our Story</a>
         <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
@@ -67,6 +95,10 @@
           <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
           <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
         </button>
+        <a href="account.html" id="nav-account" aria-label="My account / Login" class="hover:text-gold transition-colors flex items-center relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          <span id="nav-account-dot" class="hidden absolute top-1 right-1 w-2 h-2 bg-green-500 rounded-full"></span>
+        </a>
         <a href="cart.html" aria-label="Shopping cart" class="hover:text-gold transition-colors flex items-center relative p-2">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
           <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
@@ -154,7 +186,34 @@
       </div>
     </section>
 
-    <!-- CUSTOMER REVIEWS SECTION -->
+    <!-- SHOP THE REEL (horizontal video carousel) -->
+    <section class="py-16 bg-white overflow-hidden" aria-label="Product videos">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <p class="text-gold text-xs uppercase tracking-widest font-semibold mb-2">Watch & Shop</p>
+            <h2 class="text-3xl font-serif font-light tracking-wide text-dark">Product Reels</h2>
+          </div>
+          <a href="video.html" class="text-xs uppercase tracking-widest font-bold text-dark border-b-2 border-dark hover:text-gold hover:border-gold transition pb-1 whitespace-nowrap">View All →</a>
+        </div>
+      </div>
+      <!-- Scrollable reel -->
+      <div class="alpha-reel flex gap-4 overflow-x-auto px-4 sm:px-6 lg:px-8 pb-4 snap-x" id="home-reel">
+        <!-- video cards injected by JS -->
+      </div>
+    </section>
+    <style>
+      .alpha-reel { scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+      .alpha-reel::-webkit-scrollbar { height: 6px; }
+      .alpha-reel::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 3px; }
+      .reel-card { flex: 0 0 auto; width: 220px; scroll-snap-align: start; position: relative; background: #000; border-radius: 4px; overflow: hidden; aspect-ratio: 9/16; cursor: pointer; }
+      .reel-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .reel-card .reel-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+      .reel-card .reel-title { color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+      .reel-card .reel-price { color: #d4af37; font-size: 13px; font-weight: 700; }
+      .reel-card .reel-play { position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+      @media (max-width: 640px) { .reel-card { width: 160px; } }
+    </style>
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" aria-labelledby="reviews-heading">
       <div class="text-center mb-14">
         <span class="text-gold text-xs uppercase tracking-[0.3em] font-semibold mb-3 block">What Our Customers Say</span>
@@ -390,6 +449,51 @@
     });
     updateCartBadge();
 
+    // ===== HOME VIDEO REEL =====
+    // TEMPORARY sample videos (free, public-domain test clips from Google).
+    // Replace each `src` with your real product video URL when ready.
+    // Tip: host real videos on YouTube/Cloudinary/Bunny CDN — NOT GitHub (too large).
+    const REEL = [
+      { src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', title: 'LED Hand Fan', price: '₹289', pid: 1 },
+      { src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', title: 'Milk Frother', price: '₹278', pid: 2 },
+      { src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', title: 'Oil Sprayer', price: '₹249', pid: 3 },
+      { src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', title: 'Water Dispenser', price: '₹289', pid: 4 },
+      { src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', title: 'Steel Straws', price: '₹129', pid: 9 },
+      { src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', title: 'Wall Storage Set', price: '₹249', pid: 8 }
+    ];
+    const reelEl = document.getElementById('home-reel');
+    if (reelEl) {
+      REEL.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'reel-card';
+        card.onclick = () => { window.location.href = 'product.html?id=' + v.pid; };
+        card.innerHTML = `
+          <video src="${v.src}" muted loop playsinline preload="metadata"></video>
+          <span class="reel-play"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+          <div class="reel-info">
+            <div class="reel-title">${v.title}</div>
+            <div class="reel-price">${v.price}</div>
+          </div>`;
+        const vid = card.querySelector('video');
+        // Autoplay on hover (desktop) / when scrolled into view (mobile)
+        card.addEventListener('mouseenter', () => { vid.play().catch(()=>{}); });
+        card.addEventListener('mouseleave', () => { vid.pause(); });
+        reelEl.appendChild(card);
+      });
+      // Mobile: autoplay the video most in view
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            const vid = e.target.querySelector('video');
+            if (!vid) return;
+            if (e.isIntersecting && e.intersectionRatio > 0.6) { vid.play().catch(()=>{}); }
+            else { vid.pause(); }
+          });
+        }, { threshold: [0, 0.6, 1] });
+        reelEl.querySelectorAll('.reel-card').forEach(c => io.observe(c));
+      }
+    }
+
   </script>
   <!-- Firebase Newsletter -->
   <script type="module">
@@ -441,6 +545,25 @@
         else img.addEventListener('load', () => img.classList.add('loaded'));
       });
     })();
+  </script>
+  <!-- Auth state indicator (green dot on account icon when logged in) -->
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    const cfg = {
+      apiKey: "AIzaSyA8kP9mASgrog-_Rbuldrnm4rRJm1LmaSU",
+      authDomain: "alphabet-stores.firebaseapp.com",
+      projectId: "alphabet-stores",
+      storageBucket: "alphabet-stores.firebasestorage.app",
+      messagingSenderId: "1068812719722",
+      appId: "1:1068812719722:web:9db5e8c634487dce121c13"
+    };
+    const app = getApps().length ? getApps()[0] : initializeApp(cfg);
+    const auth = getAuth(app);
+    onAuthStateChanged(auth, (user) => {
+      const dot = document.getElementById('nav-account-dot');
+      if (dot) dot.classList.toggle('hidden', !user);
+    });
   </script>
   <script src="mobile-menu.js"></script>
   <script src="chatbot.js" defer></script>

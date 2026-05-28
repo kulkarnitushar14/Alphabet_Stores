@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Videos | Alphabet Store — Watch & Shop</title>
+  <meta name="description" content="Watch real product videos from Alphabet Store. See our rechargeable fans, milk frothers, kitchen tools and home essentials in action before you buy.">
+  <link rel="canonical" href="https://www.alphabetstores.com/video.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Product Videos | Alphabet Store">
+  <meta property="og:description" content="Watch our home essentials in action — fans, frothers, kitchen tools and more.">
+  <meta property="og:url" content="https://www.alphabetstores.com/video.html">
+  <meta property="og:image" content="https://www.alphabetstores.com/og-image.svg">
+  <meta name="theme-color" content="#121212">
+  <link rel="icon" type="image/png" href="logo-sm.png">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
+  <link rel="stylesheet" href="css.css">
+  <style>.whatsapp-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;z-index:9998}.whatsapp-float svg{width:30px;height:30px}.back-to-top svg{width:20px;height:20px}</style>
+  <style>
+    .vid-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    @media (min-width: 640px) { .vid-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .vid-grid { grid-template-columns: repeat(4, 1fr); } }
+    .vid-card { position: relative; background: #000; border-radius: 6px; overflow: hidden; aspect-ratio: 9/16; cursor: pointer; }
+    .vid-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); }
+    .vid-title { color: #fff; font-size: 13px; font-weight: 600; }
+    .vid-price { color: #d4af37; font-size: 13px; font-weight: 700; }
+    .vid-play { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    /* Lightbox */
+    .vid-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .vid-modal.open { display: flex; }
+    .vid-modal video { max-height: 86vh; max-width: 480px; width: 100%; border-radius: 8px; background:#000; }
+    .vid-modal-close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 34px; cursor: pointer; line-height: 1; background:none; border:none; }
+    .vid-modal-shop { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); background: #D4AF37; color: #121212; padding: 12px 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px; text-decoration: none; }
+  </style>
+</head>
+<body class="bg-offwhite font-sans text-dark flex flex-col min-h-screen">
+
+  <!-- ANNOUNCEMENT -->
+  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+    Free Shipping over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; Use code <span class="font-bold text-gold">ALPHA101</span> for ₹101 OFF &nbsp;|&nbsp; <a href="track-order.html" class="underline hover:text-gold">Track Order</a>
+  </aside>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20" aria-label="Main navigation">
+      <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
+        <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+        <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+        <a href="video.html" class="text-dark border-b-2 border-gold pb-1">Videos</a>
+        <a href="blog.html" class="hover:text-gold transition-colors">Blog</a>
+        <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
+      </div>
+      <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+        <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark flex items-center justify-center gap-2" aria-label="Alphabet Store Home">
+          <img src="logo-sm.png" alt="Alphabet Stores Logo" class="w-9 h-9 hidden sm:block" loading="eager">
+          ALPHABET
+        </a>
+      </div>
+      <div class="flex flex-1 justify-end items-center space-x-2 sm:space-x-4">
+        <a href="account.html" aria-label="My account" class="hover:text-gold transition-colors p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+        </a>
+        <a href="cart.html" aria-label="Shopping cart" class="hover:text-gold transition-colors flex items-center relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+          <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <!-- HERO -->
+    <section class="bg-dark py-16 text-center px-6">
+      <span class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-3 block">Watch &amp; Shop</span>
+      <h1 class="text-4xl md:text-5xl font-serif font-light text-white mb-4">Product Videos</h1>
+      <div class="w-16 h-[2px] bg-gold mx-auto mb-5"></div>
+      <p class="text-gray-400 text-sm max-w-xl mx-auto">See our products in action. Tap any video to watch full screen and shop the look.</p>
+    </section>
+
+    <!-- VIDEO GRID -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="vid-grid" id="video-grid"><!-- injected by JS --></div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="vid-modal" id="vid-modal">
+    <button class="vid-modal-close" onclick="closeVideo()" aria-label="Close">&times;</button>
+    <video id="modal-video" controls playsinline></video>
+    <a href="#" class="vid-modal-shop" id="modal-shop">Shop This →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-gray-400 py-10 px-6 text-center text-sm">
+    <p class="mb-2"><a href="index.html" class="text-white font-bold tracking-widest">ALPHABET</a></p>
+    <p class="text-xs">© 2026 Alphabet Store · Mumbai, India 🇮🇳</p>
+  </footer>
+
+  <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="width:30px;height:30px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="products.js"></script>
+  <script>
+    // ===== PRODUCT VIDEOS =====
+    // TEMPORARY free public-domain sample videos. Replace each `src` with your real
+    // product video URL. Host real videos on YouTube/Cloudinary/Bunny CDN (NOT GitHub).
+    const B = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/';
+    const VIDEOS = [
+      { src: B+'ForBiggerBlazes.mp4',     title: 'LED Digital Hand Fan',   price: '₹289', pid: 1 },
+      { src: B+'ForBiggerEscapes.mp4',    title: 'Rechargeable Frother',   price: '₹278', pid: 2 },
+      { src: B+'ForBiggerFun.mp4',        title: 'Glass Oil Sprayer',      price: '₹249', pid: 3 },
+      { src: B+'ForBiggerJoyrides.mp4',   title: 'Water Can Dispenser',    price: '₹289', pid: 4 },
+      { src: B+'ForBiggerMeltdowns.mp4',  title: 'Steel Straws Set',       price: '₹129', pid: 9 },
+      { src: B+'ElephantsDream.mp4',      title: 'Wall Storage Set',       price: '₹249', pid: 8 },
+      { src: B+'Sintel.mp4',              title: 'Photo Frame Wall Hooks', price: '₹178', pid: 6 },
+      { src: B+'SubaruOutbackOnStreetAndDirt.mp4', title: 'Resealable Bags', price: '₹180', pid: 7 },
+      { src: B+'TearsOfSteel.mp4',        title: 'Book Cover Film',        price: '₹249', pid: 5 },
+      { src: B+'VolkswagenGTIReview.mp4', title: 'Battery Frother',        price: '₹169', pid: 11 },
+      { src: B+'WeAreGoingOnBullrun.mp4', title: 'Microfibre Bath Mat',    price: '₹249', pid: 10 },
+      { src: B+'WhatCarCanYouGetForAGrand.mp4', title: 'Black Garbage Bags', price: '₹289', pid: 12 },
+      { src: B+'ForBiggerBlazes.mp4',     title: 'LED Hand Fan — Demo',    price: '₹289', pid: 1 },
+      { src: B+'ForBiggerEscapes.mp4',    title: 'Frother — How To',       price: '₹278', pid: 2 },
+      { src: B+'ForBiggerFun.mp4',        title: 'Oil Sprayer — Review',   price: '₹249', pid: 3 },
+      { src: B+'ForBiggerJoyrides.mp4',   title: 'Dispenser — In Use',     price: '₹289', pid: 4 },
+      { src: B+'ForBiggerMeltdowns.mp4',  title: 'Straws — Unboxing',      price: '₹129', pid: 9 },
+      { src: B+'ElephantsDream.mp4',      title: 'Storage — Setup',        price: '₹249', pid: 8 },
+      { src: B+'Sintel.mp4',              title: 'Wall Hooks — Install',   price: '₹178', pid: 6 },
+      { src: B+'TearsOfSteel.mp4',        title: 'Book Film — Demo',       price: '₹249', pid: 5 },
+      { src: B+'ForBiggerBlazes.mp4',     title: 'Fan — Customer Clip',    price: '₹289', pid: 1 },
+      { src: B+'ForBiggerFun.mp4',        title: 'Sprayer — Tips',         price: '₹249', pid: 3 },
+      { src: B+'ForBiggerEscapes.mp4',    title: 'Frother — Latte Art',    price: '₹278', pid: 2 },
+      { src: B+'ForBiggerMeltdowns.mp4',  title: 'Straws — Cleaning',      price: '₹129', pid: 9 }
+    ];
+
+    const grid = document.getElementById('video-grid');
+    VIDEOS.forEach((v, i) => {
+      const card = document.createElement('div');
+      card.className = 'vid-card';
+      card.onclick = () => openVideo(v);
+      card.innerHTML = `
+        <video src="${v.src}#t=0.1" muted loop playsinline preload="metadata"></video>
+        <span class="vid-play"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+        <div class="vid-info"><div class="vid-title">${v.title}</div><div class="vid-price">${v.price}</div></div>`;
+      const vid = card.querySelector('video');
+      card.addEventListener('mouseenter', () => vid.play().catch(()=>{}));
+      card.addEventListener('mouseleave', () => vid.pause());
+      grid.appendChild(card);
+    });
+
+    const modal = document.getElementById('vid-modal');
+    const modalVideo = document.getElementById('modal-video');
+    const modalShop = document.getElementById('modal-shop');
+    function openVideo(v) {
+      modalVideo.src = v.src;
+      modalShop.href = 'product.html?id=' + v.pid;
+      modal.classList.add('open');
+      modalVideo.play().catch(()=>{});
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideo() {
+      modal.classList.remove('open');
+      modalVideo.pause();
+      modalVideo.src = '';
+      document.body.style.overflow = '';
+    }
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeVideo(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideo(); });
+    window.closeVideo = closeVideo;
+
+    // cart badge
+    if (typeof updateCartBadge === 'function') updateCartBadge();
+  </script>
+  <script src="mobile-menu.js"></script>
+</body>
+</html>

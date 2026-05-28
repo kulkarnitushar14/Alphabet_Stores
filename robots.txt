@@ -4,6 +4,7 @@ Disallow: /cart.html
 Disallow: /payment.html
 Disallow: /thank_you.html
 Disallow: /admin-dashboard.html
+Disallow: /account.html
 
 User-agent: Googlebot
 Allow: /
