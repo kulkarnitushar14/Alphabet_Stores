@@ -18,12 +18,11 @@ const PRODUCTS = [
     desc: 'Stay cool anywhere with this powerful rechargeable hand fan. Features a real-time LED battery display, 5 adjustable speed settings, foldable neck design, and a built-in power bank function. Lightweight and compact — perfect for home, travel, or outdoor use.',
     price: 289,
     mrp: 1499,
-    image: 'https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=600&q=80',
+    image: 'images/product-1-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=600&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80',
-      'https://images.unsplash.com/photo-1601972599748-a8a6e3f6aa61?w=600&q=80'
+      'images/product-1-1.jpg',
+      'images/product-1-2.jpg',
+      'images/product-1-3.jpg'
     ],
     cat: 'gadgets',
     badge: 'Bestseller',
@@ -37,12 +36,10 @@ const PRODUCTS = [
     desc: 'Make café-quality coffee at home. This rechargeable milk frother features dual spring whisks for extra foam, 3 speed settings, and a matte black finish that looks sleek in any kitchen. USB rechargeable — no batteries needed.',
     price: 278,
     mrp: 1699,
-    image: 'https://images.unsplash.com/photo-1570145820259-b5b80c5c8bd6?w=600&q=80',
+    image: 'images/product-2-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1570145820259-b5b80c5c8bd6?w=800&q=80',
-      'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80',
-      'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=800&q=80',
-      'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80'
+      'images/product-2-1.jpg',
+      'images/product-2-2.jpg'
     ],
     cat: 'kitchen',
     badge: 'Bestseller',
@@ -56,12 +53,12 @@ const PRODUCTS = [
     desc: 'Control your oil usage for healthier cooking. This premium 500ml glass dispenser works as both a sprayer and a pour spout. The 2-in-1 design with anti-drip nozzle keeps your countertop clean and your food perfectly seasoned.',
     price: 249,
     mrp: 899,
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80',
+    image: 'images/product-3-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80',
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80',
-      'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80'
+      'images/product-3-1.jpg',
+      'images/product-3-2.jpg',
+      'images/product-3-3.jpg',
+      'images/product-3-4.jpg'
     ],
     cat: 'kitchen',
     badge: '72% Off',
@@ -75,12 +72,12 @@ const PRODUCTS = [
     desc: 'Never lift a heavy water can again. This automatic wireless pump fits standard 20-litre water cans, runs whisper-quiet, and charges via USB. One-touch operation delivers clean water instantly — perfect for home, office, or kitchen.',
     price: 289,
     mrp: 999,
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80',
+    image: 'images/product-4-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80',
-      'https://images.unsplash.com/photo-1621963416681-fa4d9fcb25e8?w=600&q=80',
-      'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=600&q=80',
-      'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80'
+      'images/product-4-1.jpg',
+      'images/product-4-2.jpg',
+      'images/product-4-3.jpg',
+      'images/product-4-4.jpg'
     ],
     cat: 'kitchen',
     badge: '71% Off',
@@ -94,12 +91,12 @@ const PRODUCTS = [
     desc: 'Protect your books in style. This pack includes 60 transparent self-adhesive book cover sheets in 3 different sizes (20 each). Waterproof PVC film keeps textbooks and notebooks safe without scissors or tape. Perfect for students and parents.',
     price: 249,
     mrp: 1499,
-    image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&q=80',
+    image: 'images/product-5-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&q=80',
-      'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80',
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80',
-      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&q=80'
+      'images/product-5-1.jpg',
+      'images/product-5-2.jpg',
+      'images/product-5-3.jpg',
+      'images/product-5-4.jpg'
     ],
     cat: 'stationery',
     badge: '83% Off',
@@ -113,12 +110,12 @@ const PRODUCTS = [
     desc: 'Hang your frames without damaging your walls. These damage-free adhesive hooks use strong industrial glue to hold up to 2kg each. Includes 10 hooks in a clean white finish. Perfect for picture frames, keys, bags, and décor.',
     price: 178,
     mrp: 999,
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80',
+    image: 'images/product-6-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
-      'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80'
+      'images/product-6-1.jpg',
+      'images/product-6-2.jpg',
+      'images/product-6-3.jpg',
+      'images/product-6-4.jpg'
     ],
     cat: 'home',
     badge: '82% Off',
@@ -132,12 +129,12 @@ const PRODUCTS = [
     desc: 'Keep everything organised and fresh. These transparent resealable zip-lock bags with self-adhesive backing are ideal for food, stationery, jewellery, and small parts. Airtight seal locks in freshness. Pack of 100.',
     price: 180,
     mrp: 749,
-    image: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&q=80',
+    image: 'images/product-7-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&q=80',
-      'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=600&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-      'https://images.unsplash.com/photo-1600857062241-98e5dba7f33e?w=600&q=80'
+      'images/product-7-1.jpg',
+      'images/product-7-2.jpg',
+      'images/product-7-3.jpg',
+      'images/product-7-4.jpg'
     ],
     cat: 'home',
     badge: '76% Off',
@@ -151,12 +148,12 @@ const PRODUCTS = [
     desc: 'Organise your space beautifully. This 4-piece wall-mounted storage set includes holders in 4 soft pastel colours, suitable for phones, remotes, keys, stationery, and toiletries. Strong adhesive backing — no tools required.',
     price: 249,
     mrp: 999,
-    image: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80',
+    image: 'images/product-8-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80',
-      'https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=600&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
-      'https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&q=80'
+      'images/product-8-1.jpg',
+      'images/product-8-2.jpg',
+      'images/product-8-3.jpg',
+      'images/product-8-4.jpg'
     ],
     cat: 'home',
     badge: '75% Off',
@@ -170,12 +167,12 @@ const PRODUCTS = [
     desc: 'Ditch single-use plastic for good. This set of 4 premium stainless steel straws includes both straight and bent styles, plus a cleaning brush. BPA-free, food-grade steel that\'s eco-friendly, durable, and easy to clean.',
     price: 129,
     mrp: 499,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    image: 'images/product-9-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80',
-      'https://images.unsplash.com/photo-1572104482589-cc1bd34dbf78?w=800&q=80',
-      'https://images.unsplash.com/photo-1556909114-44e3e9399a2e?w=800&q=80',
-      'https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16?w=800&q=80'
+      'images/product-9-1.jpg',
+      'images/product-9-2.jpg',
+      'images/product-9-3.jpg',
+      'images/product-9-4.jpg'
     ],
     cat: 'kitchen',
     badge: '74% Off',
@@ -208,12 +205,12 @@ const PRODUCTS = [
     desc: 'The simplest way to froth milk. This compact battery-operated frother creates thick, creamy foam in seconds with one button press. Lightweight and portable — perfect for travel or small kitchens. Ideal for lattes, cappuccinos, and matcha.',
     price: 169,
     mrp: 899,
-    image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80',
+    image: 'images/product-11-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80',
-      'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=600&q=80',
-      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80',
-      'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80'
+      'images/product-11-1.jpg',
+      'images/product-11-2.jpg',
+      'images/product-11-3.jpg',
+      'images/product-11-4.jpg'
     ],
     cat: 'kitchen',
     badge: '81% Off',

@@ -1,369 +1,253 @@
-// ============================================================
-// ALPHABET STORE — AI Customer Support Chatbot
-// Knowledge-based chatbot that answers common questions
-// ============================================================
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="logo-sm.png">
+  <link rel="apple-touch-icon" href="logo-sm.png">
+  <meta name="theme-color" content="#121212">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://www.gstatic.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Home Essentials Online | Up to 90% Off | Alphabet Store</title>
+  <meta name="description" content="Buy rechargeable fans, milk frothers, kitchen tools, storage & more online. Up to 90% off MRP. Free delivery over ₹999 across India. 7-day returns.">
+  <meta property="og:title" content="Shop Home Essentials Online India | Up to 90% Off MRP | Alphabet Store">
+  <meta property="og:description" content="Buy premium home essentials online in India. Rechargeable fans, milk frothers, oil sprayers, kitchen tools, wall hooks & more. Up to 90% off MRP. Free delivery over ₹999. 7-day returns.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.alphabetstores.com/catalogue.html">
+  <meta property="og:image" content="https://www.alphabetstores.com/og-image.svg">
+  <meta property="og:site_name" content="Alphabet Store">
+  <meta property="og:locale" content="en_IN">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Shop All Products — Alphabet Store","url":"https://www.alphabetstores.com/catalogue.html","description":"Premium home essentials up to 90% off MRP. Free delivery over Rs.999.","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.alphabetstores.com/"},{"@type":"ListItem","position":2,"name":"Shop","item":"https://www.alphabetstores.com/catalogue.html"}]}}</script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ItemList","name":"Alphabet Store Products","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://www.alphabetstores.com/product.html?id=1"},{"@type":"ListItem","position":2,"url":"https://www.alphabetstores.com/product.html?id=2"},{"@type":"ListItem","position":3,"url":"https://www.alphabetstores.com/product.html?id=3"},{"@type":"ListItem","position":4,"url":"https://www.alphabetstores.com/product.html?id=4"},{"@type":"ListItem","position":5,"url":"https://www.alphabetstores.com/product.html?id=5"},{"@type":"ListItem","position":6,"url":"https://www.alphabetstores.com/product.html?id=6"},{"@type":"ListItem","position":7,"url":"https://www.alphabetstores.com/product.html?id=7"},{"@type":"ListItem","position":8,"url":"https://www.alphabetstores.com/product.html?id=8"},{"@type":"ListItem","position":9,"url":"https://www.alphabetstores.com/product.html?id=9"},{"@type":"ListItem","position":10,"url":"https://www.alphabetstores.com/product.html?id=10"},{"@type":"ListItem","position":11,"url":"https://www.alphabetstores.com/product.html?id=11"},{"@type":"ListItem","position":12,"url":"https://www.alphabetstores.com/product.html?id=12"}]}
+  </script>
+  <link rel="stylesheet" href="css.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
+  <link rel="canonical" href="https://www.alphabetstores.com/catalogue.html">
+  <link rel="alternate" hreflang="en-IN" href="https://www.alphabetstores.com/catalogue.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.alphabetstores.com/catalogue.html">
+</head>
+<body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
 
-(function() {
-  // Knowledge base — answers to common questions
-  const KB = {
-    shipping: {
-      keywords: ['shipping', 'delivery', 'deliver', 'ship', 'when will i get', 'how long', 'days', 'time'],
-      reply: '📦 We offer FREE shipping on orders over ₹999! Delivery takes 3-7 business days across India. Metro cities get it in 3-4 days. <a href="shipping-policy.html" style="color:#D4AF37">See full shipping policy</a>'
-    },
-    returns: {
-      keywords: ['return', 'refund', 'exchange', 'money back', 'cancel order', 'returns'],
-      reply: '↩️ Yes! We offer 7-day hassle-free returns. Refunds processed within 5-7 business days after we receive the item. <a href="refund-policy.html" style="color:#D4AF37">See return policy</a>'
-    },
-    payment: {
-      keywords: ['payment', 'pay', 'upi', 'card', 'cod', 'cash on delivery', 'razorpay', 'how to pay'],
-      reply: '💳 We accept all major payment methods — UPI (PhonePe, GPay), Credit/Debit Cards, Net Banking, and Cash on Delivery. All payments are 256-bit SSL secured via Razorpay.'
-    },
-    track: {
-      keywords: ['track', 'where is my order', 'order status', 'tracking', 'tracking id'],
-      reply: '🔍 You can track your order anytime! <a href="track-order.html" style="color:#D4AF37">Click here to track →</a> You\'ll need your order ID (sent in confirmation email) or registered email.'
-    },
-    contact: {
-      keywords: ['contact', 'call', 'whatsapp', 'phone', 'speak to', 'talk to human', 'customer care', 'support'],
-      reply: '💬 Talk to our founders directly!<br>📞 Tushar: +91 70219 09150<br>📞 Ashish: +91 88048 88051<br>📧 alphabetstores@gmail.com<br>WhatsApp the green button below or <a href="contact.html" style="color:#D4AF37">visit contact page</a>'
-    },
-    products: {
-      keywords: ['product', 'what do you sell', 'catalogue', 'catalog', 'items', 'shop', 'buy'],
-      reply: '🛍️ We sell premium home essentials at up to 90% off MRP! Categories: Kitchen, Smart Gadgets, Home & Storage, and Stationery. <a href="catalogue.html" style="color:#D4AF37">Browse all products →</a>'
-    },
-    discount: {
-      keywords: ['discount', 'coupon', 'offer', 'sale', 'cheap', 'price', 'how much off'],
-      reply: '🏷️ Every product on our site is already up to 90% off MRP — no extra coupon needed! Subscribe to our newsletter (homepage) for exclusive deals and early access to sales.'
-    },
-    bulk: {
-      keywords: ['bulk', 'wholesale', 'corporate', 'gift', 'large order', 'business'],
-      reply: '🏢 Yes! We do bulk orders and corporate gifting. Best to WhatsApp founder Tushar at +91 70219 09150 — he\'ll get you a custom quote within hours.'
-    },
-    location: {
-      keywords: ['where are you', 'location', 'office', 'address', 'based', 'where from', 'mumbai'],
-      reply: '📍 We\'re based in Mumbai, Maharashtra 🇮🇳 — but we ship anywhere in India! Founded by Tushar Kulkarni & Ashish Deshmane in 2020.'
-    },
-    quality: {
-      keywords: ['quality', 'genuine', 'original', 'real', 'fake', 'authentic', 'warranty', 'guarantee'],
-      reply: '✅ Every product is hand-tested by our team before listing. We offer a 10-day replacement guarantee on damaged/defective items + 7-day returns on everything. Quality you can trust.'
-    },
-    review: {
-      keywords: ['review', 'rating', 'feedback', 'good', 'reliable', 'trust', 'safe to buy'],
-      reply: '⭐ We have a 5.0 rating from 100+ verified buyers across India. <a href="reviews.html" style="color:#D4AF37">Read all customer reviews →</a>'
-    },
-    founder: {
-      keywords: ['who founded', 'owner', 'founder', 'tushar', 'ashish', 'team'],
-      reply: '👋 Alphabet Store was founded in 2020 by Tushar Kulkarni and Ashish Deshmane in Mumbai. They personally test every product before it goes live and reply to most customer messages themselves!'
-    }
-  };
+  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+    Free Shipping over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; 7-Day Easy Returns &nbsp;|&nbsp; <a href="track-order.html" class="underline hover:text-gold transition-colors">Track Order</a>
+  </aside>
 
-  function findReply(text) {
-    const lower = text.toLowerCase();
-    let bestMatch = null, bestScore = 0;
-    for (const [topic, data] of Object.entries(KB)) {
-      const score = data.keywords.filter(k => lower.includes(k)).length;
-      if (score > bestScore) { bestScore = score; bestMatch = data.reply; }
-    }
-    if (bestMatch) return bestMatch;
-
-    // Greetings
-    if (/(^|\s)(hi|hello|hey|namaste|hola)(\s|$)/i.test(lower)) {
-      return '👋 Hi there! I\'m Alpha, your shopping assistant. How can I help you today? You can ask me about products, shipping, returns, or anything else!';
-    }
-    if (/thank|thanks/i.test(lower)) return '😊 You\'re welcome! Let me know if you have any other questions.';
-    if (/bye|goodbye/i.test(lower)) return '👋 Have a great day! Reach out anytime via WhatsApp if you need help.';
-
-    // Fallback
-    return '🤔 I\'m not sure about that, but our founders are happy to help! WhatsApp Tushar at +91 70219 09150 or <a href="contact.html" style="color:#D4AF37">send us a message →</a>';
-  }
-
-  // Create chatbot UI
-  function createChatbot() {
-    const css = `
-      .alpha-chat-toggle {
-        position: fixed; bottom: 24px; right: 92px;
-        width: 60px; height: 60px;
-        background: #121212;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 6px 28px rgba(212,175,55,0.4);
-        z-index: 9997;
-        cursor: pointer;
-        border: 2px solid #D4AF37;
-        transition: transform 0.2s ease;
-        animation: alpha-pulse 2.5s infinite;
-      }
-      .alpha-chat-toggle:hover { transform: scale(1.1); }
-      @keyframes alpha-pulse {
-        0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.6); }
-        50% { box-shadow: 0 0 0 12px rgba(212,175,55,0); }
-      }
-      .alpha-chat-toggle svg { width: 28px; height: 28px; fill: #D4AF37; }
-      .alpha-chat-badge {
-        position: absolute; top: -4px; right: -4px;
-        background: #D4AF37; color: #121212;
-        font-size: 0.6rem; font-weight: 700;
-        width: 18px; height: 18px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-      }
-      .alpha-chat-window {
-        position: fixed; bottom: 100px; right: 24px;
-        width: 360px; max-width: calc(100vw - 32px);
-        height: 540px; max-height: calc(100vh - 130px);
-        background: #FAFAFA;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-        display: none;
-        flex-direction: column;
-        z-index: 9998;
-        font-family: 'Inter', sans-serif;
-        overflow: hidden;
-      }
-      .alpha-chat-window.open { display: flex; animation: alpha-slideup 0.3s ease; }
-      @keyframes alpha-slideup {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      [data-theme="dark"] .alpha-chat-window { background: #1A1A1A; border-color: #333; }
-      .alpha-chat-header {
-        background: #121212; color: white;
-        padding: 16px 18px;
-        display: flex; align-items: center; gap: 12px;
-        border-bottom: 1px solid #D4AF37;
-      }
-      .alpha-chat-avatar {
-        width: 38px; height: 38px;
-        background: #D4AF37;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 800; color: #121212;
-        font-family: 'Inter', sans-serif;
-      }
-      .alpha-chat-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; }
-      .alpha-chat-status { font-size: 0.65rem; color: #22c55e; display: flex; align-items: center; gap: 5px; margin-top: 2px; }
-      .alpha-chat-status::before { content:''; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
-      .alpha-chat-close {
-        margin-left: auto;
-        background: none; border: none;
-        color: white; cursor: pointer;
-        font-size: 1.3rem; line-height: 1;
-        opacity: 0.7;
-      }
-      .alpha-chat-close:hover { opacity: 1; }
-      .alpha-chat-messages {
-        flex: 1;
-        padding: 18px;
-        overflow-y: auto;
-        background: linear-gradient(180deg, #FAFAFA, #F3F4F6);
-      }
-      [data-theme="dark"] .alpha-chat-messages { background: #1A1A1A; }
-      .alpha-msg {
-        margin-bottom: 12px;
-        max-width: 85%;
-        animation: alpha-msgin 0.3s ease;
-      }
-      @keyframes alpha-msgin {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      .alpha-msg.bot {
-        background: white; color: #121212;
-        padding: 10px 14px;
-        border-radius: 14px 14px 14px 4px;
-        border: 1px solid #e5e7eb;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      }
-      [data-theme="dark"] .alpha-msg.bot { background: #242424; color: #F5F5F5; border-color: #333; }
-      .alpha-msg.user {
-        margin-left: auto;
-        background: #121212; color: white;
-        padding: 10px 14px;
-        border-radius: 14px 14px 4px 14px;
-        font-size: 0.85rem;
-        line-height: 1.5;
-      }
-      .alpha-msg a { color: #D4AF37; text-decoration: underline; }
-      .alpha-chat-input-bar {
-        display: flex; gap: 8px;
-        padding: 12px;
-        border-top: 1px solid #e5e7eb;
-        background: white;
-      }
-      [data-theme="dark"] .alpha-chat-input-bar { background: #1E1E1E; border-color: #333; }
-      .alpha-chat-input {
-        flex: 1;
-        padding: 10px 14px;
-        border: 1px solid #e5e7eb;
-        background: #F3F4F6;
-        font-size: 0.85rem;
-        outline: none;
-        font-family: 'Inter', sans-serif;
-        border-radius: 20px;
-      }
-      [data-theme="dark"] .alpha-chat-input { background: #242424; color: #F5F5F5; border-color: #333; }
-      .alpha-chat-input:focus { border-color: #D4AF37; }
-      .alpha-chat-send {
-        width: 40px; height: 40px;
-        background: #D4AF37;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: opacity 0.2s;
-      }
-      .alpha-chat-send:hover { opacity: 0.85; }
-      .alpha-chat-send svg { width: 18px; height: 18px; fill: #121212; }
-      .alpha-quick-replies {
-        display: flex; flex-wrap: wrap; gap: 6px;
-        padding: 0 18px 12px;
-      }
-      .alpha-quick-reply {
-        background: white;
-        border: 1px solid #D4AF37;
-        color: #121212;
-        padding: 6px 12px;
-        font-size: 0.72rem;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.15s;
-      }
-      [data-theme="dark"] .alpha-quick-reply { background: #242424; color: #F5F5F5; }
-      .alpha-quick-reply:hover { background: #D4AF37; color: #121212; }
-      .alpha-typing {
-        display: inline-flex; gap: 3px;
-        padding: 12px 16px;
-        background: white;
-        border-radius: 14px 14px 14px 4px;
-        border: 1px solid #e5e7eb;
-        margin-bottom: 12px;
-      }
-      .alpha-typing span {
-        width: 6px; height: 6px;
-        background: #888;
-        border-radius: 50%;
-        animation: alpha-bounce 1.4s infinite;
-      }
-      .alpha-typing span:nth-child(2) { animation-delay: 0.2s; }
-      .alpha-typing span:nth-child(3) { animation-delay: 0.4s; }
-      @keyframes alpha-bounce {
-        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-        30% { transform: translateY(-6px); opacity: 1; }
-      }
-      @media (max-width: 480px) {
-        .alpha-chat-window { right: 8px; bottom: 86px; }
-        .alpha-chat-toggle { right: 84px; bottom: 16px; }
-      }
-    `;
-    const style = document.createElement('style');
-    style.textContent = css;
-    document.head.appendChild(style);
-
-    const html = `
-      <div class="alpha-chat-toggle" id="alpha-toggle" aria-label="Open chat">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.04 2 11c0 2.39 1.05 4.57 2.75 6.18L4 22l5.27-1.46C10.42 21.5 11.2 21.6 12 21.6c5.52 0 10-4.04 10-9s-4.48-9-10-9z"/></svg>
-        <div class="alpha-chat-badge">1</div>
+  <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20">
+      <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
+        <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+        <a href="catalogue.html" class="text-dark border-b-2 border-gold pb-1">Shop</a>
+        <a href="blog.html" class="hover:text-gold transition-colors">Blog</a>
+        <a href="about_us.html" class="hover:text-gold transition-colors">About</a>
+        <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
       </div>
-      <div class="alpha-chat-window" id="alpha-window" role="dialog" aria-label="Customer support chat">
-        <div class="alpha-chat-header">
-          <div class="alpha-chat-avatar">A</div>
-          <div>
-            <div class="alpha-chat-name">Alpha · Support</div>
-            <div class="alpha-chat-status">Online · Replies instantly</div>
-          </div>
-          <button class="alpha-chat-close" id="alpha-close" aria-label="Close chat">✕</button>
-        </div>
-        <div class="alpha-chat-messages" id="alpha-messages"></div>
-        <div class="alpha-quick-replies" id="alpha-quick"></div>
-        <div class="alpha-chat-input-bar">
-          <input class="alpha-chat-input" id="alpha-input" type="text" placeholder="Type your question..." aria-label="Type message">
-          <button class="alpha-chat-send" id="alpha-send" aria-label="Send message">
-            <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-          </button>
+      <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+        <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors flex items-center justify-center gap-2">
+          <img src="logo-sm.png" alt="Alphabet Stores Logo" class="w-9 h-9 hidden sm:block" loading="eager">
+          ALPHABET
+        </a>
+      </div>
+      <div class="flex flex-1 justify-end items-center gap-4">
+        <input id="search-input" type="text" placeholder="Search products…" class="hidden sm:block bg-grayLight border border-gray-200 text-sm px-3 py-1.5 w-40 focus:outline-none focus:border-gold transition-colors focus:w-52 transition-all duration-300">
+        <button onclick="toggleDarkMode()" id="dark-mode-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="cart.html" class="hover:text-gold transition-colors flex items-center relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+          <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <header class="py-14 text-center border-b border-gray-200 bg-grayLight">
+      <h1 class="text-4xl font-serif font-light tracking-widest uppercase text-dark mb-3">All Products</h1>
+      <p class="text-gray-500 text-sm">Premium everyday essentials — up to 90% off MRP.</p>
+    </header>
+
+    <!-- FILTER BAR -->
+    <div class="bg-white border-b border-gray-200 sticky top-20 z-30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 py-4 overflow-x-auto hide-scrollbar">
+        <span class="text-xs text-gray-400 uppercase tracking-widest shrink-0 mr-2">Filter:</span>
+        <button data-cat="all" class="filter-btn active shrink-0 px-4 py-1.5 text-xs uppercase tracking-widest border border-dark text-dark hover:bg-dark hover:text-white transition-colors">All</button>
+        <button data-cat="kitchen" class="filter-btn shrink-0 px-4 py-1.5 text-xs uppercase tracking-widest border border-gray-300 text-gray-500 hover:border-dark hover:text-dark transition-colors">Kitchen</button>
+        <button data-cat="gadgets" class="filter-btn shrink-0 px-4 py-1.5 text-xs uppercase tracking-widest border border-gray-300 text-gray-500 hover:border-dark hover:text-dark transition-colors">Gadgets</button>
+        <button data-cat="home" class="filter-btn shrink-0 px-4 py-1.5 text-xs uppercase tracking-widest border border-gray-300 text-gray-500 hover:border-dark hover:text-dark transition-colors">Home</button>
+        <button data-cat="stationery" class="filter-btn shrink-0 px-4 py-1.5 text-xs uppercase tracking-widest border border-gray-300 text-gray-500 hover:border-dark hover:text-dark transition-colors">Stationery</button>
+        <div class="ml-auto shrink-0 flex items-center gap-2">
+          <label class="text-xs text-gray-400 uppercase tracking-widest">Sort:</label>
+          <select id="sort-select" class="text-xs border border-gray-200 bg-white px-2 py-1.5 focus:outline-none focus:border-gold">
+            <option value="default">Featured</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
         </div>
       </div>
-    `;
-    const container = document.createElement('div');
-    container.innerHTML = html;
-    document.body.appendChild(container);
+    </div>
 
-    const toggle = document.getElementById('alpha-toggle');
-    const wnd = document.getElementById('alpha-window');
-    const closeBtn = document.getElementById('alpha-close');
-    const msgs = document.getElementById('alpha-messages');
-    const input = document.getElementById('alpha-input');
-    const send = document.getElementById('alpha-send');
-    const quick = document.getElementById('alpha-quick');
-    const badge = container.querySelector('.alpha-chat-badge');
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <p id="result-count" class="text-xs text-gray-400 uppercase tracking-widest mb-8"></p>
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+        <!-- Injected by JS -->
+      </div>
 
-    let opened = false;
+      <!-- SEO: Server-readable product list for Google crawlers -->
+      <noscript>
+        <h2 style="font-family:serif;font-weight:300;font-size:1.5rem;margin:2rem 0 1rem">Our Products</h2>
+        <ul style="list-style:none;padding:0">
+          <li><a href="product.html?id=1">LED Digital Hand Fan — Rechargeable 5 Speeds | ₹289 (81% off MRP ₹1499)</a></li>
+          <li><a href="product.html?id=2">Rechargeable Milk Frother — Dual Spring Tech | ₹278 (84% off MRP ₹1699)</a></li>
+          <li><a href="product.html?id=3">Glass Oil Sprayer & Dispenser — 250ml | Premium Kitchen Tool</a></li>
+          <li><a href="product.html?id=4">Wireless Water Can Dispenser — Rechargeable 20L Pump</a></li>
+          <li><a href="product.html?id=5">Sticker Book Cover Film — Self-Adhesive Protection</a></li>
+          <li><a href="product.html?id=6">Photo Frame Wall Hooks — Strong Adhesive Set</a></li>
+          <li><a href="product.html?id=7">Self-Adhesive Resealable Bags — Storage Set</a></li>
+          <li><a href="product.html?id=8">4-Piece Wall Storage Set — Home Organisation</a></li>
+          <li><a href="product.html?id=9">Stainless Steel Straws Set — Eco-Friendly Reusable</a></li>
+          <li><a href="product.html?id=10">Microfibre Striped Bath Mat — Premium Absorbent</a></li>
+          <li><a href="product.html?id=11">Battery Milk Frother — Handheld Coffee Mixer</a></li>
+          <li><a href="product.html?id=12">Black Garbage Bags — Heavy Duty Pack</a></li>
+        </ul>
+      </noscript>
 
-    function openChat() {
-      wnd.classList.add('open');
-      badge.style.display = 'none';
-      if (!opened) {
-        opened = true;
-        addBotMsg('👋 Hi! I\'m Alpha, your Alphabet Store assistant. I can help you with orders, products, shipping, returns and more. What would you like to know?');
-        setTimeout(showQuickReplies, 400);
-      }
-      setTimeout(() => input.focus(), 300);
+      <div id="no-results" class="hidden text-center py-20 text-gray-400">
+        <p class="text-4xl mb-4">🔍</p>
+        <p class="uppercase tracking-widest text-sm">No products found</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-gray-400 py-8 px-6 text-center border-t border-gray-800 mt-auto">    <!-- Marketplace Bar -->
+    <div class="max-w-7xl mx-auto pt-8 mt-4 border-t border-gray-800">
+      <p class="text-center text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">Also Available On</p>
+      <div class="flex justify-center items-center gap-4 mb-8 flex-wrap">
+        <a href="https://www.amazon.in/l/27943762031?me=A26U434B1B4F73&tag=ShopReferral_84abbad7-b49a-425c-ae7c-281bfe72df47&ref=sf_seller_app_share_new_ls_srb" target="_blank" rel="noopener" class="bg-white hover:bg-gold transition-colors px-5 py-3 flex items-center gap-2" aria-label="Visit our Amazon storefront">
+          <svg viewBox="0 0 110 32" class="h-6 w-auto" aria-hidden="true">
+            <text x="0" y="22" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#232F3E">amazon</text>
+            <path d="M2 26 Q 38 34 78 26" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M72 23 L 78 26 L 73 30" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-xs uppercase font-bold tracking-wider text-dark hidden sm:inline">Shop Now</span>
+        </a>
+        <div class="bg-gray-800 px-5 py-3 flex items-center gap-2 relative opacity-60">
+          <svg viewBox="0 0 110 32" class="h-6 w-auto" aria-hidden="true">
+            <text x="0" y="22" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#2874F0" font-style="italic">Flipkart</text>
+          </svg>
+          <span class="text-[10px] uppercase font-bold tracking-wider text-gold border border-gold px-2 py-0.5">Soon</span>
+        </div>
+      </div>
+    </div>
+
+
+    <p class="text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script src="products.js"></script>
+  <script>
+    const star = `<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>`;
+
+    let activeCat = 'all', searchQ = '', sortMode = 'default';
+
+    // Check URL param for category
+    const urlCat = new URLSearchParams(window.location.search).get('cat');
+    if (urlCat) activeCat = urlCat;
+
+    function getFiltered() {
+      let p = [...PRODUCTS];
+      if (activeCat !== 'all') p = p.filter(x => x.cat === activeCat);
+      if (searchQ) p = p.filter(x => x.name.toLowerCase().includes(searchQ) || x.desc.toLowerCase().includes(searchQ));
+      if (sortMode === 'price-asc') p.sort((a,b) => a.price - b.price);
+      else if (sortMode === 'price-desc') p.sort((a,b) => b.price - a.price);
+      else if (sortMode === 'discount') p.sort((a,b) => (b.mrp-b.price)/b.mrp - (a.mrp-a.price)/a.mrp);
+      return p;
     }
-    function closeChat() { wnd.classList.remove('open'); }
-    toggle.addEventListener('click', () => wnd.classList.contains('open') ? closeChat() : openChat());
-    closeBtn.addEventListener('click', closeChat);
 
-    function addBotMsg(text) {
-      // Show typing
-      const typing = document.createElement('div');
-      typing.className = 'alpha-typing';
-      typing.innerHTML = '<span></span><span></span><span></span>';
-      msgs.appendChild(typing);
-      msgs.scrollTop = msgs.scrollHeight;
-      setTimeout(() => {
-        typing.remove();
-        const m = document.createElement('div');
-        m.className = 'alpha-msg bot';
-        m.innerHTML = text;
-        msgs.appendChild(m);
-        msgs.scrollTop = msgs.scrollHeight;
-      }, 600);
+    function renderGrid() {
+      const products = getFiltered();
+      const grid = document.getElementById('product-grid');
+      const noRes = document.getElementById('no-results');
+      const count = document.getElementById('result-count');
+      count.textContent = `${products.length} product${products.length !== 1 ? 's' : ''}`;
+      if (!products.length) { grid.innerHTML = ''; noRes.classList.remove('hidden'); return; }
+      noRes.classList.add('hidden');
+      grid.innerHTML = products.map(p => {
+        const off = Math.round((1 - p.price / p.mrp) * 100);
+        return `
+        <article class="group flex flex-col relative">
+          <a href="product.html?id=${p.id}" class="block">
+            <figure class="relative bg-gray-100 aspect-square w-full mb-4 overflow-hidden border border-transparent group-hover:border-gray-300 transition-colors">
+              <img loading="lazy" src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" >
+              ${p.badge ? `<div class="absolute top-3 left-3 bg-white/90 px-2 py-1 text-[10px] uppercase tracking-widest font-bold text-dark shadow-sm">${p.badge}</div>` : ''}
+              <div class="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300 hidden lg:block">
+                <button onclick="event.preventDefault();addToCart(${p.id})" class="w-full bg-dark text-white py-2.5 text-xs uppercase tracking-widest hover:bg-gold transition-colors font-semibold">Quick Add</button>
+              </div>
+            </figure>
+            <div class="px-1">
+              <p class="text-[10px] uppercase tracking-widest text-gold font-semibold mb-1">${p.cat}</p>
+              <h3 class="font-medium text-sm text-dark mb-0.5 group-hover:text-gold transition-colors leading-snug">${p.name}</h3>
+              <p class="text-gray-500 text-xs mb-2 font-light">${p.subtitle}</p>
+              <div class="flex items-center gap-1 text-gold mb-2">${star.repeat(5)}<span class="text-xs text-gray-400 ml-1">(${p.reviews})</span></div>
+              <div class="flex items-center gap-2">
+                <span class="text-dark font-semibold">₹${p.price}</span>
+                <span class="text-gray-400 text-xs line-through">₹${p.mrp}</span>
+                <span class="text-green-700 text-xs font-bold">${off}% off</span>
+              </div>
+            </div>
+          </a>
+          <button onclick="addToCart(${p.id})" class="mt-3 mx-1 border border-dark text-dark py-2 text-xs uppercase tracking-widest hover:bg-dark hover:text-white transition-colors lg:hidden">Add to Cart</button>
+        </article>`;
+      }).join('');
     }
-    function addUserMsg(text) {
-      const m = document.createElement('div');
-      m.className = 'alpha-msg user';
-      m.textContent = text;
-      msgs.appendChild(m);
-      msgs.scrollTop = msgs.scrollHeight;
-    }
-    function showQuickReplies() {
-      quick.innerHTML = '';
-      const options = ['📦 Track my order', '🚚 Shipping info', '↩️ Returns policy', '💳 Payment options', '💬 Talk to founder'];
-      options.forEach(opt => {
-        const b = document.createElement('button');
-        b.className = 'alpha-quick-reply';
-        b.textContent = opt;
-        b.onclick = () => { handleUserInput(opt); quick.innerHTML = ''; };
-        quick.appendChild(b);
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      if (btn.dataset.cat === activeCat) { btn.classList.add('active','bg-dark','text-white'); btn.classList.remove('text-gray-500','border-gray-300'); }
+      btn.addEventListener('click', () => {
+        activeCat = btn.dataset.cat;
+        document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active','bg-dark','text-white'); b.classList.add('text-gray-500','border-gray-300'); });
+        btn.classList.add('active','bg-dark','text-white'); btn.classList.remove('text-gray-500','border-gray-300');
+        renderGrid();
       });
-    }
-    function handleUserInput(text) {
-      text = text.trim();
-      if (!text) return;
-      addUserMsg(text);
-      input.value = '';
-      const reply = findReply(text);
-      addBotMsg(reply);
-      setTimeout(showQuickReplies, 1500);
-    }
-    send.addEventListener('click', () => handleUserInput(input.value));
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserInput(input.value); });
-  }
+    });
 
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createChatbot);
-  } else {
-    createChatbot();
-  }
-})();
+    document.getElementById('sort-select').addEventListener('change', e => { sortMode = e.target.value; renderGrid(); });
+    document.getElementById('search-input').addEventListener('input', e => { searchQ = e.target.value.trim().toLowerCase(); renderGrid(); });
+
+    renderGrid();
+    updateCartBadge();
+  </script>
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <!-- Back to Top -->
+  <a href="#top" class="back-to-top" aria-label="Back to top" id="back-to-top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </a>
+  <script>
+    (function() {
+      const btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 400);
+      });
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      // Smooth image loading
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (img.complete) img.classList.add('loaded');
+        else img.addEventListener('load', () => img.classList.add('loaded'));
+      });
+    })();
+  </script>
+  <script src="mobile-menu.js"></script>
+  <script src="chatbot.js" defer></script>
+</body>
+</html>

@@ -1,22 +1,326 @@
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr" data-theme="">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="logo-sm.png">
+  <link rel="apple-touch-icon" href="logo-sm.png">
+  <meta name="theme-color" content="#121212">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://www.gstatic.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Shipping, Returns & Orders | Alphabet Store India</title>
+  <meta name="description" content="Frequently asked questions about Alphabet Store. Shipping times, return policy, payment methods, order tracking and more. Free delivery over ₹999 across India.">
+  <meta name="keywords" content="Alphabet Store FAQ, shipping questions India, return policy FAQ, order tracking help, payment methods India">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.alphabetstores.com/faq.html">
+  <link rel="alternate" hreflang="en-IN" href="https://www.alphabetstores.com/faq.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.alphabetstores.com/faq.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does delivery take?","acceptedAnswer":{"@type":"Answer","text":"Standard delivery across India takes 3–7 business days. Metro cities like Mumbai, Delhi, Bengaluru, and Pune typically receive orders within 3–4 days."}},{"@type":"Question","name":"Do you offer free shipping?","acceptedAnswer":{"@type":"Answer","text":"Yes! All orders above ₹999 qualify for free delivery across India. Orders below ₹999 attract a flat ₹49 shipping fee."}},{"@type":"Question","name":"What is your return policy?","acceptedAnswer":{"@type":"Answer","text":"We offer a 7-day return window from the date of delivery. Items must be unused and in original packaging. Initiate a return via our Contact page."}},{"@type":"Question","name":"What payment methods do you accept?","acceptedAnswer":{"@type":"Answer","text":"We accept UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, Net Banking, and Cash on Delivery (COD)."}}]}</script>
+  <meta property="og:title" content="FAQ | Shipping, Returns & Orders | Alphabet Store India">
+  <meta property="og:description" content="Frequently asked questions about Alphabet Store. Shipping times, return policy, payment methods, order tracking and more. Free delivery over ₹999 across India.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.alphabetstores.com/faq.html">
+  <meta property="og:image" content="https://www.alphabetstores.com/og-image.svg">
+  <meta property="og:site_name" content="Alphabet Store">
+  <meta property="og:locale" content="en_IN">
+  <link rel="stylesheet" href="css.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{gold:'#D4AF37',dark:'#121212',offwhite:'#FAFAFA',grayLight:'#F3F4F6'},fontFamily:{sans:['Inter','sans-serif'],serif:['Merriweather','serif']}}}}</script>
+  <script src="products.js"></script>
+</head>
+<body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
 
-    match /contact_messages/{docId} {
-      allow create: if true;
-      allow read, update, delete: if false;
-    }
-    match /newsletter_subscribers/{docId} {
-      allow create: if true;
-      allow read, update, delete: if false;
-    }
-    match /reviews/{docId} {
-      allow create: if true;
-      allow read, update, delete: if false;
-    }
-    match /orders/{docId} {
-      allow create: if true;
-      allow read, update, delete: if false;
-    }
-  }
-}
+  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+    Free Shipping over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; 7-Day Easy Returns
+  </aside>
+
+  <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20" aria-label="Main navigation">
+      <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
+        <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+        <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+        <a href="blog.html" class="hover:text-gold transition-colors">Blog</a>
+        <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
+      </div>
+      <div class="flex-shrink-0 text-center flex-1 md:flex-none">
+        <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors flex items-center justify-center gap-2">
+          <img src="logo-sm.png" alt="Alphabet Stores Logo" class="w-9 h-9 hidden sm:block" loading="eager">
+          ALPHABET
+        </a>
+      </div>
+      <div class="flex flex-1 justify-end items-center gap-3">
+        <button onclick="toggleDarkMode()" id="dark-mode-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="cart.html" aria-label="Cart" class="hover:text-gold transition-colors flex items-center relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+          <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <section class="bg-dark py-20 text-center px-6">
+      <span class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-4 block">Help Centre</span>
+      <h1 class="text-4xl md:text-5xl font-serif font-light text-white mb-4">Frequently Asked Questions</h1>
+      <div class="w-16 h-[2px] bg-gold mx-auto mb-6"></div>
+      <p class="text-gray-400 max-w-lg mx-auto text-sm font-light leading-relaxed">Everything you need to know about shopping with Alphabet Store — from placing an order to tracking it at your door.</p>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+
+      <!-- Section: Orders -->
+      <div class="mb-10">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-gold mb-5 border-b border-gray-200 pb-3">Orders & Payment</h2>
+        <div class="space-y-3" id="faq-orders">
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>How do I place an order?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Browse our catalogue, add products to your bag, and proceed to checkout. You'll fill in your delivery details, choose a payment method, and place the order. It's straightforward — most customers complete checkout in under two minutes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>What payment methods do you accept?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">We accept UPI (Google Pay, PhonePe, Paytm), Credit and Debit Cards (Visa, Mastercard, Rupay), Net Banking, and Cash on Delivery (COD). All online transactions are secured with 256-bit SSL encryption.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>Can I modify or cancel my order?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Orders can be cancelled or modified within 12 hours of placing them. After that, the order enters fulfilment and cannot be changed. Please contact us immediately at <a href="contact.html" class="text-gold hover:underline">our contact page</a> if you need to make changes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>Is it safe to use my card on your site?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Absolutely. We use 256-bit SSL encryption for all transactions. We never store your card details — payments are processed through secure, RBI-compliant payment gateways. You'll also see the padlock icon in your browser on our checkout page.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Shipping -->
+      <div class="mb-10">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-gold mb-5 border-b border-gray-200 pb-3">Shipping & Delivery</h2>
+        <div class="space-y-3">
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>How long does delivery take?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Standard delivery across India takes <strong>3–7 business days</strong>. Metro cities (Mumbai, Delhi, Bengaluru, Pune, Hyderabad, Chennai) typically receive orders within 3–4 days. Remote pin codes may take up to 7 days. You'll receive a tracking link as soon as your order ships.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>Is shipping free?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Yes! All orders above <strong>₹999</strong> enjoy completely free shipping anywhere in India. For orders below ₹999, a flat ₹49 shipping fee applies. Tip: add a second product to qualify for free shipping — it's often worth it.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>How do I track my order?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Once your order ships, you'll receive a confirmation email with a tracking number and link. You can also use our <a href="track-order.html" class="text-gold hover:underline">Track Order page</a> to check the latest status anytime.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>Do you ship outside India?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Currently, we deliver only within India. We're working on international shipping for 2027. Stay tuned by subscribing to our newsletter on the homepage.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Returns -->
+      <div class="mb-10">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-gold mb-5 border-b border-gray-200 pb-3">Returns & Refunds</h2>
+        <div class="space-y-3">
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>What is your return policy?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">We offer a <strong>7-day return window</strong> from the date of delivery. Items must be unused, undamaged, and in their original packaging. To start a return, contact us via the <a href="contact.html" class="text-gold hover:underline">Contact page</a>. Read our full <a href="refund-policy.html" class="text-gold hover:underline">Refund & Return Policy</a> for details.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>How long do refunds take?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Once we receive and inspect the returned item, refunds are processed within <strong>5–7 business days</strong>. The amount will be credited to your original payment method. UPI and card refunds typically appear within 3–5 business days after processing.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>My product arrived damaged. What do I do?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">We're really sorry to hear that. Please <a href="contact.html" class="text-gold hover:underline">contact us</a> within 48 hours of delivery with a photo of the damaged product. We'll arrange a free replacement or full refund with no questions asked. This is covered under our 10-day replacement guarantee.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Products -->
+      <div class="mb-10">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-gold mb-5 border-b border-gray-200 pb-3">Products & Quality</h2>
+        <div class="space-y-3">
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>Are your products genuine? Why are prices so low?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">Yes — 100% genuine. Our prices are low because we buy directly from manufacturers and cut out layers of middlemen, warehousing costs, and retailer markups that traditional retail relies on. Every product is quality-tested before it goes online. The savings go directly to you, not to a long supply chain.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white border border-gray-200">
+            <button class="faq-trigger w-full text-left flex justify-between items-center px-6 py-5 text-sm font-medium text-dark hover:text-gold transition-colors" aria-expanded="false">
+              <span>Do your products come with a warranty?</span>
+              <span class="faq-icon text-xl text-gray-400 ml-4 flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-sm text-gray-600 font-light leading-relaxed">
+              <p class="pb-5">All products come with a <strong>10-day replacement guarantee</strong> from Alphabet Store. If anything stops working within 10 days of delivery — through no fault of your own — we'll replace it for free. This is on top of the standard 7-day return window.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STILL HAVE QUESTIONS -->
+      <div class="bg-dark text-white p-8 text-center mt-8">
+        <h2 class="text-xl font-serif font-light mb-3">Still Have Questions?</h2>
+        <p class="text-gray-400 text-sm mb-6">Our team typically replies within a few hours. We're real people — no chatbots, no scripts.</p>
+        <a href="contact.html" class="inline-block bg-gold text-dark px-10 py-3 uppercase tracking-widest text-sm font-bold hover:bg-white transition-colors">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-gray-400 py-8 px-6 text-center border-t border-gray-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 text-xs mb-4">
+      <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+      <a href="catalogue.html" class="hover:text-gold transition-colors">Shop</a>
+      <a href="shipping-policy.html" class="hover:text-gold transition-colors">Shipping Policy</a>
+      <a href="refund-policy.html" class="hover:text-gold transition-colors">Return Policy</a>
+      <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
+    </div>    <!-- Marketplace Bar -->
+    <div class="max-w-7xl mx-auto pt-8 mt-4 border-t border-gray-800">
+      <p class="text-center text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">Also Available On</p>
+      <div class="flex justify-center items-center gap-4 mb-8 flex-wrap">
+        <a href="https://www.amazon.in/l/27943762031?me=A26U434B1B4F73&tag=ShopReferral_84abbad7-b49a-425c-ae7c-281bfe72df47&ref=sf_seller_app_share_new_ls_srb" target="_blank" rel="noopener" class="bg-white hover:bg-gold transition-colors px-5 py-3 flex items-center gap-2" aria-label="Visit our Amazon storefront">
+          <svg viewBox="0 0 110 32" class="h-6 w-auto" aria-hidden="true">
+            <text x="0" y="22" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#232F3E">amazon</text>
+            <path d="M2 26 Q 38 34 78 26" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M72 23 L 78 26 L 73 30" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-xs uppercase font-bold tracking-wider text-dark hidden sm:inline">Shop Now</span>
+        </a>
+        <div class="bg-gray-800 px-5 py-3 flex items-center gap-2 relative opacity-60">
+          <svg viewBox="0 0 110 32" class="h-6 w-auto" aria-hidden="true">
+            <text x="0" y="22" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#2874F0" font-style="italic">Flipkart</text>
+          </svg>
+          <span class="text-[10px] uppercase font-bold tracking-wider text-gold border border-gold px-2 py-0.5">Soon</span>
+        </div>
+      </div>
+    </div>
+
+
+    <p class="text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    updateCartBadge();
+    // FAQ Accordion
+    document.querySelectorAll('.faq-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = answer.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('faq-open'));
+        document.querySelectorAll('.faq-trigger').forEach(b => b.setAttribute('aria-expanded','false'));
+        if (!isOpen) {
+          answer.classList.add('open');
+          item.classList.add('faq-open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  </script>
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <!-- Back to Top -->
+  <a href="#top" class="back-to-top" aria-label="Back to top" id="back-to-top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </a>
+  <script>
+    (function() {
+      const btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 400);
+      });
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      // Smooth image loading
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (img.complete) img.classList.add('loaded');
+        else img.addEventListener('load', () => img.classList.add('loaded'));
+      });
+    })();
+  </script>
+  <script src="mobile-menu.js"></script>
+  <script src="chatbot.js" defer></script>
+</body>
+</html>
