@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alphabet Store — Admin Dashboard</title>
@@ -615,6 +616,11 @@
         <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
         Subscribers
       </div>
+      <div class="nav-section">Marketing</div>
+      <div class="nav-item" onclick="showPage('coupons', this)">
+        <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Coupons
+      </div>
     </nav>
     <div class="sidebar-footer">
       <div style="margin-bottom:8px;font-size:0.7rem;">
@@ -794,6 +800,40 @@
               <tr><td colspan="3"><div class="loading"><div class="spinner"></div>Loading subscribers...</div></td></tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <div class="page" id="page-coupons">
+        <div class="section-header">
+          <div class="section-title">Coupon Management</div>
+        </div>
+        <div style="background:var(--card,#1a1a1a);border:1px solid var(--border,#2a2a2a);border-radius:10px;padding:28px;max-width:560px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+            <div>
+              <div style="font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--gold,#c8962a);letter-spacing:0.05em;">ALPHA101</div>
+              <div style="color:var(--muted,#888);font-size:0.85rem;margin-top:4px;">Flat ₹101 off on any order</div>
+            </div>
+            <div id="coupon-status-pill" style="padding:6px 14px;border-radius:20px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">—</div>
+          </div>
+
+          <div style="margin:24px 0;height:1px;background:var(--border,#2a2a2a);"></div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;">Enable this coupon</div>
+              <div style="color:var(--muted,#888);font-size:0.8rem;margin-top:2px;">When off, customers cannot apply ALPHA101 at checkout.</div>
+            </div>
+            <label class="toggle-switch" style="position:relative;display:inline-block;width:54px;height:30px;flex-shrink:0;">
+              <input type="checkbox" id="coupon-toggle" onchange="toggleCoupon(this.checked)" style="opacity:0;width:0;height:0;">
+              <span class="toggle-slider" style="position:absolute;cursor:pointer;inset:0;background:#444;border-radius:30px;transition:0.3s;"></span>
+            </label>
+          </div>
+
+          <div id="coupon-saved-msg" style="margin-top:18px;font-size:0.82rem;color:#2f9e5f;display:none;">✓ Saved — changes are live on the store immediately.</div>
+
+          <div style="margin-top:24px;padding:14px;background:rgba(200,150,42,0.08);border:1px solid rgba(200,150,42,0.25);border-radius:8px;font-size:0.78rem;line-height:1.6;color:var(--muted,#999);">
+            <b style="color:var(--gold,#c8962a);">Note:</b> This toggle controls the coupon on the website instantly (same browser/domain). For the discount to be charged correctly, your payment backend must also be updated — see <b>COUPON-BACKEND-UPDATE.md</b>.
+          </div>
         </div>
       </div>
 
@@ -1133,7 +1173,7 @@
   }
 
   // ── NAVIGATION ──
-  const pageTitles = { overview:'Overview', orders:'Orders', messages:'Contact Messages', reviews:'Customer Reviews', subscribers:'Newsletter Subscribers' };
+  const pageTitles = { overview:'Overview', orders:'Orders', messages:'Contact Messages', reviews:'Customer Reviews', subscribers:'Newsletter Subscribers', coupons:'Coupon Management' };
 
   function showPage(name, el) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1141,7 +1181,45 @@
     document.getElementById('page-' + name).classList.add('active');
     el.classList.add('active');
     document.getElementById('page-title').textContent = pageTitles[name] || name;
+    if (name === 'coupons') loadCouponState();
   }
+
+  // ── COUPON TOGGLE ──
+  function couponIsEnabled() {
+    const v = localStorage.getItem('alpha_coupon_enabled');
+    return v === null ? true : v === 'true';  // default ON
+  }
+  function loadCouponState() {
+    const enabled = couponIsEnabled();
+    const toggle = document.getElementById('coupon-toggle');
+    const pill = document.getElementById('coupon-status-pill');
+    const slider = document.querySelector('.toggle-slider');
+    if (toggle) toggle.checked = enabled;
+    if (pill) {
+      pill.textContent = enabled ? 'Active' : 'Disabled';
+      pill.style.background = enabled ? 'rgba(47,158,95,0.15)' : 'rgba(180,64,47,0.15)';
+      pill.style.color = enabled ? '#2f9e5f' : '#d9654f';
+    }
+    if (slider) {
+      slider.style.background = enabled ? 'var(--gold,#c8962a)' : '#444';
+      const knob = enabled ? 'translateX(24px)' : 'translateX(0)';
+      slider.style.setProperty('--knob', knob);
+    }
+    updateSliderKnob(enabled);
+  }
+  function updateSliderKnob(on) {
+    let style = document.getElementById('toggle-knob-style');
+    if (!style) { style = document.createElement('style'); style.id = 'toggle-knob-style'; document.head.appendChild(style); }
+    style.textContent = `.toggle-slider:before{content:"";position:absolute;height:22px;width:22px;left:4px;bottom:4px;background:#fff;border-radius:50%;transition:0.3s;transform:${on?'translateX(24px)':'translateX(0)'};}`;
+  }
+  function toggleCoupon(checked) {
+    localStorage.setItem('alpha_coupon_enabled', checked ? 'true' : 'false');
+    loadCouponState();
+    const msg = document.getElementById('coupon-saved-msg');
+    if (msg) { msg.style.display = 'block'; setTimeout(()=>{ msg.style.display='none'; }, 2500); }
+    if (window.showToast) showToast(checked ? 'Coupon ALPHA101 activated' : 'Coupon ALPHA101 disabled', checked?'success':'');
+  }
+  window.toggleCoupon = toggleCoupon;
 
   // ── SEARCH FILTER ──
   function filterTable(tbodyId, q) {

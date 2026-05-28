@@ -78,22 +78,38 @@
   <main class="flex-grow">
 
     <!-- HERO -->
-    <section class="relative w-full min-h-[85vh] flex items-center justify-center text-center bg-dark overflow-hidden">
-      <div class="absolute inset-0 opacity-20" style="background: radial-gradient(ellipse at 60% 40%, #D4AF37 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, #D4AF37 0%, transparent 50%);"></div>
+    <section class="hero-section relative w-full min-h-[85vh] flex items-center justify-center text-center overflow-hidden">
+      <div class="hero-glow absolute inset-0 opacity-20" style="background: radial-gradient(ellipse at 60% 40%, #D4AF37 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, #D4AF37 0%, transparent 50%);"></div>
       <div class="relative z-10 px-6 animate-fade-in-up">
         <span class="text-gold tracking-[0.35em] uppercase text-xs font-semibold mb-6 block">Alphabet Store — Est. 2020, Mumbai</span>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-white leading-tight mb-6 tracking-wide">
+        <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-serif font-light leading-tight mb-6 tracking-wide">
           Designed for<br><span class="text-gold">Everyday Life.</span>
         </h1>
-        <p class="max-w-xl mx-auto text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10">
+        <p class="hero-sub max-w-xl mx-auto text-lg md:text-xl font-light leading-relaxed mb-10">
           Premium home essentials that work harder and look better. Up to 90% off MRP — no gimmicks, just honest prices.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="catalogue.html" class="inline-block bg-gold text-dark px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-white transition-colors duration-300 shadow-lg">Shop Now</a>
-          <a href="about_us.html" class="inline-block border border-white/40 text-white px-10 py-4 uppercase tracking-widest text-sm font-light hover:border-gold hover:text-gold transition-colors duration-300">Our Story</a>
+          <a href="catalogue.html" class="inline-block bg-gold text-dark px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-dark hover:text-white transition-colors duration-300 shadow-lg">Shop Now</a>
+          <a href="about_us.html" class="hero-btn-outline inline-block border px-10 py-4 uppercase tracking-widest text-sm font-light transition-colors duration-300">Our Story</a>
         </div>
       </div>
     </section>
+
+    <style>
+      /* Hero: white in light mode, dark in dark mode */
+      .hero-section { background: #ffffff; }
+      .hero-title { color: #121212; }
+      .hero-sub { color: #6b7280; }
+      .hero-btn-outline { border-color: rgba(18,18,18,0.3); color: #121212; }
+      .hero-btn-outline:hover { border-color: #D4AF37; color: #9a6f15; }
+      .hero-glow { opacity: 0.10; }
+      [data-theme="dark"] .hero-section { background: #121212; }
+      [data-theme="dark"] .hero-title { color: #ffffff; }
+      [data-theme="dark"] .hero-sub { color: #9ca3af; }
+      [data-theme="dark"] .hero-btn-outline { border-color: rgba(255,255,255,0.4); color: #ffffff; }
+      [data-theme="dark"] .hero-btn-outline:hover { border-color: #D4AF37; color: #D4AF37; }
+      [data-theme="dark"] .hero-glow { opacity: 0.20; }
+    </style>
 
     <!-- TRUST BAR -->
     <section class="bg-white border-y border-gray-200 py-8" aria-label="Trust signals">
@@ -102,50 +118,6 @@
         <div><div class="text-2xl mb-1" aria-hidden="true">🚚</div><p class="text-xs uppercase tracking-widest text-dark font-bold">Free Shipping</p><p class="text-gray-500 text-xs mt-1">On orders above ₹999</p></div>
         <div><div class="text-2xl mb-1" aria-hidden="true">↩️</div><p class="text-xs uppercase tracking-widest text-dark font-bold">7-Day Returns</p><p class="text-gray-500 text-xs mt-1">Hassle-free & easy</p></div>
         <div><div class="text-2xl mb-1" aria-hidden="true">🔒</div><p class="text-xs uppercase tracking-widest text-dark font-bold">Secure Checkout</p><p class="text-gray-500 text-xs mt-1">256-bit SSL encrypted</p></div>
-      </div>
-    </section>
-
-    <!-- ALSO AVAILABLE ON MARKETPLACES -->
-    <section class="bg-gradient-to-br from-grayLight to-white border-b border-gray-200 py-14" aria-label="Available on marketplaces">
-      <div class="max-w-5xl mx-auto px-6 text-center">
-        <p class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-3">Trusted Across Platforms</p>
-        <h2 class="text-2xl md:text-3xl font-serif font-light text-dark mb-3">Also Available On</h2>
-        <div class="w-16 h-[2px] bg-gold mx-auto mb-8"></div>
-        <p class="text-gray-500 text-sm max-w-2xl mx-auto mb-10">Shop our products on India's biggest marketplaces. Same trusted quality, your favourite platform.</p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <!-- Amazon -->
-          <a href="https://www.amazon.in/l/27943762031?me=A26U434B1B4F73&tag=ShopReferral_84abbad7-b49a-425c-ae7c-281bfe72df47&ref=sf_seller_app_share_new_ls_srb" target="_blank" rel="noopener" class="group bg-white border-2 border-gray-200 hover:border-gold p-6 sm:p-8 transition-all duration-300 hover:shadow-xl flex flex-col items-center">
-            <div class="h-12 flex items-center justify-center mb-4">
-              <svg viewBox="0 0 130 40" class="h-10 w-auto" aria-hidden="true">
-                <text x="0" y="28" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#232F3E">amazon</text>
-                <path d="M2 32 Q 45 42 92 32" stroke="#FF9900" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                <path d="M85 28 L 92 31 L 87 35" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Visit Our Storefront</p>
-            <p class="text-sm font-semibold text-dark mb-4">Alphabet Stores on Amazon</p>
-            <span class="inline-block bg-dark group-hover:bg-gold text-white text-xs uppercase tracking-widest font-bold px-6 py-3 transition-colors">Shop on Amazon →</span>
-          </a>
-
-          <!-- Flipkart -->
-          <div class="group bg-white border-2 border-gray-200 p-6 sm:p-8 flex flex-col items-center relative opacity-75">
-            <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest bg-gold text-dark px-2 py-1 font-bold">Coming Soon</span>
-            <div class="h-12 flex items-center justify-center mb-4">
-              <svg viewBox="0 0 140 40" class="h-9 w-auto" aria-hidden="true">
-                <text x="0" y="28" font-family="Arial, sans-serif" font-weight="700" font-size="26" fill="#2874F0" font-style="italic">Flipkart</text>
-                <text x="0" y="38" font-family="Arial, sans-serif" font-weight="400" font-size="8" fill="#FFC200" font-style="italic">Explore</text>
-                <text x="35" y="38" font-family="Arial, sans-serif" font-weight="700" font-size="8" fill="#FFC200" font-style="italic">Plus</text>
-                <polygon points="60,33 64,36 60,39 56,36" fill="#FFC200"/>
-              </svg>
-            </div>
-            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Launching Soon</p>
-            <p class="text-sm font-semibold text-dark mb-4">Alphabet Stores on Flipkart</p>
-            <span class="inline-block bg-gray-300 text-gray-600 text-xs uppercase tracking-widest font-bold px-6 py-3 cursor-not-allowed">Stay Tuned</span>
-          </div>
-        </div>
-
-        <p class="text-xs text-gray-400 mt-8 max-w-xl mx-auto">Prefer marketplaces? Find our verified storefront on Amazon. Get the same authentic products with marketplace protection.</p>
       </div>
     </section>
 
@@ -256,6 +228,50 @@
           <p>We ship across India with <a href="shipping-policy.html" class="text-gold hover:underline">free delivery on orders over ₹999</a> and offer <a href="refund-policy.html" class="text-gold hover:underline">hassle-free 7-day returns</a>. With trusted courier partners including Delhivery, Ekart, and Blue Dart, your order reaches you safely within 3-7 business days. Browse our <a href="catalogue.html" class="text-gold hover:underline">full product catalogue</a>, read our <a href="blog.html" class="text-gold hover:underline">buying guides and home tips</a>, or check out genuine <a href="reviews.html" class="text-gold hover:underline">customer reviews</a> from 100+ verified buyers.</p>
           <p>Whether you're upgrading your kitchen with rechargeable gadgets, organising your home with wall-mounted storage, or shopping for sustainable alternatives like steel straws — Alphabet Store has you covered. Questions? <a href="contact.html" class="text-gold hover:underline">Contact our founders directly</a> on WhatsApp at +91 70219 09150 — we reply within hours.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- ALSO AVAILABLE ON MARKETPLACES (moved near bottom) -->
+    <section class="bg-gradient-to-br from-grayLight to-white border-y border-gray-200 py-16" aria-label="Available on marketplaces">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <p class="text-gold tracking-[0.3em] uppercase text-xs font-semibold mb-3">Trusted Across Platforms</p>
+        <h2 class="text-2xl md:text-3xl font-serif font-light text-dark mb-3">Also Available On</h2>
+        <div class="w-16 h-[2px] bg-gold mx-auto mb-8"></div>
+        <p class="text-gray-500 text-sm max-w-2xl mx-auto mb-10">Shop our products on India's biggest marketplaces. Same trusted quality, your favourite platform.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <!-- Amazon -->
+          <a href="https://www.amazon.in/l/27943762031?me=A26U434B1B4F73&tag=ShopReferral_84abbad7-b49a-425c-ae7c-281bfe72df47&ref=sf_seller_app_share_new_ls_srb" target="_blank" rel="noopener" class="group bg-white border-2 border-gray-200 hover:border-gold p-6 sm:p-8 transition-all duration-300 hover:shadow-xl flex flex-col items-center">
+            <div class="h-12 flex items-center justify-center mb-4">
+              <svg viewBox="0 0 130 40" class="h-10 w-auto" aria-hidden="true">
+                <text x="0" y="28" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#232F3E">amazon</text>
+                <path d="M2 32 Q 45 42 92 32" stroke="#FF9900" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <path d="M85 28 L 92 31 L 87 35" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Visit Our Storefront</p>
+            <p class="text-sm font-semibold text-dark mb-4">Alphabet Stores on Amazon</p>
+            <span class="inline-block bg-dark group-hover:bg-gold text-white text-xs uppercase tracking-widest font-bold px-6 py-3 transition-colors">Shop on Amazon →</span>
+          </a>
+
+          <!-- Flipkart -->
+          <div class="group bg-white border-2 border-gray-200 p-6 sm:p-8 flex flex-col items-center relative opacity-75">
+            <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest bg-gold text-dark px-2 py-1 font-bold">Coming Soon</span>
+            <div class="h-12 flex items-center justify-center mb-4">
+              <svg viewBox="0 0 140 40" class="h-9 w-auto" aria-hidden="true">
+                <text x="0" y="28" font-family="Arial, sans-serif" font-weight="700" font-size="26" fill="#2874F0" font-style="italic">Flipkart</text>
+                <text x="0" y="38" font-family="Arial, sans-serif" font-weight="400" font-size="8" fill="#FFC200" font-style="italic">Explore</text>
+                <text x="35" y="38" font-family="Arial, sans-serif" font-weight="700" font-size="8" fill="#FFC200" font-style="italic">Plus</text>
+                <polygon points="60,33 64,36 60,39 56,36" fill="#FFC200"/>
+              </svg>
+            </div>
+            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Launching Soon</p>
+            <p class="text-sm font-semibold text-dark mb-4">Alphabet Stores on Flipkart</p>
+            <span class="inline-block bg-gray-300 text-gray-600 text-xs uppercase tracking-widest font-bold px-6 py-3 cursor-not-allowed">Stay Tuned</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-gray-400 mt-8 max-w-xl mx-auto">Prefer marketplaces? Find our verified storefront on Amazon. Get the same authentic products with marketplace protection.</p>
       </div>
     </section>
 

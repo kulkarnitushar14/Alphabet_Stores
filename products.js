@@ -10,6 +10,21 @@
   }
 })();
 
+// ============ COUPON CONFIG ============
+// Single source of truth for the store coupon.
+// DEFAULT_ENABLED is the fallback; the Admin Dashboard can override
+// this live via localStorage key 'alpha_coupon_enabled'.
+const COUPON_CONFIG = {
+  code: 'ALPHA101',
+  discount: 101,      // flat ₹ off
+  minOrder: 0,        // minimum subtotal required (0 = no minimum)
+  DEFAULT_ENABLED: true
+};
+function couponEnabled() {
+  const v = localStorage.getItem('alpha_coupon_enabled');
+  return v === null ? COUPON_CONFIG.DEFAULT_ENABLED : v === 'true';
+}
+
 const PRODUCTS = [
   {
     id: 1,

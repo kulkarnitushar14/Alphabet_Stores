@@ -82,14 +82,14 @@
 
       <!-- Featured Post -->
       <article id="post-1" class="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div class="aspect-[4/3] bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center">
-          <span class="text-7xl">🔋</span>
+        <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+          <img src="https://images.unsplash.com/photo-1565330129132-6ef732dbdef0?w=800&q=80&auto=format&fit=crop" alt="Rechargeable home gadgets" loading="lazy" class="w-full h-full object-cover">
         </div>
         <div>
           <span class="text-xs text-gold uppercase tracking-widest font-semibold">Buying Guide · May 15, 2026</span>
           <h2 class="text-3xl font-serif font-light text-dark mt-3 mb-4">5 Rechargeable Gadgets Every Indian Home Needs in 2026</h2>
           <p class="text-gray-600 leading-relaxed text-sm mb-5">From handheld fans that beat Mumbai humidity to milk frothers that turn your morning coffee into café-quality lattes — these are the rechargeable home essentials we recommend to friends, family, and customers. Each one is tested in real Indian homes, with honest verdicts on what's worth your money.</p>
-          <a href="#post-1-full" class="inline-block text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition">Read article →</a>
+          <button onclick="toggleArticle('post-1-full', this)" class="article-toggle inline-block text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition cursor-pointer">Read article →</button>
         </div>
       </article>
 
@@ -97,51 +97,52 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
 
         <article id="post-2">
-          <div class="aspect-[4/3] bg-gradient-to-br from-amber-100 to-amber-300 flex items-center justify-center mb-5">
-            <span class="text-6xl">☕</span>
+          <div class="aspect-[4/3] overflow-hidden bg-gray-100 mb-5">
+            <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=700&q=80&auto=format&fit=crop" alt="Café-style latte with foam" loading="lazy" class="w-full h-full object-cover">
           </div>
           <span class="text-xs text-gold uppercase tracking-widest font-semibold">Kitchen Hacks · May 10, 2026</span>
           <h3 class="text-xl font-serif font-light text-dark mt-3 mb-3">How to Make Café-Style Lattes at Home Without a Machine</h3>
           <p class="text-gray-600 text-sm leading-relaxed mb-4">A handheld milk frother costs less than two café visits but pays for itself in a week. Here's the exact technique we use to get bakery-thick foam every time — no expensive espresso machine needed.</p>
-          <a href="#post-2-full" class="text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition">Read article →</a>
+          <button onclick="toggleArticle('post-2-full', this)" class="article-toggle text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition cursor-pointer">Read article →</button>
         </article>
 
         <article id="post-3">
-          <div class="aspect-[4/3] bg-gradient-to-br from-sky-100 to-sky-300 flex items-center justify-center mb-5">
-            <span class="text-6xl">🌧️</span>
+          <div class="aspect-[4/3] overflow-hidden bg-gray-100 mb-5">
+            <img src="https://images.unsplash.com/photo-1504370805625-d32c54b16100?w=700&q=80&auto=format&fit=crop" alt="Portable cooling fan summer" loading="lazy" class="w-full h-full object-cover">
           </div>
           <span class="text-xs text-gold uppercase tracking-widest font-semibold">Seasonal Guide · May 5, 2026</span>
           <h3 class="text-xl font-serif font-light text-dark mt-3 mb-3">Mumbai Summer Survival Guide: Best Cooling Gadgets</h3>
           <p class="text-gray-600 text-sm leading-relaxed mb-4">When the temperature hits 38°C and the humidity makes you regret your existence, you need more than a desk fan. Our guide to portable cooling that actually works on Mumbai's worst days.</p>
-          <a href="#post-3-full" class="text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition">Read article →</a>
+          <button onclick="toggleArticle('post-3-full', this)" class="article-toggle text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition cursor-pointer">Read article →</button>
         </article>
 
         <article id="post-4">
-          <div class="aspect-[4/3] bg-gradient-to-br from-green-100 to-green-300 flex items-center justify-center mb-5">
-            <span class="text-6xl">🍃</span>
+          <div class="aspect-[4/3] overflow-hidden bg-gray-100 mb-5">
+            <img src="https://images.unsplash.com/photo-1572297870735-9c8f4b7f4f8a?w=700&q=80&auto=format&fit=crop" alt="Reusable steel straws eco-friendly" loading="lazy" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=700&q=80&auto=format&fit=crop'">
           </div>
           <span class="text-xs text-gold uppercase tracking-widest font-semibold">Sustainable Living · April 28, 2026</span>
           <h3 class="text-xl font-serif font-light text-dark mt-3 mb-3">Switching to Reusable: Are Steel Straws Worth the Hype?</h3>
           <p class="text-gray-600 text-sm leading-relaxed mb-4">We tested stainless steel straws for 90 days against plastic. The verdict on durability, cleaning, taste, and whether they actually reduce kitchen waste — plus our cleaning routine.</p>
-          <a href="#post-4-full" class="text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition">Read article →</a>
+          <button onclick="toggleArticle('post-4-full', this)" class="article-toggle text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition cursor-pointer">Read article →</button>
         </article>
 
         <article id="post-5">
-          <div class="aspect-[4/3] bg-gradient-to-br from-purple-100 to-purple-300 flex items-center justify-center mb-5">
-            <span class="text-6xl">📦</span>
+          <div class="aspect-[4/3] overflow-hidden bg-gray-100 mb-5">
+            <img src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=700&q=80&auto=format&fit=crop" alt="Small apartment storage organisation" loading="lazy" class="w-full h-full object-cover">
           </div>
           <span class="text-xs text-gold uppercase tracking-widest font-semibold">Home Organisation · April 20, 2026</span>
           <h3 class="text-xl font-serif font-light text-dark mt-3 mb-3">Small Apartment? 7 Storage Hacks That Actually Work</h3>
           <p class="text-gray-600 text-sm leading-relaxed mb-4">Mumbai flats are small. Pune PGs are smaller. We share the seven wall-mounted, no-drill storage solutions our customers swear by — under ₹1000 each.</p>
-          <a href="#post-5-full" class="text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition">Read article →</a>
+          <button onclick="toggleArticle('post-5-full', this)" class="article-toggle text-sm uppercase tracking-widest border-b-2 border-dark pb-1 text-dark hover:text-gold hover:border-gold transition cursor-pointer">Read article →</button>
         </article>
 
       </div>
 
       <!-- Full Article 1 -->
-      <article id="post-1-full" class="max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10">
+      <article id="post-1-full" class="full-article max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10" style="display:none">
         <span class="text-xs text-gold uppercase tracking-widest font-semibold">Buying Guide · May 15, 2026</span>
         <h2 class="text-3xl font-serif font-light text-dark mt-3 mb-6 border-b border-gray-200 pb-4">5 Rechargeable Gadgets Every Indian Home Needs in 2026</h2>
+        <img src="https://images.unsplash.com/photo-1565330129132-6ef732dbdef0?w=1000&q=80&auto=format&fit=crop" alt="Rechargeable home gadgets" loading="lazy" class="w-full aspect-[16/9] object-cover mb-6 border border-gray-200">
         <div class="prose policy-content">
           <p>If you're tired of running to the wall socket every five minutes, this list is for you. Rechargeable gadgets have transformed Indian homes — they're portable, power-cut-proof, and (when chosen well) outlast their plug-in cousins. Here are the five we genuinely recommend.</p>
           <h3>1. LED Digital Hand Fan</h3>
@@ -157,12 +158,14 @@
           <h3>The Bottom Line</h3>
           <p>You don't need every gadget on the market. You need the few that solve real daily annoyances. Pick one, use it for a month, and decide whether it's earned a permanent home in your kitchen. We bet it has.</p>
         </div>
+        <button onclick="toggleArticle('post-1-full')" class="mt-6 text-xs uppercase tracking-widest text-gray-500 hover:text-dark border border-gray-300 px-4 py-2 transition">↑ Close article</button>
       </article>
 
       <!-- Full Article 2 -->
-      <article id="post-2-full" class="max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10">
+      <article id="post-2-full" class="full-article max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10" style="display:none">
         <span class="text-xs text-gold uppercase tracking-widest font-semibold">Kitchen Hacks · May 10, 2026</span>
         <h2 class="text-3xl font-serif font-light text-dark mt-3 mb-6 border-b border-gray-200 pb-4">How to Make Café-Style Lattes at Home Without a Machine</h2>
+        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=1000&q=80&auto=format&fit=crop" alt="Café-style latte with foam" loading="lazy" class="w-full aspect-[16/9] object-cover mb-6 border border-gray-200">
         <div class="prose policy-content">
           <p>A coffee shop latte costs ₹250. A handheld milk frother costs less than ₹300. Do the math — by your second latte, the frother has paid for itself. Here's the exact technique we use to get bakery-thick foam every single time.</p>
           <h3>What You'll Need</h3>
@@ -179,12 +182,14 @@
           <p><strong>Step 4:</strong> Pour over coffee. Tap the cup once to settle. Done. Café latte at home.</p>
           <p>Want oat milk? Soy milk? Almond? Switch them in — the technique is the same. <a href="product.html?id=2" style="color:#D4AF37">Get the frother we use →</a></p>
         </div>
+        <button onclick="toggleArticle('post-2-full')" class="mt-6 text-xs uppercase tracking-widest text-gray-500 hover:text-dark border border-gray-300 px-4 py-2 transition">↑ Close article</button>
       </article>
 
       <!-- Full Article 3 -->
-      <article id="post-3-full" class="max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10">
+      <article id="post-3-full" class="full-article max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10" style="display:none">
         <span class="text-xs text-gold uppercase tracking-widest font-semibold">Seasonal Guide · May 5, 2026</span>
         <h2 class="text-3xl font-serif font-light text-dark mt-3 mb-6 border-b border-gray-200 pb-4">Mumbai Summer Survival Guide: Best Cooling Gadgets</h2>
+        <img src="https://images.unsplash.com/photo-1504370805625-d32c54b16100?w=1000&q=80&auto=format&fit=crop" alt="Portable cooling fan summer" loading="lazy" class="w-full aspect-[16/9] object-cover mb-6 border border-gray-200">
         <div class="prose policy-content">
           <p>Mumbai summer isn't just hot — it's <em>wet</em>. Your ceiling fan turns into a hairdryer. Your AC is two rooms away. You need portable cooling that travels with you. Here's our verified gear list, ranked by actual Mumbai usefulness.</p>
           <h3>Tier 1: The Essentials</h3>
@@ -196,6 +201,55 @@
           <h3>Pro Tip</h3>
           <p>Charge everything at night. Mumbai's load-shedding is unpredictable. A fully charged hand fan saves a sticky 30-minute power cut from becoming a meltdown.</p>
         </div>
+        <button onclick="toggleArticle('post-3-full')" class="mt-6 text-xs uppercase tracking-widest text-gray-500 hover:text-dark border border-gray-300 px-4 py-2 transition">↑ Close article</button>
+      </article>
+
+      <!-- Full Article 4 -->
+      <article id="post-4-full" class="full-article max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10" style="display:none">
+        <span class="text-xs text-gold uppercase tracking-widest font-semibold">Sustainable Living · April 28, 2026</span>
+        <h2 class="text-3xl font-serif font-light text-dark mt-3 mb-6 border-b border-gray-200 pb-4">Switching to Reusable: Are Steel Straws Worth the Hype?</h2>
+        <img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=1000&q=80&auto=format&fit=crop" alt="Reusable steel straws" loading="lazy" class="w-full aspect-[16/9] object-cover mb-6 border border-gray-200">
+        <div class="prose policy-content">
+          <p>We bought a set of stainless steel straws, committed to using them for 90 days straight, and tracked everything — durability, cleaning hassle, taste, and whether they genuinely cut down our plastic waste. Here's the honest verdict.</p>
+          <h3>Day 1–30: The Adjustment</h3>
+          <p>The first thing you notice is the temperature. Steel conducts, so a straw in an iced drink feels icy-cold on your lips — surprisingly pleasant in summer. The second thing: they feel premium. No more flimsy plastic that cracks when you bite it.</p>
+          <h3>Day 31–60: The Cleaning Question</h3>
+          <p>This is where most people quit. The trick is the little cleaning brush that comes in the set — rinse immediately after use and run the brush through once. Takes ten seconds. We also tossed them in the dishwasher cutlery basket with zero issues. <a href="product.html?id=9" style="color:#D4AF37">Our steel straw set →</a></p>
+          <h3>Day 61–90: The Verdict</h3>
+          <p>Still going strong, zero rust, no bent tips. Compared to the roughly 90 plastic straws we'd have thrown away, that's a real reduction in kitchen waste. Taste? Neutral once you rinse them — no metallic tang after the first wash.</p>
+          <h3>Who Should Buy Them</h3>
+          <p>If you drink smoothies, iced coffee, or cold drinks regularly, they pay for themselves in convenience and last for years. If you rarely use straws, skip them. For families with kids, they're a no-brainer — durable, safe, and the bright finish makes them fun.</p>
+          <h3>The Bottom Line</h3>
+          <p>Worth the hype, with one caveat: buy a set that includes a cleaning brush and a carry pouch. Without those, they become a chore. With them, they quietly replace plastic forever.</p>
+        </div>
+        <button onclick="toggleArticle('post-4-full')" class="mt-6 text-xs uppercase tracking-widest text-gray-500 hover:text-dark border border-gray-300 px-4 py-2 transition">↑ Close article</button>
+      </article>
+
+      <!-- Full Article 5 -->
+      <article id="post-5-full" class="full-article max-w-3xl mx-auto bg-white border border-gray-200 p-8 mb-10" style="display:none">
+        <span class="text-xs text-gold uppercase tracking-widest font-semibold">Home Organisation · April 20, 2026</span>
+        <h2 class="text-3xl font-serif font-light text-dark mt-3 mb-6 border-b border-gray-200 pb-4">Small Apartment? 7 Storage Hacks That Actually Work</h2>
+        <img src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=1000&q=80&auto=format&fit=crop" alt="Small apartment storage" loading="lazy" class="w-full aspect-[16/9] object-cover mb-6 border border-gray-200">
+        <div class="prose policy-content">
+          <p>Mumbai flats are small. Pune PGs are smaller. After helping hundreds of customers organise tight spaces, here are the seven storage solutions that genuinely work — most of them no-drill, all of them under ₹1000.</p>
+          <h3>1. Go Vertical with Wall Hooks</h3>
+          <p>Your walls are unused real estate. Adhesive wall hooks hold bags, utensils, keys, and towels without a single drill hole — perfect for rented homes where you can't damage walls. <a href="product.html?id=6" style="color:#D4AF37">Our wall hooks →</a></p>
+          <h3>2. Use the Back of Doors</h3>
+          <p>Over-the-door organisers turn dead space into storage for shoes, toiletries, or cleaning supplies. A single door can hold what a whole shelf would.</p>
+          <h3>3. Multi-Piece Wall Storage Sets</h3>
+          <p>A coordinated wall-mount set keeps the kitchen or bathroom clutter off your limited counter space. <a href="product.html?id=8" style="color:#D4AF37">Our storage set →</a></p>
+          <h3>4. Resealable Bags for Everything</h3>
+          <p>Not just for food — resealable bags organise cables, stationery, travel toiletries, and seasonal items so they stack flat in drawers. <a href="product.html?id=7" style="color:#D4AF37">Our resealable bags →</a></p>
+          <h3>5. Stack Up, Not Out</h3>
+          <p>Stackable containers double your shelf capacity. The rule: if it has a flat top, something can sit on it.</p>
+          <h3>6. Under-Bed Is Prime Storage</h3>
+          <p>Flat storage boxes slide under the bed and swallow off-season clothes, extra bedding, or rarely-used items. It's the single biggest hidden space in any small home.</p>
+          <h3>7. One-In-One-Out Rule</h3>
+          <p>The cheapest storage hack of all: every time something new comes in, something old goes out. Clutter is a flow problem, not just a space problem.</p>
+          <h3>The Bottom Line</h3>
+          <p>You don't need a bigger home — you need to use the vertical and hidden spaces you already have. Start with wall hooks and one storage set, and you'll free up more room than you'd expect.</p>
+        </div>
+        <button onclick="toggleArticle('post-5-full')" class="mt-6 text-xs uppercase tracking-widest text-gray-500 hover:text-dark border border-gray-300 px-4 py-2 transition">↑ Close article</button>
       </article>
 
     </section>
@@ -246,6 +300,29 @@
   </footer>
 
   <script>updateCartBadge();</script>
+  <script>
+    // Blog article expand/collapse — robust version
+    function toggleArticle(id, btn) {
+      const article = document.getElementById(id);
+      if (!article) { console.warn('Article not found:', id); return; }
+      // Determine current state via computed style (more reliable than inline)
+      const currentlyOpen = article.style.display === 'block';
+      // Close all full articles + reset all toggle buttons
+      document.querySelectorAll('.full-article').forEach(a => { a.style.display = 'none'; });
+      document.querySelectorAll('.article-toggle').forEach(b => { b.textContent = 'Read article →'; });
+      if (!currentlyOpen) {
+        article.style.display = 'block';
+        if (btn) btn.textContent = 'Reading… ↓';
+        setTimeout(() => { article.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+      }
+    }
+    window.toggleArticle = toggleArticle;
+    // Safety net: attach via event delegation too, in case inline onclick is stripped
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('[onclick*="toggleArticle"]');
+      // inline onclick already handles it; this is just a fallback guard — no double-fire
+    }, false);
+  </script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp }

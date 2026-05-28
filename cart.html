@@ -93,6 +93,20 @@
               <span>Taxes</span>
               <span class="text-gray-400 text-xs italic">Incl. in price</span>
             </div>
+            <div id="discount-row" class="flex justify-between text-green-700 font-medium hidden">
+              <span>Discount (<span id="applied-code"></span>)</span>
+              <span id="summary-discount">−₹0</span>
+            </div>
+          </div>
+
+          <!-- Coupon Code -->
+          <div id="coupon-section" class="mb-6">
+            <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Have a coupon?</label>
+            <div class="flex gap-2">
+              <input type="text" id="coupon-input" placeholder="Enter code" class="flex-1 border border-gray-300 px-3 py-2.5 text-sm uppercase tracking-wider outline-none focus:border-gold transition-colors" autocomplete="off">
+              <button onclick="applyCoupon()" class="bg-dark text-white px-5 py-2.5 text-xs uppercase tracking-widest font-bold hover:bg-gold transition-colors">Apply</button>
+            </div>
+            <p id="coupon-msg" class="text-xs mt-2 hidden"></p>
           </div>
           <div class="flex justify-between items-end mb-8 text-xl font-semibold text-dark">
             <span>Total</span>
@@ -122,6 +136,50 @@
 
   <script src="products.js"></script>
   <script>
+    // ============ COUPON (uses shared COUPON_CONFIG from products.js) ============
+    const COUPON = COUPON_CONFIG;
+    function isCouponEnabled() { return couponEnabled(); }
+
+    function getAppliedCoupon() {
+      return sessionStorage.getItem('alpha_applied_coupon') || '';
+    }
+    function setAppliedCoupon(code) {
+      if (code) sessionStorage.setItem('alpha_applied_coupon', code);
+      else sessionStorage.removeItem('alpha_applied_coupon');
+    }
+
+    function applyCoupon() {
+      const input = document.getElementById('coupon-input');
+      const msg = document.getElementById('coupon-msg');
+      const code = input.value.trim().toUpperCase();
+      msg.classList.remove('hidden');
+
+      if (!code) {
+        msg.textContent = 'Please enter a coupon code.';
+        msg.className = 'text-xs mt-2 text-red-600';
+        return;
+      }
+      if (code !== COUPON.code) {
+        msg.textContent = '✗ Invalid coupon code.';
+        msg.className = 'text-xs mt-2 text-red-600';
+        setAppliedCoupon('');
+        renderCart();
+        return;
+      }
+      if (!isCouponEnabled()) {
+        msg.textContent = '✗ This coupon is currently not active.';
+        msg.className = 'text-xs mt-2 text-red-600';
+        setAppliedCoupon('');
+        renderCart();
+        return;
+      }
+      // Valid + enabled
+      setAppliedCoupon(code);
+      msg.textContent = '✓ Coupon applied — ₹' + COUPON.discount + ' off!';
+      msg.className = 'text-xs mt-2 text-green-700 font-bold';
+      renderCart();
+    }
+
     function renderCart() {
       const cart = getCart();
       const keys = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
@@ -131,11 +189,38 @@
         return p ? s + p.price * cart[id] : s;
       }, 0);
 
+      // Coupon discount
+      let discount = 0;
+      const applied = getAppliedCoupon();
+      const couponValid = applied === COUPON.code && isCouponEnabled() && subtotal >= COUPON.minOrder && subtotal > 0;
+      if (couponValid) {
+        discount = Math.min(COUPON.discount, subtotal); // never below 0
+      } else if (applied && !isCouponEnabled()) {
+        // coupon was disabled after applying — clear it
+        setAppliedCoupon('');
+      }
+      const finalTotal = Math.max(0, subtotal - discount);
+
       document.getElementById('cart-header-count').textContent = `Cart (${totalItems})`;
       document.getElementById('summary-item-count').textContent = totalItems;
       document.getElementById('summary-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
-      document.getElementById('summary-total').textContent = '₹' + subtotal.toLocaleString('en-IN');
+      document.getElementById('summary-total').textContent = '₹' + finalTotal.toLocaleString('en-IN');
       document.getElementById('summary-shipping').textContent = subtotal >= 999 ? 'FREE' : '₹49';
+
+      // Discount row
+      const dRow = document.getElementById('discount-row');
+      if (discount > 0) {
+        dRow.classList.remove('hidden');
+        document.getElementById('applied-code').textContent = COUPON.code;
+        document.getElementById('summary-discount').textContent = '−₹' + discount.toLocaleString('en-IN');
+        // store for payment page
+        sessionStorage.setItem('alpha_discount', discount);
+        sessionStorage.setItem('alpha_final_total', finalTotal);
+      } else {
+        dRow.classList.add('hidden');
+        sessionStorage.removeItem('alpha_discount');
+        sessionStorage.removeItem('alpha_final_total');
+      }
 
       if (!keys.length) {
         document.getElementById('cart-empty').classList.remove('hidden');
@@ -173,6 +258,14 @@
           </div>
         </article>`;
       }).join('');
+
+      // Hide coupon section if coupon globally disabled AND not applied
+      const cs = document.getElementById('coupon-section');
+      if (!isCouponEnabled()) {
+        cs.style.display = 'none';
+      } else {
+        cs.style.display = '';
+      }
     }
 
     function changeQty(id, delta) {
