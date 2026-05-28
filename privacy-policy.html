@@ -9,383 +9,147 @@
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
   <link rel="dns-prefetch" href="https://www.gstatic.com">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Checkout | Alphabet Store</title>
-  <meta name="robots" content="noindex, nofollow">
+  <title>Privacy Policy | Alphabet Store — How We Handle Your Data</title>
+  <meta name="description" content="Alphabet Store's privacy policy. Learn how we collect, use, and protect your personal information when you shop with us.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.alphabetstores.com/privacy-policy.html">
+  <link rel="alternate" hreflang="en-IN" href="https://www.alphabetstores.com/privacy-policy.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.alphabetstores.com/privacy-policy.html">
   <link rel="stylesheet" href="css.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', dark: '#121212', offwhite: '#FAFAFA', grayLight: '#F3F4F6' }, fontFamily: { sans: ['Inter','sans-serif'], serif: ['Merriweather','serif'] } } } }</script>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>tailwind.config={theme:{extend:{colors:{gold:'#D4AF37',dark:'#121212',offwhite:'#FAFAFA',grayLight:'#F3F4F6'},fontFamily:{sans:['Inter','sans-serif'],serif:['Merriweather','serif']}}}}</script>
+  <script src="products.js"></script>
 </head>
 <body class="bg-offwhite min-h-screen font-sans text-dark antialiased flex flex-col">
-
-  <header class="bg-white border-b border-gray-200 py-5 px-6 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-extrabold tracking-[0.25em] text-dark hover:text-gray-700 transition-colors">ALPHABET</a>
-    <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400">
-      <span class="text-dark font-semibold">Checkout</span>
-    </div>
-    <a href="cart.html" class="text-xs text-gray-400 hover:text-dark transition underline underline-offset-4 uppercase tracking-widest">← Back to Cart</a>
-  </header>
-
-  <div class="bg-grayLight border-b border-gray-200 py-3 px-6">
-    <div class="max-w-5xl mx-auto flex items-center justify-center gap-6 text-xs uppercase tracking-widest">
-      <span class="text-dark font-bold border-b-2 border-gold pb-1">1. Information</span>
-      <span class="text-gray-300">→</span>
-      <span class="text-gray-400">2. Payment</span>
-    </div>
-  </div>
-
-  <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 py-12 w-full">
-    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
-
-      <div class="w-full lg:w-3/5">
-        <h2 class="text-xl font-serif font-light tracking-wide mb-8 text-dark">Contact & Shipping</h2>
-
-        <div class="space-y-5">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">First Name *</label>
-              <input id="f-firstname" type="text" placeholder="Raj" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="given-name">
-            </div>
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Last Name *</label>
-              <input id="f-lastname" type="text" placeholder="Sharma" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="family-name">
-            </div>
-          </div>
-          <div>
-            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Email Address *</label>
-            <input id="f-email" type="email" placeholder="raj@example.com" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="email">
-          </div>
-          <div>
-            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Phone Number *</label>
-            <input id="f-phone" type="tel" placeholder="9876543210" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="tel">
-          </div>
-          <div>
-            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Address Line 1 *</label>
-            <input id="f-addr1" type="text" placeholder="House / Flat number, Street name" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="address-line1">
-          </div>
-          <div>
-            <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">Address Line 2</label>
-            <input id="f-addr2" type="text" placeholder="Area, Landmark (optional)" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="address-line2">
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">City *</label>
-              <input id="f-city" type="text" placeholder="Mumbai" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="address-level2">
-            </div>
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">State *</label>
-              <select id="f-state" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white text-gray-700">
-                <option value="">Select State</option>
-                <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option><option>Tamil Nadu</option><option>Telangana</option><option>Gujarat</option><option>Rajasthan</option><option>West Bengal</option><option>Uttar Pradesh</option><option>Kerala</option><option>Punjab</option><option>Haryana</option><option>Madhya Pradesh</option><option>Other</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-xs uppercase tracking-widest text-gray-500 block mb-2">PIN Code *</label>
-              <input id="f-pin" type="text" placeholder="421202" maxlength="6" class="w-full border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:border-dark transition-colors bg-white" autocomplete="postal-code">
-            </div>
-          </div>
-        </div>
-
-        <div id="form-error" class="hidden mt-4 text-red-600 text-sm border border-red-200 bg-red-50 px-4 py-3 flex items-center gap-2">
-          <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <span id="form-error-msg"></span>
-        </div>
-
-        <button id="place-order-btn" class="mt-8 w-full bg-dark text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-dark transition-colors duration-300 shadow-md flex items-center justify-center gap-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          <span id="btn-label">Proceed to Pay Securely</span>
+  <aside class="bg-dark text-offwhite text-xs text-center py-2.5 tracking-[0.2em] uppercase font-medium">
+    Free Shipping over <span class="font-bold text-gold">₹999</span> &nbsp;|&nbsp; 7-Day Easy Returns
+  </aside>
+  <header class="sticky top-0 z-40 w-full bg-offwhite/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20">
+      <div class="hidden md:flex flex-1 space-x-8 text-sm uppercase tracking-widest font-semibold text-gray-600">
+        <a href="index.html" class="hover:text-gold">Home</a>
+        <a href="catalogue.html" class="hover:text-gold">Shop</a>
+      </div>
+      <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-[0.25em] text-dark flex items-center justify-center gap-2">
+        <img src="logo-sm.png" alt="Alphabet Stores Logo" class="w-9 h-9 hidden sm:block" loading="eager">
+        ALPHABET
+      </a>
+      <div class="flex flex-1 justify-end items-center gap-3">
+        <button onclick="toggleDarkMode()" id="dark-mode-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
         </button>
-        <p class="text-xs text-gray-400 mt-3 text-center">By placing your order you agree to our <a href="privacy-policy.html" class="underline">Terms & Privacy Policy</a></p>
+        <a href="cart.html" aria-label="Cart" class="hover:text-gold relative p-2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+          <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-gold rounded-full">0</span>
+        </a>
       </div>
-
-      <div class="w-full lg:w-2/5">
-        <div class="bg-grayLight p-6 sticky top-8">
-          <h2 class="text-lg font-serif tracking-wide text-dark mb-5 border-b border-gray-200 pb-4">Order Summary</h2>
-          <div id="checkout-items" class="space-y-4 mb-6 max-h-72 overflow-y-auto pr-1"></div>
-          <div class="border-t border-gray-200 pt-4 space-y-3 text-sm">
-            <div class="flex justify-between text-gray-600"><span>Subtotal</span><span id="co-subtotal" class="font-medium text-dark">₹0</span></div>
-            <div class="flex justify-between text-gray-600"><span>Shipping</span><span id="co-shipping" class="text-green-700 font-semibold text-xs uppercase">Free</span></div>
-            <div class="flex justify-between text-gray-600"><span>Taxes</span><span class="text-xs text-gray-400 italic">Incl.</span></div>
-          </div>
-          <div class="flex justify-between items-end mt-4 pt-4 border-t border-gray-300 text-lg font-semibold text-dark">
-            <span>Total</span><span id="co-total">₹0</span>
-          </div>
-          <div class="mt-6 space-y-2">
-            <div class="flex items-center gap-2 text-xs text-gray-500">
-              <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              256-bit SSL Encrypted & Secure
-            </div>
-            <div class="flex items-center gap-2 text-xs text-gray-500">
-              <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              UPI · Cards · Net Banking · COD
-            </div>
-            <div class="flex items-center gap-2 text-xs text-gray-500">
-              <svg class="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              7-Day Hassle-Free Returns
-            </div>
-          </div>
-        </div>
-      </div>
+    </nav>
+  </header>
+  <main class="flex-grow">
+    <div class="bg-dark py-14 text-center px-6">
+      <p class="text-xs text-gold uppercase tracking-[0.3em] mb-3">Legal & Policies</p>
+      <h1 class="text-4xl font-serif font-light text-white mb-3">Privacy Policy</h1>
+      <div class="w-12 h-[2px] bg-gold mx-auto"></div>
+    </div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-14 policy-content">
+      <p class="text-xs text-gray-400 uppercase tracking-widest mb-10 border-b border-gray-200 pb-4">Last updated: May 2026</p>
+      <p>Your privacy matters to us. This policy explains clearly what data we collect when you use Alphabet Store, why we collect it, and how we protect it. We don't sell your data. We don't use dark patterns. We just want to provide you with a great shopping experience.</p>
+      <h2>What Information We Collect</h2>
+      <p>When you place an order or contact us, we may collect:</p>
+      <ul>
+        <li>Name, email address, and phone number</li>
+        <li>Delivery address and PIN code</li>
+        <li>Payment information (processed securely by our payment gateway — we never see your full card details)</li>
+        <li>Order history and preferences</li>
+        <li>IP address and browser information (for security and fraud prevention)</li>
+      </ul>
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>To process and fulfil your orders</li>
+        <li>To send order confirmations and shipping updates</li>
+        <li>To respond to your support queries</li>
+        <li>To send promotional emails (only if you've subscribed — you can unsubscribe anytime)</li>
+        <li>To improve our website and product offerings</li>
+        <li>To prevent fraud and maintain site security</li>
+      </ul>
+      <h2>Who We Share Your Data With</h2>
+      <p>We share your information only with trusted partners who help us run our business:</p>
+      <ul>
+        <li><strong>Courier partners</strong> (Delhivery, Ekart, Blue Dart) — for delivery</li>
+        <li><strong>Payment processors</strong> — for secure transaction processing</li>
+        <li><strong>Email/SMS service providers</strong> — for order notifications</li>
+      </ul>
+      <p>We never sell, rent, or trade your personal data to third parties for marketing purposes.</p>
+      <h2>Cookies</h2>
+      <p>We use cookies to remember your shopping cart and preferences. We don't use third-party tracking cookies for advertising. You can clear cookies at any time through your browser settings — though this will reset your cart.</p>
+      <h2>Data Security</h2>
+      <p>All data transmitted through our site is encrypted using 256-bit SSL. Your payment information is handled by PCI-DSS compliant payment gateways and is never stored on our servers.</p>
+      <h2>Your Rights</h2>
+      <p>You have the right to access, correct, or delete the personal data we hold about you. To exercise these rights, please <a href="contact.html" style="color:#D4AF37">contact us</a> and we'll respond within 30 days.</p>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this policy from time to time. The "last updated" date at the top of this page reflects when changes were last made. Continued use of our site after updates constitutes acceptance of the revised policy.</p>
+      <h2>Contact</h2>
+      <p>For privacy-related questions, please <a href="contact.html" style="color:#D4AF37">contact us</a> directly. We take data privacy seriously and will respond promptly.</p>
     </div>
   </main>
+  <footer class="bg-dark text-gray-400 py-8 px-6 text-center border-t border-gray-800 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 text-xs mb-4">
+      <a href="index.html" class="hover:text-gold">Home</a>
+      <a href="shipping-policy.html" class="hover:text-gold">Shipping</a>
+      <a href="refund-policy.html" class="hover:text-gold">Returns</a>
+      <a href="contact.html" class="hover:text-gold">Contact</a>
+    </div>    <!-- Marketplace Bar -->
+    <div class="max-w-7xl mx-auto pt-8 mt-4 border-t border-gray-800">
+      <p class="text-center text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">Also Available On</p>
+      <div class="flex justify-center items-center gap-4 mb-8 flex-wrap">
+        <a href="https://www.amazon.in/l/27943762031?me=A26U434B1B4F73&tag=ShopReferral_84abbad7-b49a-425c-ae7c-281bfe72df47&ref=sf_seller_app_share_new_ls_srb" target="_blank" rel="noopener" class="bg-white hover:bg-gold transition-colors px-5 py-3 flex items-center gap-2" aria-label="Visit our Amazon storefront">
+          <svg viewBox="0 0 110 32" class="h-6 w-auto" aria-hidden="true">
+            <text x="0" y="22" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#232F3E">amazon</text>
+            <path d="M2 26 Q 38 34 78 26" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M72 23 L 78 26 L 73 30" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-xs uppercase font-bold tracking-wider text-dark hidden sm:inline">Shop Now</span>
+        </a>
+        <div class="bg-gray-800 px-5 py-3 flex items-center gap-2 relative opacity-60">
+          <svg viewBox="0 0 110 32" class="h-6 w-auto" aria-hidden="true">
+            <text x="0" y="22" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#2874F0" font-style="italic">Flipkart</text>
+          </svg>
+          <span class="text-[10px] uppercase font-bold tracking-wider text-gold border border-gold px-2 py-0.5">Soon</span>
+        </div>
+      </div>
+    </div>
 
-  <footer class="bg-dark text-gray-500 py-6 px-6 text-center text-xs tracking-widest border-t border-gold/20">
-    © 2026 ALPHABET STORE. SECURE CHECKOUT.
+
+    <p class="text-xs tracking-wider">© 2026 ALPHABET STORE. ALL RIGHTS RESERVED.</p>
   </footer>
-
-  <script src="products.js"></script>
-
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp }
-      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-    const app = initializeApp({
-      apiKey: "AIzaSyA8kP9mASgrog-_Rbuldrnm4rRJm1LmaSU",
-      authDomain: "alphabet-stores.firebaseapp.com",
-      projectId: "alphabet-stores",
-      storageBucket: "alphabet-stores.firebasestorage.app",
-      messagingSenderId: "1068812719722",
-      appId: "1:1068812719722:web:9db5e8c634487dce121c13"
-    });
-    const db = getFirestore(app);
-    window.__db = db;
-    window.__fsAddDoc = addDoc;
-    window.__fsCollection = collection;
-    window.__fsTimestamp = serverTimestamp;
-  </script>
-
+  <script>updateCartBadge();</script>
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/917021909150" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="whatsapp-float">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <!-- Back to Top -->
+  <a href="#top" class="back-to-top" aria-label="Back to top" id="back-to-top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </a>
   <script>
-    const BACKEND_URL = "https://alphabet-backend-b1sb.onrender.com";
-
-    // ============================================================
-    // WAKE UP RENDER BACKEND IMMEDIATELY when page loads
-    // Customer fills the form (takes ~60 seconds) → backend wakes
-    // up in the background → by the time they click Pay, it's ready!
-    // ============================================================
-    let backendReady = false;
-
-    function wakeBackend() {
-      // Silent wake-up - no UI message shown
-      fetch(`${BACKEND_URL}/api/health`, { method: 'GET', signal: AbortSignal.timeout(30000) })
-        .then(r => {
-          if (r.ok) {
-            backendReady = true;
-          }
-        })
-        .catch(() => {
-          // Retry silently after 10s
-          setTimeout(wakeBackend, 10000);
-        });
-    }
-    wakeBackend(); // start immediately on page load
-
-    function renderCheckoutSummary() {
-      const cart = getCart();
-      const keys = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
-      const subtotal = keys.reduce((s, id) => {
-        const p = PRODUCTS.find(x => x.id === id);
-        return p ? s + p.price * cart[id] : s;
-      }, 0);
-      const shipping = subtotal >= 999 ? 0 : 49;
-      const total = subtotal + shipping;
-      document.getElementById('co-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
-      document.getElementById('co-shipping').textContent = shipping === 0 ? 'FREE' : '₹49';
-      document.getElementById('co-total').textContent = '₹' + total.toLocaleString('en-IN');
-      document.getElementById('checkout-items').innerHTML = keys.map(id => {
-        const p = PRODUCTS.find(x => x.id === id);
-        if (!p) return '';
-        return `<div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white border border-gray-200 shrink-0 overflow-hidden"><img loading="lazy" src="${p.image}" alt="${p.name}" class="w-full h-full object-cover"></div>
-          <div class="flex-1 min-w-0"><p class="text-sm font-medium text-dark truncate">${p.name}</p><p class="text-xs text-gray-500">Qty: ${cart[id]}</p></div>
-          <span class="text-sm font-semibold">Rs.${(p.price * cart[id]).toLocaleString('en-IN')}</span>
-        </div>`;
-      }).join('') || '<p class="text-sm text-gray-400">No items in cart.</p>';
-    }
-
-    function resetBtn() {
-      document.getElementById('place-order-btn').disabled = false;
-      document.getElementById('btn-label').textContent = 'Proceed to Pay Securely';
-    }
-
-    async function handlePaymentWorkflow() {
-      const fields = [
-        ['f-firstname','First name'], ['f-lastname','Last name'],
-        ['f-email','Email'], ['f-phone','Phone'],
-        ['f-addr1','Address'], ['f-city','City'],
-        ['f-state','State'], ['f-pin','PIN Code']
-      ];
-      const errEl  = document.getElementById('form-error');
-      const errMsg = document.getElementById('form-error-msg');
-      const btn    = document.getElementById('place-order-btn');
-
-      for (const [id, label] of fields) {
-        if (!document.getElementById(id).value.trim()) {
-          errMsg.textContent = `Please fill in your ${label}.`;
-          errEl.classList.remove('hidden');
-          document.getElementById(id).focus();
-          return;
-        }
-      }
-      errEl.classList.add('hidden');
-
-      const cart = getCart();
-      const cartKeys = Object.keys(cart).map(Number).filter(id => cart[id] > 0);
-      if (!cartKeys.length) {
-        errMsg.textContent = 'Your cart is empty!';
-        errEl.classList.remove('hidden');
-        return;
-      }
-
-      const customerInfo = {
-        name:    document.getElementById('f-firstname').value.trim() + ' ' + document.getElementById('f-lastname').value.trim(),
-        email:   document.getElementById('f-email').value.trim(),
-        phone:   document.getElementById('f-phone').value.trim(),
-        address: [
-          document.getElementById('f-addr1').value.trim(),
-          document.getElementById('f-addr2').value.trim(),
-          document.getElementById('f-city').value.trim(),
-          document.getElementById('f-state').value.trim(),
-          document.getElementById('f-pin').value.trim()
-        ].filter(Boolean).join(', ')
-      };
-
-      const cartItems = cartKeys.map(id => {
-        const p = PRODUCTS.find(x => x.id === id);
-        return p ? { id, name: p.name, qty: cart[id], price: p.price } : null;
-      }).filter(Boolean);
-
-      const subtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
-      const shipping = subtotal >= 999 ? 0 : 49;
-      const total    = subtotal + shipping;
-
-      // Show loading
-      btn.disabled = true;
-      document.getElementById('btn-label').textContent = 'Connecting to payment...';
-
-      try {
-        // Step 1: Create Razorpay order via your backend
-        const response = await fetch(`${BACKEND_URL}/api/checkout/create-order`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cartItems: cart })
-        });
-
-        if (!response.ok) throw new Error('Server error. Please try again.');
-        const orderData = await response.json();
-        if (orderData.error) throw new Error(orderData.error);
-
-        document.getElementById('btn-label').textContent = 'Opening Razorpay...';
-
-        // Step 2: Open Razorpay checkout
-        const options = {
-          key: orderData.keyId,
-          amount: orderData.amount,
-          currency: orderData.currency,
-          name: 'ALPHABET STORE',
-          description: `Order — ${cartItems.length} item(s)`,
-          order_id: orderData.orderId,
-          handler: async function(paymentResponse) {
-            // Step 3: Verify payment
-            try {
-              const verifyRes = await fetch(`${BACKEND_URL}/api/checkout/verify-payment`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(paymentResponse)
-              });
-              const result = await verifyRes.json();
-
-              if (result.verified) {
-                // Generate proper order ID for Shiprocket
-                const alpOrderId = 'ALP-' + new Date().getFullYear() + '-' + String(Date.now()).slice(-6);
-                
-                // Save order to Firebase
-                try {
-                  await window.__fsAddDoc(
-                    window.__fsCollection(window.__db, 'orders'), {
-                      orderId:           alpOrderId,
-                      razorpayOrderId:   orderData.orderId,
-                      razorpayPaymentId: paymentResponse.razorpay_payment_id,
-                      customer:  customerInfo,
-                      items:     cartItems,
-                      subtotal, shipping, total,
-                      status:    'paid',
-                      createdAt: window.__fsTimestamp()
-                    }
-                  );
-                } catch(fbErr) { console.error('Firebase save error:', fbErr); }
-
-                // Push to Shiprocket (fire-and-forget, don't block redirect)
-                fetch(`${BACKEND_URL}/api/shiprocket/create-order`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    order: {
-                      orderId: alpOrderId,
-                      customer: customerInfo,
-                      items: cartItems.map(it => ({
-                        id: it.id,
-                        name: it.name,
-                        quantity: it.quantity || 1,
-                        price: it.price
-                      })),
-                      subtotal,
-                      total,
-                      paymentMethod: 'prepaid'
-                    }
-                  })
-                }).then(r => r.json())
-                  .then(d => console.log('Shiprocket:', d))
-                  .catch(e => console.error('Shiprocket push failed:', e));
-
-                // Store order ID for thank you page
-                try { sessionStorage.setItem('lastOrderId', alpOrderId); } catch(e) {}
-
-                // Clear cart and go to thank you
-                try { saveCart({}); } catch(e) { localStorage.removeItem('alphabet_cart'); }
-                window.location.href = 'thank_you.html';
-              } else {
-                errMsg.textContent = 'Payment verification failed. Please contact us on WhatsApp.';
-                errEl.classList.remove('hidden');
-                resetBtn();
-              }
-            } catch(verifyErr) {
-              // Payment went through but verify failed — still redirect to be safe
-              try { saveCart({}); } catch(e) {}
-              window.location.href = 'thank_you.html';
-            }
-          },
-          prefill: {
-            name:    customerInfo.name,
-            email:   customerInfo.email,
-            contact: customerInfo.phone
-          },
-          notes: { address: customerInfo.address },
-          theme: { color: '#D4AF37' },
-          modal: {
-            ondismiss: function() { resetBtn(); }
-          }
-        };
-
-        const rzp = new Razorpay(options);
-        rzp.on('payment.failed', function(response) {
-          errMsg.textContent = 'Payment failed: ' + (response.error.description || 'Please try again.');
-          errEl.classList.remove('hidden');
-          resetBtn();
-        });
-        rzp.open();
-
-      } catch(err) {
-        console.error(err);
-        errMsg.textContent = 'Could not connect to payment server. Please try again in a moment or WhatsApp us at +91 70219 09150.';
-        errEl.classList.remove('hidden');
-        resetBtn();
-      }
-    }
-
-    document.getElementById('place-order-btn').addEventListener('click', handlePaymentWorkflow);
-    renderCheckoutSummary();
+    (function() {
+      const btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 400);
+      });
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      // Smooth image loading
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (img.complete) img.classList.add('loaded');
+        else img.addEventListener('load', () => img.classList.add('loaded'));
+      });
+    })();
   </script>
   <script src="mobile-menu.js"></script>
+  <script src="chatbot.js" defer></script>
 </body>
 </html>
